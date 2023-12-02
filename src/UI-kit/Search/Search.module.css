@@ -1,0 +1,30 @@
+.searchContainer {
+  display: flex;
+}
+
+.searchInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  border-right: none;
+}
+
+.searchButton {
+  background-color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-left: none;
+
+}
+
+.searchButton img {
+  width: 20px;
+  height: 20px;
+
+  &:active {
+    transform: translateY(3px);
+  }
+}
