@@ -1,26 +1,64 @@
-import {ChangeEvent, FC, useState} from 'react';
-import styles from './Search.module.css'
-import SVG from './magnifying-glass.svg'
+import {ChangeEvent, FC, memo, useCallback, useState} from 'react';
+import {GlassIcon} from "./GlassIcon.tsx";
+import styled from "styled-components";
 
 type Props = {
   onClick: (value: string) => void
 }
-export const Search: FC<Props> = ({onClick}) => {
+export const Search: FC<Props> = memo(({onClick}) => {
   const [search, setSearch] = useState<string>('')
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value)
-  }
-  const handleSearch = () => {
+  }, [])
+
+  const handleSearch = useCallback(() => {
     onClick(search)
-  }
+    setSearch('')
+  }, [onClick])
 
   return (
-    <div className={styles.searchContainer}>
-      <input type="search" className={styles.searchInput} placeholder="Search" onChange={onChangeHandler} value={search}/>
-      <button className={styles.searchButton} onClick={handleSearch}>
-        <img src={SVG} alt="logo"/>
-      </button>
-    </div>
+    <Container>
+      <Input type="text" placeholder="Search" onChange={onChangeHandler}
+             value={search}/>
+      <Button onClick={handleSearch}>
+        <GlassIcon/>
+      </Button>
+    </Container>
   );
-};
+});
+
+const Container = styled.div`
+  display: flex;
+`
+
+const Input = styled.input`
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: .5rem 0 0 .5rem;
+  outline: none;
+  border-right: none;
+`
+const Button = styled.button`
+  background-color: #fff;
+  border-radius: 0 .5rem .5rem 0;
+  cursor: pointer;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-left: none;
+
+  & svg {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--color-primary);
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+
+`
+
+
 
