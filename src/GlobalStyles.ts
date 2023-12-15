@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
 :root {
   --color-primary: #333;
 }
@@ -13,3 +16,4 @@
 html {
   font-size: 62.5%;
 }
+`;
