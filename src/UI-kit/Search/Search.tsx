@@ -1,28 +1,32 @@
-import {ChangeEvent, FC, memo, useCallback, useState} from 'react';
-import {GlassIcon} from "./GlassIcon.tsx";
-import styled from "styled-components";
+import { ChangeEvent, FC, memo, useCallback, useState } from 'react';
+import { GlassIcon } from './GlassIcon.tsx';
+import styled from 'styled-components';
 
 type Props = {
-  onClick: (value: string) => void
-}
-export const Search: FC<Props> = memo(({onClick}) => {
-  const [search, setSearch] = useState<string>('')
+  onClick: (value: string) => void;
+};
+export const Search: FC<Props> = memo(({ onClick }) => {
+  const [search, setSearch] = useState<string>('');
 
   const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.currentTarget.value)
-  }, [])
+    setSearch(e.currentTarget.value);
+  }, []);
 
   const handleSearch = useCallback(() => {
-    onClick(search)
-    setSearch('')
-  }, [onClick])
+    onClick(search);
+    setSearch('');
+  }, [onClick]);
 
   return (
     <Container>
-      <Input type="text" placeholder="Search" onChange={onChangeHandler}
-             value={search}/>
+      <Input
+        type="text"
+        placeholder="Search"
+        onChange={onChangeHandler}
+        value={search}
+      />
       <Button onClick={handleSearch}>
-        <GlassIcon/>
+        <GlassIcon />
       </Button>
     </Container>
   );
@@ -30,18 +34,18 @@ export const Search: FC<Props> = memo(({onClick}) => {
 
 const Container = styled.div`
   display: flex;
-`
+`;
 
 const Input = styled.input`
   padding: 1rem;
   border: 1px solid #ccc;
-  border-radius: .5rem 0 0 .5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
   outline: none;
   border-right: none;
-`
+`;
 const Button = styled.button`
   background-color: #fff;
-  border-radius: 0 .5rem .5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
   cursor: pointer;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -56,9 +60,4 @@ const Button = styled.button`
       transform: translateY(2px);
     }
   }
-
-
-`
-
-
-
+`;
