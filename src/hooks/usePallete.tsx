@@ -16,6 +16,11 @@ const lightPallete = {
   },
   background: {
     primary: 'aquamarine',
+    secondary: '#fff',
+    modal: '0, 0, 0',
+  },
+  border: {
+    primary: '#000',
   },
 };
 
@@ -31,6 +36,11 @@ const darkPallete: ThemeType = {
   },
   background: {
     primary: 'violet',
+    secondary: '#ccc',
+    modal: '#aaa',
+  },
+  border: {
+    primary: '#000',
   },
 };
 

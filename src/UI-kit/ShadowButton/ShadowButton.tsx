@@ -10,6 +10,8 @@ export const ShadowButton: FC<Props> = ({ children, onClick }) => {
 };
 
 const Button = styled.button`
+  display: inline-block;
+  margin: 1rem;
   max-width: 16rem;
   word-break: break-all;
   padding: 1rem 2rem;
