@@ -13,10 +13,12 @@ const lightPallete = {
   text: {
     white: '#fff',
     darkGrey: '#999',
+    hero: '#F1F3F1',
   },
   background: {
     primary: 'aquamarine',
     secondary: '#fff',
+    hero: '#607262',
     modal: '0, 0, 0',
   },
   border: {
@@ -33,10 +35,12 @@ const darkPallete: ThemeType = {
   text: {
     white: '#fff',
     darkGrey: '#999',
+    hero: '#F1F3F1',
   },
   background: {
     primary: 'violet',
     secondary: '#ccc',
+    hero: '#607262',
     modal: '#aaa',
   },
   border: {
