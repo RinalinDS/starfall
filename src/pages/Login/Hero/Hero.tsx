@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import ModelImage from './../../../assets/Model-Image.png';
 
 export const Hero = () => {
   return (
@@ -27,7 +26,7 @@ export const Hero = () => {
                 <span className="thirdPart">Boutique</span>
               </Title>
 
-              <img src={ModelImage} alt="model-image" />
+              {/* <img src={ModelImage} alt="model-image" /> */}
             </ImageContainer>
           </Content>
           <SubTitle>Fancy suits</SubTitle>
@@ -53,7 +52,7 @@ const HeroSection = styled.section`
   background: ${({ theme }) => theme.background.hero};
   padding: 3.2rem 6.4rem;
   color: ${({ theme }) => theme.text.hero};
-  min-height: 100vh;
+  height: 100vh;
 `;
 
 const Container = styled.div`
@@ -79,19 +78,21 @@ const Main = styled.main`
 `;
 
 const Content = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   text-align: center;
-  & img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const ImageContainer = styled.div`
   position: relative;
-  grid-column: 2 / 3;
+  width: 33%;
+  height: 100%;
+  background-image: url('./../src/assets/Model-Image.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const Footer = styled.footer`
