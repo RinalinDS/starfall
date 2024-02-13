@@ -1,48 +1,25 @@
 import { styled } from 'styled-components';
+import { HeroFooter } from './components/HeroFooter';
+import { HeroHeader } from './components/HeroHeader';
 
 export const Hero = () => {
   return (
     <HeroSection>
       <Container>
-        <Header>
-          <nav>
-            <NavList>
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <a href="#">Work</a>
-              </li>
-            </NavList>
-          </nav>
-        </Header>
+        <HeroHeader />
         <Main>
-          <SubTitle>All collections</SubTitle>
-          <Content>
-            <ImageContainer>
-              <Title>
-                <span className="firstPart">Creat</span>
-                <span className="secondPart">ive</span>
-                <span className="thirdPart">Boutique</span>
-              </Title>
-
-              {/* <img src={ModelImage} alt="model-image" /> */}
-            </ImageContainer>
-          </Content>
-          <SubTitle>Fancy suits</SubTitle>
+          <ImageContainer>
+            <SubTitle>All collections</SubTitle>
+            <Image />
+            <Title>
+              <span className="firstPart">Creat</span>
+              <span className="secondPart">ive</span>
+              <span className="thirdPart">Boutique</span>
+            </Title>
+            <SubTitle>Fancy suits</SubTitle>
+          </ImageContainer>
         </Main>
-        <Footer>
-          <nav>
-            <NavList>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Contact Us</a>
-              </li>
-            </NavList>
-          </nav>
-        </Footer>
+        <HeroFooter />
       </Container>
     </HeroSection>
   );
@@ -57,7 +34,6 @@ const HeroSection = styled.section`
 
 const Container = styled.div`
   max-width: 120rem;
-  padding: 1.8rem 3.6rem;
   margin: 0 auto;
   height: 100%;
   display: flex;
@@ -65,9 +41,6 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Header = styled.header`
-  height: 6.4rem;
-`;
 const Main = styled.main`
   display: flex;
   flex-direction: column;
@@ -77,26 +50,23 @@ const Main = styled.main`
   height: 100%;
 `;
 
-const Content = styled.div`
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
 const ImageContainer = styled.div`
   position: relative;
   width: 33%;
   height: 100%;
+  gap: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Image = styled.div`
+  height: 100%;
+  width: 100%;
   background-image: url('./../src/assets/Model-Image.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-`;
-
-const Footer = styled.footer`
-  height: 6.4rem;
 `;
 
 const Title = styled.h1`
@@ -124,20 +94,4 @@ const Title = styled.h1`
 
 const SubTitle = styled.h2`
   font-size: 3.6rem;
-  margin: 1.2rem;
-`;
-
-const NavList = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-  & a {
-    text-decoration: none;
-    font-size: 3.2rem;
-    color: ${({ theme }) => theme.text.hero};
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 `;
