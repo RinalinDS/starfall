@@ -1,12 +1,14 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  children: React.ReactNode;
-  onClick: () => void;
-};
-export const ShadowButton: FC<Props> = ({ children, onClick }) => {
-  return <Button onClick={onClick}>{children}</Button>;
+interface BtnProps extends React.HTMLAttributes<HTMLButtonElement> {}
+
+export const ShadowButton: FC<BtnProps> = ({ children, onClick, ...props }) => {
+  return (
+    <Button onClick={onClick} {...props}>
+      {children}
+    </Button>
+  );
 };
 
 const Button = styled.button`
