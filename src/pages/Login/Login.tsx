@@ -4,7 +4,7 @@ import styles from './login.module.css';
 export const Login = () => {
   const [toggle, setToggle] = useState(true);
 
-  const onClickHandler = () => setToggle(!toggle);
+  const onClickHandler = () => setToggle((prevState) => !prevState);
 
   return (
     <div className={styles.container}>
