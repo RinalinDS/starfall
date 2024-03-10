@@ -16,7 +16,7 @@ const lightPallete = {
     hero: '#F1F3F1',
   },
   background: {
-    primary: 'aquamarine',
+    primary: 'lightgray',
     secondary: '#fff',
     hero: '#607262',
     modal: '0, 0, 0',

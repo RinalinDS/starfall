@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './GlobalStyles.ts';
+import { Navbar } from './components/Navbar/Navbar.tsx';
 import { usePallete } from './hooks/usePallete.tsx';
-import { Login } from './pages/Login/Login.tsx';
 
 export const App = () => {
   const { theme } = usePallete();
@@ -10,7 +10,7 @@ export const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Container>
-        <Login />
+        <Navbar />
       </Container>
     </ThemeProvider>
   );
@@ -18,7 +18,6 @@ export const App = () => {
 
 const Container = styled.div`
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  background-color: ${({ theme }) => theme.background.primary};
 `;
