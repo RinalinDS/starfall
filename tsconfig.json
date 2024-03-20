@@ -24,7 +24,8 @@
   },
   "include": [
     "src",
-    "styled.d.ts"
+    "styled.d.ts",
+    // "global.d.ts",
   ],
   "references": [
     {
