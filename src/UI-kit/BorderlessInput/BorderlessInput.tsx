@@ -57,6 +57,6 @@ const Input = styled.input`
     position: absolute;
     top: -20px;
     left: 0;
-    color: yellowgreen;
+    color: var(--color-yellow);
   }
 `;
