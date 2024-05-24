@@ -21,7 +21,7 @@ export const Search: FC<Props> = memo(({ onClick }) => {
     <Container>
       <Input
         type="text"
-        placeholder="Search"
+        placeholder="Search IBDb..."
         onChange={onChangeHandler}
         value={search}
       />
@@ -37,23 +37,25 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-  padding: 1rem;
+  padding: 0.4rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem 0 0 0.5rem;
   outline: none;
   border-right: none;
+  width: 100%;
 `;
 const Button = styled.button`
   background-color: #fff;
   border-radius: 0 0.5rem 0.5rem 0;
   cursor: pointer;
-  padding: 1rem;
+  padding: 0.4rem;
+  padding-left: 0.8rem;
   border: 1px solid #ccc;
   border-left: none;
 
   & svg {
     width: 2rem;
-    height: 2rem;
+    height: 1rem;
     fill: var(--color-primary);
 
     &:active {
