@@ -39,7 +39,7 @@ const darkPallete: ThemeType = {
   },
   background: {
     primary: '#333',
-    secondary: '#ccc',
+    secondary: '#777',
     hero: '#607262',
     modal: '#aaa',
   },
