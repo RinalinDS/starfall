@@ -1,21 +1,13 @@
-import { ChangeEvent, FC, memo, useCallback, useState } from 'react';
-import { GlassIcon } from './GlassIcon.tsx';
+import { ChangeEvent, memo, useCallback, useState } from 'react';
 import styled from 'styled-components';
+import { GlassIcon } from './GlassIcon.tsx';
 
-type Props = {
-  onClick: (value: string) => void;
-};
-export const Search: FC<Props> = memo(({ onClick }) => {
+export const Search = memo(() => {
   const [search, setSearch] = useState<string>('');
 
   const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
   }, []);
-
-  const handleSearch = useCallback(() => {
-    onClick(search);
-    setSearch('');
-  }, [onClick]);
 
   return (
     <Container>
@@ -24,8 +16,9 @@ export const Search: FC<Props> = memo(({ onClick }) => {
         placeholder="Search IBDb..."
         onChange={onChangeHandler}
         value={search}
+        name={'search'}
       />
-      <Button onClick={handleSearch}>
+      <Button type="submit">
         <GlassIcon />
       </Button>
     </Container>
