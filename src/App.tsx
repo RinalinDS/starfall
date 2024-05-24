@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './GlobalStyles.ts';
 import { usePallete } from './hooks/usePallete.tsx';
 import { Header } from './components/Header/Header.tsx';
+import { MainContent } from './components/MainContent.tsx';
 
 export const App = () => {
   const { theme } = usePallete();
@@ -13,8 +14,9 @@ export const App = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Layout>
+          <Header />
           <Container>
-            <Header />
+            <MainContent />
           </Container>
         </Layout>
       </ThemeProvider>
@@ -23,7 +25,6 @@ export const App = () => {
 };
 
 const Layout = styled.div`
-  padding: 0.375rem;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.background.primary};
 `;
