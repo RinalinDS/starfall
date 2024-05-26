@@ -11,13 +11,13 @@ const lightPallete = {
     tertiary: '#4169e1',
   },
   text: {
-    white: '#fff',
+    primary: '#333',
     darkGrey: '#999',
     hero: '#F1F3F1',
   },
   background: {
-    primary: 'lightgray',
-    secondary: '#fff',
+    primary: '#bbb',
+    secondary: '#999',
     hero: '#607262',
     modal: '0, 0, 0',
   },
@@ -33,7 +33,7 @@ const darkPallete: ThemeType = {
     tertiary: '#0d2f97',
   },
   text: {
-    white: '#fff',
+    primary: '#fff',
     darkGrey: '#999',
     hero: '#F1F3F1',
   },

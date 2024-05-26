@@ -48,7 +48,7 @@ const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  color: ${({ theme }) => theme.text.white};
+  color: ${({ theme }) => theme.text.primary};
   height: 3rem;
 
   max-width: 80rem;

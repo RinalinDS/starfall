@@ -21,7 +21,7 @@ const Container = styled.div`
   flex-grow: 1;
   height: 100%;
   padding: 1rem;
-  color: ${({ theme }) => theme.text.white};
+  color: ${({ theme }) => theme.text.primary};
 
   justify-content: space-between;
   gap: 1rem;
