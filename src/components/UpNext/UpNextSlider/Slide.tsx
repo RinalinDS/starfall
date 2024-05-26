@@ -10,13 +10,13 @@ export const Slide = ({ slide }: Props) => {
   const { description, previewImage, title } = slide;
   return (
     <Container>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <ImageContainer>
         <StyledImage src={previewImage} alt="smallbookcover" />
-      </div>
-      <DescriptionContainer>
+      </ImageContainer>
+      <div>
         <Typography variant="body1">{title}</Typography>
         <Typography variant="body2">{description}</Typography>
-      </DescriptionContainer>
+      </div>
     </Container>
   );
 };
@@ -29,10 +29,13 @@ const Container = styled.div`
   height: 100%;
   flex-grow: 1;
 `;
+
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 const StyledImage = styled.img`
   width: 7rem;
   height: 7rem;
   object-fit: contain;
 `;
-
-const DescriptionContainer = styled.div``;
