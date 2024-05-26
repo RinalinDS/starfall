@@ -1,7 +1,7 @@
+import { Typography } from '@mui/material';
+import { FaPlus } from 'react-icons/fa6';
 import { styled } from 'styled-components';
 import { Book } from '../../mocks/sliderData.mock';
-import { Typography } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 
 type Props = {
   mainSlide: Book;
@@ -24,7 +24,7 @@ export const Carousel = ({
       <ImageContentContainer>
         <StyledImage src={previewImage} alt={`${title} preview`} />
         <ButtonAbsolute onClick={addToWatchlist}>
-          <AddIcon />
+          <FaPlus />
         </ButtonAbsolute>
       </ImageContentContainer>
       <TextContainer>
@@ -138,7 +138,7 @@ const ButtonAbsolute = styled.button`
     0 0
   );
   svg {
-    font-size: 2rem;
+    font-size: 1.6rem;
     position: relative;
     bottom: 10px;
   }
