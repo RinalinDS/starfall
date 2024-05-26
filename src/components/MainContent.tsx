@@ -24,6 +24,7 @@ export const MainContent = () => {
   return (
     <Container>
       <Carousel
+        key={currentSlide.id}
         mainSlide={currentSlide}
         changeNextSlide={changeNextSlide}
         changePrevSlide={changePrevSlide}
