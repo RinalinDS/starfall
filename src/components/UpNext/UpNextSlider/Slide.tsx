@@ -11,7 +11,7 @@ export const Slide = ({ slide }: Props) => {
   return (
     <Container>
       <ImageContainer>
-        <StyledImage src={previewImage} alt="smallbookcover" />
+        <StyledImage src={previewImage} alt={`${title} preview`} />
       </ImageContainer>
       <div>
         <Typography variant="body1">{title}</Typography>
