@@ -14,8 +14,12 @@ export const Slide = ({ slide }: Props) => {
         <StyledImage src={previewImage} alt={`${title} preview`} />
       </ImageContainer>
       <div>
-        <Typography variant="body1">{title}</Typography>
-        <Typography variant="body2">{description}</Typography>
+        <Typography variant="body1" fontSize={'2rem'}>
+          {title}
+        </Typography>
+        <Typography variant="body2" fontSize={'1.2rem'}>
+          {description}
+        </Typography>
       </div>
     </Container>
   );
@@ -35,7 +39,6 @@ const ImageContainer = styled.div`
   justify-content: center;
 `;
 const StyledImage = styled.img`
-  width: 7rem;
-  height: 7rem;
+  max-width: 7rem;
   object-fit: contain;
 `;

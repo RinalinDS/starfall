@@ -31,6 +31,6 @@ const Layout = styled.div`
 `;
 
 const Container = styled.div`
-  max-width: 80rem;
+  max-width: 120rem;
   margin: 0 auto;
 `;

@@ -41,14 +41,14 @@ const Button = styled.button`
   background-color: #fff;
   border-radius: 0 0.5rem 0.5rem 0;
   cursor: pointer;
-  padding: 0.4rem;
-  padding-left: 0.8rem;
+  padding: 0.8rem;
+  padding-left: 1rem;
   border: 1px solid #ccc;
   border-left: none;
 
   & svg {
-    width: 2rem;
-    height: 1rem;
+    width: 3.2rem;
+    height: 1.6rem;
     fill: var(--color-primary);
 
     &:active {

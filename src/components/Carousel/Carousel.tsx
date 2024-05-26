@@ -20,7 +20,7 @@ export const Carousel = ({
   };
   return (
     <Container>
-      <img src={image} alt="bookcover" className="main_image" />
+      <img src={image} alt={title} className="main_image" />
       <ImageContentContainer>
         <StyledImage src={previewImage} alt={`${title} preview`} />
         <ButtonAbsolute onClick={addToWatchlist}>
@@ -28,8 +28,12 @@ export const Carousel = ({
         </ButtonAbsolute>
       </ImageContentContainer>
       <TextContainer>
-        <Typography variant="h3">{title}</Typography>
-        <Typography variant="body1">{description}</Typography>
+        <Typography variant="h3" fontSize={'3.6rem'}>
+          {title}
+        </Typography>
+        <Typography variant="body1" fontSize={'1.6rem'}>
+          {description}
+        </Typography>
       </TextContainer>
       <ButtonLeft onClick={changePrevSlide}>
         <svg
@@ -64,13 +68,13 @@ const Container = styled.div`
   flex-grow: 2;
   position: relative;
   overflow: hidden;
+  border-radius: 9px;
 
   & .main_image {
     height: 100%;
     width: 100%;
     object-fit: fill;
-    max-height: 32rem;
-    border-radius: 9px;
+    max-height: 48rem;
   }
 `;
 
@@ -78,7 +82,6 @@ const Button = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  border-radius: 4px;
   background: hsla(0, 0%, 7%, 0.45);
   border: 1px solid hsla(0, 0%, 100%, 0.7);
   font-size: 1.5rem;
@@ -87,7 +90,7 @@ const Button = styled.button`
   transition: all 0.25s ease-out;
   z-index: 5;
   top: 50%;
-  padding: 0.75rem 0.5rem;
+  padding: 1.2rem 0.8rem;
   border-radius: 7px;
   &:hover {
     color: yellow;
@@ -95,14 +98,14 @@ const Button = styled.button`
 `;
 
 const ButtonLeft = styled(Button)`
-  left: 5px;
+  left: 0.5rem;
   &:hover {
     left: 0px;
   }
 `;
 
 const ButtonRight = styled(Button)`
-  right: 5px;
+  right: 0.5rem;
   &:hover {
     right: 0px;
   }
@@ -110,8 +113,8 @@ const ButtonRight = styled(Button)`
 
 const ImageContentContainer = styled.div`
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 1rem;
+  left: 1rem;
   z-index: 5;
   height: 40%;
   width: 15%;
@@ -121,7 +124,7 @@ const ButtonAbsolute = styled.button`
   position: absolute;
   top: 0; /* Adjust based on desired position relative to the image */
   left: 0; /* Adjust based on desired position relative to the image */
-  padding: 0.8rem 0.4rem;
+  padding: 1.2rem 0.8rem;
   background-color: black;
   color: white;
   outline: none;
@@ -137,10 +140,11 @@ const ButtonAbsolute = styled.button`
     0% 70%,
     0 0
   );
-  svg {
-    font-size: 1.6rem;
+  & svg {
+    fill: currentColor;
+    font-size: 2.4rem;
     position: relative;
-    bottom: 10px;
+    bottom: 1rem;
   }
   opacity: 0.6;
   &:hover {
@@ -156,13 +160,14 @@ const StyledImage = styled.img`
 
 const TextContainer = styled.div`
   position: absolute;
-  height: 20%;
+  max-height: 30%;
   width: 70%;
-  right: 10px;
-  bottom: 10px;
+  right: 1rem;
+  bottom: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
   color: ${({ theme }) => theme.text.primary};
+  font-size: 1.6rem;
 `;

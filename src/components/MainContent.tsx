@@ -39,5 +39,5 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 4rem;
-  height: 32rem;
+  height: 48rem;
 `;

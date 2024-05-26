@@ -10,7 +10,7 @@ type Props = {
 export const UpNext = ({ upNextSlides }: Props) => {
   return (
     <Container>
-      <Typography color={'yellow'} variant="body1" fontSize={24}>
+      <Typography color={'yellow'} variant="body1" fontSize={'2.4rem'}>
         Up Next
       </Typography>
       <UpNextSlider upNextSlides={upNextSlides} />

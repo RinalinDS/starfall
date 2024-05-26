@@ -29,9 +29,11 @@ export const Header = () => {
             <Search />
           </form>
         </SearchContainer>
-        <div>
-          <Typography>{isLoggedIn ? 'Denis' : 'Sign in'}</Typography>
-        </div>
+        <LoginContainer>
+          <Typography fontSize={'inherit'}>
+            {isLoggedIn ? 'Denis' : 'Sign in'}
+          </Typography>
+        </LoginContainer>
       </Container>
     </HeaderContainer>
   );
@@ -44,24 +46,27 @@ const HeaderContainer = styled.div`
 
 const Container = styled.header`
   display: flex;
-  padding: 0.4rem;
+  padding: 1.2rem;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
   color: ${({ theme }) => theme.text.primary};
-  height: 3rem;
+  max-height: 6.4rem;
+  font-size: 1.6rem;
 
-  max-width: 80rem;
+  max-width: 120rem;
   margin: 0 auto;
 `;
 
 const ImageContainer = styled.div`
-  height: 100%;
-  width: 6rem;
+  width: 7.2rem;
   & img {
-    height: 100%;
-    width: 6rem;
+    width: 7.2rem;
   }
+`;
+
+const LoginContainer = styled.div`
+  font-size: 1.6rem;
 `;
 
 const SearchContainer = styled.div`
