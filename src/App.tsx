@@ -5,6 +5,7 @@ import { MainContent } from './components/MainContent.tsx';
 import { usePallete } from './hooks/usePallete.tsx';
 
 // TODO create Typography and delete Material UI library
+// TODO add routing , w/e library rrd or tanstack
 // TODO update header: add switch theme button, add link to watchlist
 // TODO implement login page and flow
 // TODO implement watchlist page
