@@ -1,26 +1,27 @@
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './GlobalStyles.ts';
-import { usePallete } from './hooks/usePallete.tsx';
 import { Header } from './components/Header/Header.tsx';
 import { MainContent } from './components/MainContent.tsx';
+import { usePallete } from './hooks/usePallete.tsx';
+
+// TODO create Typography and delete Material UI library
+// TODO update header: add switch theme button, add link to watchlist
+// TODO implement login page and flow
+// TODO implement watchlist page
 
 export const App = () => {
   const { theme } = usePallete();
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Layout>
-          <Header />
-          <Container>
-            <MainContent />
-          </Container>
-        </Layout>
-      </ThemeProvider>
-    </LocalizationProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Layout>
+        <Header />
+        <Container>
+          <MainContent />
+        </Container>
+      </Layout>
+    </ThemeProvider>
   );
 };
 
