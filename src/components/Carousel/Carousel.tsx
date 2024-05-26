@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
 import { Book } from '../../mocks/sliderData.mock';
+import { Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 type Props = {
   mainSlide: Book;
@@ -12,10 +14,23 @@ export const Carousel = ({
   changeNextSlide,
   changePrevSlide,
 }: Props) => {
-  const { image } = mainSlide;
+  const { image, previewImage, title, description, id } = mainSlide;
+  const addToWatchlist = () => {
+    console.log('Added to watchlist', id);
+  };
   return (
     <Container>
-      <img src={image} alt="bookcover" />
+      <img src={image} alt="bookcover" className="main_image" />
+      <ImageContentContainer>
+        <StyledImage src={previewImage} alt={`${title} preview`} />
+        <ButtonAbsolute onClick={addToWatchlist}>
+          <AddIcon />
+        </ButtonAbsolute>
+      </ImageContentContainer>
+      <TextContainer>
+        <Typography variant="h3">{title}</Typography>
+        <Typography variant="body1">{description}</Typography>
+      </TextContainer>
       <ButtonLeft onClick={changePrevSlide}>
         <svg
           width="24"
@@ -50,7 +65,7 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
 
-  img {
+  & .main_image {
     height: 100%;
     width: 100%;
     object-fit: fill;
@@ -91,4 +106,63 @@ const ButtonRight = styled(Button)`
   &:hover {
     right: 0px;
   }
+`;
+
+const ImageContentContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 5;
+  height: 40%;
+  width: 15%;
+`;
+
+const ButtonAbsolute = styled.button`
+  position: absolute;
+  top: 0; /* Adjust based on desired position relative to the image */
+  left: 0; /* Adjust based on desired position relative to the image */
+  padding: 0.8rem 0.4rem;
+  background-color: black;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    100% 0,
+    100% 100%,
+    49% 64%,
+    0 100%,
+    0% 70%,
+    0 0
+  );
+  svg {
+    font-size: 2rem;
+    position: relative;
+    bottom: 10px;
+  }
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const StyledImage = styled.img`
+  height: 100%;
+  width: 100%;
+  /* object-fit: contain; */
+`;
+
+const TextContainer = styled.div`
+  position: absolute;
+  height: 20%;
+  width: 70%;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  color: ${({ theme }) => theme.text.primary};
 `;
