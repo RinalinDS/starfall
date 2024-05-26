@@ -1,11 +1,22 @@
 import { styled } from 'styled-components';
-import image from './../../assets/carousel.jpg';
+import { Book } from '../../mocks/sliderData.mock';
 
-export const Carousel = () => {
+type Props = {
+  mainSlide: Book;
+  changeNextSlide: () => void;
+  changePrevSlide: () => void;
+};
+
+export const Carousel = ({
+  mainSlide,
+  changeNextSlide,
+  changePrevSlide,
+}: Props) => {
+  const { image } = mainSlide;
   return (
     <Container>
       <img src={image} alt="bookcover" />
-      <ButtonLeft>
+      <ButtonLeft onClick={changePrevSlide}>
         <svg
           width="24"
           height="24"
@@ -17,7 +28,7 @@ export const Carousel = () => {
           <path d="M18.378 23.369c.398-.402.622-.947.622-1.516 0-.568-.224-1.113-.622-1.515l-8.249-8.34 8.25-8.34a2.16 2.16 0 0 0 .548-2.07A2.132 2.132 0 0 0 17.428.073a2.104 2.104 0 0 0-2.048.555l-9.758 9.866A2.153 2.153 0 0 0 5 12.009c0 .568.224 1.114.622 1.515l9.758 9.866c.808.817 2.17.817 2.998-.021z"></path>
         </svg>
       </ButtonLeft>
-      <ButtonRight>
+      <ButtonRight onClick={changeNextSlide}>
         <svg
           width="24"
           height="24"
@@ -37,10 +48,14 @@ const Container = styled.div`
   width: 67%;
   flex-grow: 2;
   position: relative;
+  overflow: hidden;
 
   img {
+    height: 100%;
     width: 100%;
-    max-height: 30rem;
+    object-fit: fill;
+    max-height: 32rem;
+    border-radius: 9px;
   }
 `;
 
@@ -58,15 +73,22 @@ const Button = styled.button`
   z-index: 5;
   top: 50%;
   padding: 0.75rem 0.5rem;
+  border-radius: 7px;
   &:hover {
     color: yellow;
   }
 `;
 
 const ButtonLeft = styled(Button)`
-  left: 0;
+  left: 5px;
+  &:hover {
+    left: 0px;
+  }
 `;
 
 const ButtonRight = styled(Button)`
-  right: 0;
+  right: 5px;
+  &:hover {
+    right: 0px;
+  }
 `;
