@@ -122,8 +122,8 @@ const ImageContentContainer = styled.div`
 
 const ButtonAbsolute = styled.button`
   position: absolute;
-  top: 0; /* Adjust based on desired position relative to the image */
-  left: 0; /* Adjust based on desired position relative to the image */
+  top: 0;
+  left: 0;
   padding: 1.2rem 0.8rem;
   background-color: black;
   color: white;
@@ -168,6 +168,6 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  color: ${({ theme }) => theme.text.primary};
+  color: ${({ theme }) => theme.text.white};
   font-size: 1.6rem;
 `;

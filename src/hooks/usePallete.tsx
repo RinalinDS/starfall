@@ -11,15 +11,19 @@ const lightPallete = {
     tertiary: '#4169e1',
   },
   text: {
-    primary: '#333',
+    primary: '#111',
     darkGrey: '#999',
     hero: '#F1F3F1',
+    fill: '#000',
+    stroke: '#fff',
+    white: '#fff',
   },
   background: {
     primary: '#bbb',
     secondary: '#999',
     hero: '#607262',
     modal: '0, 0, 0',
+    hover: '#444',
   },
   border: {
     primary: '#000',
@@ -36,12 +40,16 @@ const darkPallete: ThemeType = {
     primary: '#fff',
     darkGrey: '#999',
     hero: '#F1F3F1',
+    fill: '#fff',
+    stroke: '#000',
+    white: '#fff',
   },
   background: {
     primary: '#333',
-    secondary: '#222',
+    secondary: '#181818',
     hero: '#607262',
     modal: '#aaa',
+    hover: '#444',
   },
   border: {
     primary: '#000',
@@ -51,10 +59,13 @@ const darkPallete: ThemeType = {
 type HookReturnType = {
   changeThemeHandler: () => void;
   theme: ThemeType;
+  themeMode: string;
 };
 
 export const usePallete = (): HookReturnType => {
   const [themeMode, setThemeMode] = useState<ThemeModeType>('light');
+
+  console.log('themeMode hook', themeMode);
 
   useEffect(() => {
     const themeFromLocalStotage = localStorage.getItem('theme');
@@ -81,5 +92,6 @@ export const usePallete = (): HookReturnType => {
   return {
     changeThemeHandler,
     theme,
+    themeMode,
   };
 };

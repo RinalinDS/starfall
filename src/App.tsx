@@ -4,20 +4,14 @@ import { Header } from './components/Header/Header.tsx';
 import { MainContent } from './components/MainContent.tsx';
 import { usePallete } from './hooks/usePallete.tsx';
 
-// TODO create Typography and delete Material UI library
-// TODO add routing , w/e library rrd or tanstack
-// TODO update header: add switch theme button, add link to watchlist
-// TODO implement login page and flow
-// TODO implement watchlist page
-
 export const App = () => {
-  const { theme } = usePallete();
+  const { theme, changeThemeHandler, themeMode } = usePallete();
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Layout>
-        <Header />
+        <Header changeThemeHandler={changeThemeHandler} themeMode={themeMode} />
         <Container>
           <MainContent />
         </Container>
