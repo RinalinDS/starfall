@@ -23,7 +23,6 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
     for (const [key, value] of data.entries()) {
       object[key] = value;
     }
-    console.log(object);
   };
 
   return (

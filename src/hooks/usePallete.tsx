@@ -65,8 +65,6 @@ type HookReturnType = {
 export const usePallete = (): HookReturnType => {
   const [themeMode, setThemeMode] = useState<ThemeModeType>('light');
 
-  console.log('themeMode hook', themeMode);
-
   useEffect(() => {
     const themeFromLocalStotage = localStorage.getItem('theme');
     if (themeFromLocalStotage === 'dark' || themeFromLocalStotage === 'light') {
