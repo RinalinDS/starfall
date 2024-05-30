@@ -36,9 +36,7 @@ export const MainContent = () => {
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 4rem;
   display: flex;
   justify-content: space-between;
   gap: 4rem;
-  height: 48rem;
 `;
