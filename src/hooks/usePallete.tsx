@@ -12,7 +12,9 @@ const lightPallete = {
   },
   text: {
     primary: '#111',
-    darkGrey: '#999',
+    darkGrey: '#333',
+    secondary: '#333',
+
     hero: '#F1F3F1',
     fill: '#000',
     stroke: '#fff',
@@ -26,7 +28,7 @@ const lightPallete = {
     hover: '#444',
   },
   border: {
-    primary: '#000',
+    primary: '#515151',
   },
 };
 
@@ -38,6 +40,7 @@ const darkPallete: ThemeType = {
   },
   text: {
     primary: '#fff',
+    secondary: '#ccc',
     darkGrey: '#999',
     hero: '#F1F3F1',
     fill: '#fff',
@@ -52,7 +55,7 @@ const darkPallete: ThemeType = {
     hover: '#444',
   },
   border: {
-    primary: '#000',
+    primary: '#313131',
   },
 };
 
