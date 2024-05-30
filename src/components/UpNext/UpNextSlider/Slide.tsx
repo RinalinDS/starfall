@@ -35,10 +35,8 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  flex: 1 0 20%;
 `;
 const StyledImage = styled.img`
-  max-width: 7rem;
-  object-fit: contain;
+  width: 100%;
 `;
