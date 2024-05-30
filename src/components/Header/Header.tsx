@@ -55,12 +55,12 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
   );
 };
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme.background.secondary};
   width: 100%;
 `;
 
-const Container = styled.header`
+const Container = styled.div`
   display: flex;
   padding: 1.2rem;
   justify-content: space-between;
