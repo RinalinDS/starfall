@@ -69,12 +69,15 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 9px;
+  height: 48rem;
 
   & .main_image {
     height: 100%;
     width: 100%;
     object-fit: fill;
     max-height: 48rem;
+    // experimental for better text readability
+    filter: brightness(75%);
   }
 `;
 
