@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
-import { Carousel } from './Carousel/Carousel';
-import { UpNext } from './UpNext/UpNext';
-import { Book, sliderData } from '../mocks/sliderData.mock';
+import { Carousel } from '../Carousel/Carousel';
+import { UpNext } from '../UpNext/UpNext';
+import { Book, sliderData } from '../../mocks/sliderData.mock';
 import { useState } from 'react';
 
-export const MainContent = () => {
+export const CarouselPanel = () => {
   const [currentSlide, setCurrentSlide] = useState<Book>(sliderData[0]);
   const [upNextSlides, setUpNextSlides] = useState<Book[]>(sliderData.slice(1));
 
