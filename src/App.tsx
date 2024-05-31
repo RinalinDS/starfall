@@ -1,9 +1,10 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './GlobalStyles.ts';
 import { Header } from './components/Header/Header.tsx';
-import { MainContent } from './components/MainContent.tsx';
+import { CarouselPanel } from './components/CarouselPanel/CarouselPanel.tsx';
 import { usePallete } from './hooks/usePallete.tsx';
 import { Footer } from './components/Footer/Footer.tsx';
+import { WatchlistPanel } from './components/WatchlistPanel/watchlist-panel.tsx';
 
 export const App = () => {
   const { theme, changeThemeHandler, themeMode } = usePallete();
@@ -14,7 +15,8 @@ export const App = () => {
       <Layout>
         <Header changeThemeHandler={changeThemeHandler} themeMode={themeMode} />
         <Container>
-          <MainContent />
+          <CarouselPanel />
+          <WatchlistPanel />
         </Container>
         <Footer />
       </Layout>
