@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import RightArrow from './../../assets/rightarrow.svg?react';
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
+import { Typography } from '@mui/material';
 
 export const ReadlistPanel = () => {
   return (
@@ -14,8 +15,20 @@ export const ReadlistPanel = () => {
         <SvgContainer>
           <BsFillBookmarkPlusFill fontSize={'36px'} className="icon" />
         </SvgContainer>
-        <div>your watchlist is emopty</div>
-        <div>Save books to keep track of what you want to read</div>
+        <div>
+          <Typography variant="h4" textAlign={'center'} fontSize={'2.4rem'}>
+            Your readlist is empty
+          </Typography>
+          <Typography
+            variant="body1"
+            textAlign={'center'}
+            fontSize={'1.6rem'}
+            marginTop={'1.2rem'}
+          >
+            Save books to keep track of what you want to read
+          </Typography>
+        </div>
+        <div></div>
         <button> browse popular movies</button>
       </ContentContainer>
     </Container>
