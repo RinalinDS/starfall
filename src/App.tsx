@@ -4,7 +4,7 @@ import { Header } from './components/Header/Header.tsx';
 import { CarouselPanel } from './components/CarouselPanel/CarouselPanel.tsx';
 import { usePallete } from './hooks/usePallete.tsx';
 import { Footer } from './components/Footer/Footer.tsx';
-import { WatchlistPanel } from './components/WatchlistPanel/watchlist-panel.tsx';
+import { ReadlistPanel } from './components/ReadlistPanel/readlist-panel.tsx';
 
 export const App = () => {
   const { theme, changeThemeHandler, themeMode } = usePallete();
@@ -16,7 +16,7 @@ export const App = () => {
         <Header changeThemeHandler={changeThemeHandler} themeMode={themeMode} />
         <Container>
           <CarouselPanel />
-          <WatchlistPanel />
+          <ReadlistPanel />
         </Container>
         <Footer />
       </Layout>
