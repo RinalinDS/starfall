@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { themeModes } from '../constants/theme';
 
 type ThemeModeType = 'dark' | 'light';
 
@@ -62,31 +63,34 @@ const darkPallete: ThemeType = {
 type HookReturnType = {
   changeThemeHandler: () => void;
   theme: ThemeType;
-  themeMode: string;
+  themeMode: ThemeModeType;
 };
 
 export const usePallete = (): HookReturnType => {
-  const [themeMode, setThemeMode] = useState<ThemeModeType>('light');
+  const [themeMode, setThemeMode] = useState<ThemeModeType>(themeModes.light);
 
   useEffect(() => {
     const themeFromLocalStotage = localStorage.getItem('theme');
-    if (themeFromLocalStotage === 'dark' || themeFromLocalStotage === 'light') {
+    if (
+      themeFromLocalStotage === themeModes.dark ||
+      themeFromLocalStotage === themeModes.light
+    ) {
       setThemeMode(themeFromLocalStotage);
     }
   }, []);
 
   const getTheme = (mode: ThemeModeType) =>
-    mode === 'light' ? lightPallete : darkPallete;
+    mode === themeModes.light ? lightPallete : darkPallete;
 
   const theme = useMemo(() => ({ ...getTheme(themeMode) }), [themeMode]);
 
   const changeThemeHandler = () => {
-    if (themeMode === 'light') {
-      setThemeMode('dark');
-      localStorage.setItem('theme', 'dark');
+    if (themeMode === themeModes.light) {
+      setThemeMode(themeModes.dark);
+      localStorage.setItem('theme', themeModes.dark);
     } else {
-      setThemeMode('light');
-      localStorage.setItem('theme', 'light');
+      setThemeMode(themeModes.light);
+      localStorage.setItem('theme', themeModes.light);
     }
   };
 
