@@ -91,10 +91,8 @@ const Title = styled.h3`
     text-decoration: none;
     color: inherit;
   }
-  &:hover {
-    & .icon {
-      fill: #f5c518;
-    }
+  &:hover .icon {
+    fill: #f5c518;
   }
   &::before {
     background: #f5c518;
