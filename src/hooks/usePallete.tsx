@@ -24,6 +24,8 @@ const lightPallete = {
   background: {
     primary: '#bbb',
     secondary: '#999',
+    tertiary: 'yellow',
+
     hero: '#607262',
     modal: '0, 0, 0',
     hover: '#444',
@@ -51,6 +53,7 @@ const darkPallete: ThemeType = {
   background: {
     primary: '#333',
     secondary: '#181818',
+    tertiary: '#333',
     hero: '#607262',
     modal: '#aaa',
     hover: '#444',
