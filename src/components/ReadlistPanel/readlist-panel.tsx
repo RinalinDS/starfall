@@ -20,7 +20,7 @@ export const ReadlistPanel = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.section`
   padding: 4.8rem 0;
   font-size: 1.6rem;
   position: relative;
