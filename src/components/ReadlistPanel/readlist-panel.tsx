@@ -28,8 +28,11 @@ export const ReadlistPanel = () => {
             Save books to keep track of what you want to read
           </Typography>
         </div>
-        <div></div>
-        <button> browse popular movies</button>
+        <div>
+          <PopularLink href="#" className="popularLink">
+            <span>Browse popular books</span>
+          </PopularLink>
+        </div>
       </ContentContainer>
     </Container>
   );
@@ -39,6 +42,29 @@ const Container = styled.div`
   padding: 4.8rem 0;
   font-size: 1.6rem;
   position: relative;
+`;
+
+const PopularLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  text-transform: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: ${({ theme }) => theme.background.secondary};
+  padding: 0 3.6rem;
+  min-height: 3.2rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease-in-out;
+  &:link,
+  &:visited,
+  &:active {
+    color: #3887be;
+  }
+  &:hover {
+    filter: brightness(150%);
+  }
 `;
 
 const SvgContainer = styled.div`
