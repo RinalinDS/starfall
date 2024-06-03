@@ -24,7 +24,7 @@ const lightPallete = {
   background: {
     primary: '#bbb',
     secondary: '#999',
-    tertiary: 'yellow',
+    tertiary: '#333',
 
     hero: '#607262',
     modal: '0, 0, 0',
