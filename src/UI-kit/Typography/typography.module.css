@@ -1,0 +1,37 @@
+.body1 {
+  line-height: 1.6;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.body2 {
+  line-height: 1.6;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.italic {
+  line-height: 1.6;
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.bold {
+  line-height: 2;
+  font-size: 22px;
+  font-weight: bold;
+  font-weight: 700;
+}
+
+.error {
+  font-style: bold;
+  font-weight: 300;
+  color: red;
+}
+
+.highlighted {
+  font-style: italic;
+  font-weight: 500;
+  background-color: yellow;
+}
