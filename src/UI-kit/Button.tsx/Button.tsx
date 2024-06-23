@@ -1,0 +1,42 @@
+import { forwardRef } from 'react';
+import s from './button.module.css';
+
+// Polymorphic Button component,
+// Only rule: don't take ref from props object, it only meant to be 2nd argument in render function
+// Limitaiton of forwardRef.
+
+// TODO add clsx ?
+
+type ButtonOwnProps<T extends React.ElementType> = {
+  as?: T;
+  className?: string;
+};
+
+type ButtonProps<T extends React.ElementType> = React.PropsWithChildren<
+  Omit<React.ComponentPropsWithoutRef<T>, keyof ButtonOwnProps<T> & 'ref'> &
+    ButtonOwnProps<T> & { ref?: PolymorphicRef<T> }
+>;
+
+type PolymorphicRef<T extends React.ElementType> =
+  React.ComponentPropsWithRef<T>['ref'];
+
+type ButtonComponent = <T extends React.ElementType = 'button'>(
+  props: ButtonProps<T>
+) => React.ReactNode | null;
+
+const defaultElement = 'button';
+
+export const Button: ButtonComponent = forwardRef(
+  <T extends React.ElementType = typeof defaultElement>(
+    { as, children, className, ...restProps }: ButtonProps<T>,
+    ref: PolymorphicRef<T>
+  ) => {
+    const classNameComputed = className ? `${s.button} ${className}` : s.button;
+    const Component = as || defaultElement;
+    return (
+      <Component {...restProps} className={classNameComputed} ref={ref}>
+        {children}
+      </Component>
+    );
+  }
+);
