@@ -1,11 +1,10 @@
 import { forwardRef } from 'react';
 import s from './button.module.css';
+import { clsx } from 'clsx';
 
 // Polymorphic Button component,
 // Only rule: don't take ref from props object, it only meant to be 2nd argument in render function
 // Limitaiton of forwardRef.
-
-// TODO add clsx ?
 
 type ButtonOwnProps<T extends React.ElementType> = {
   as?: T;
@@ -31,10 +30,10 @@ export const Button: ButtonComponent = forwardRef(
     { as, children, className, ...restProps }: ButtonProps<T>,
     ref: PolymorphicRef<T>
   ) => {
-    const classNameComputed = className ? `${s.button} ${className}` : s.button;
+    const classNameMix = clsx(s.button, className && className);
     const Component = as || defaultElement;
     return (
-      <Component {...restProps} className={classNameComputed} ref={ref}>
+      <Component {...restProps} className={classNameMix} ref={ref}>
         {children}
       </Component>
     );
