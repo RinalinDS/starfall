@@ -30,10 +30,10 @@ export const Button: ButtonComponent = forwardRef(
     { as, children, className, ...restProps }: ButtonProps<T>,
     ref: PolymorphicRef<T>
   ) => {
-    const classNameMix = clsx(s.button, className && className);
+    const classNameComputed = clsx(s.button, className && className);
     const Component = as || defaultElement;
     return (
-      <Component {...restProps} className={classNameMix} ref={ref}>
+      <Component {...restProps} className={classNameComputed} ref={ref}>
         {children}
       </Component>
     );

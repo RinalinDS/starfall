@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './typography.module.css';
+import clsx from 'clsx';
 
 type Variant = 'body1' | 'body2' | 'italic' | 'bold' | 'error' | 'highlighted';
 
@@ -26,7 +27,7 @@ export const Typography = <T extends React.ElementType = 'span'>({
   ...rest
 }: PolymorphicComponentProps<T, TypographyProps>) => {
   const Tag = as || 'span';
-  const classNameComputed = `${s[variant]} ${className}`;
+  const classNameComputed = clsx(s[variant], className && className);
   return (
     <Tag {...rest} className={classNameComputed}>
       {children}
