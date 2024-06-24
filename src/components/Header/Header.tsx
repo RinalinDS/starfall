@@ -1,4 +1,3 @@
-import Typography from '@mui/material/Typography/Typography';
 import { FormEvent } from 'react';
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { FaMoon } from 'react-icons/fa6';
@@ -6,6 +5,7 @@ import { IoMdSunny } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { Search } from '../../UI-kit/Search/Search';
 import logo from './../../assets/logo.png';
+import { Typography } from '../../UI-kit/Typography/Typography';
 
 type Props = {
   changeThemeHandler: () => void;
@@ -38,7 +38,7 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
         </SearchContainer>
         <LoginContainer>
           <Button>
-            <Typography fontSize={'1.6rem'}>
+            <Typography variant="body1">
               {isLoggedIn ? 'Denis' : 'Sign in'}
             </Typography>
           </Button>

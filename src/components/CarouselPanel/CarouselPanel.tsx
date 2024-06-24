@@ -39,4 +39,8 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   gap: 4rem;
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;

@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography } from '../../UI-kit/Typography/Typography';
 import { FaPlus } from 'react-icons/fa6';
 import { styled } from 'styled-components';
 import { Book } from '../../mocks/sliderData.mock';
@@ -30,12 +30,10 @@ export const Carousel = ({
         </ButtonAbsolute>
       </ImageContentContainer>
       <TextContainer>
-        <Typography variant="h3" fontSize={'3.6rem'}>
+        <Typography variant="h4" as="h3">
           {title}
         </Typography>
-        <Typography variant="body1" fontSize={'1.6rem'}>
-          {description}
-        </Typography>
+        <Typography variant="body1">{description}</Typography>
       </TextContainer>
       <ButtonLeft onClick={changePrevSlide}>
         <LeftArrow />
@@ -63,6 +61,10 @@ const Container = styled.div`
     // experimental for better text readability
     filter: brightness(75%);
   }
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    padding: 0 2rem;
+  }
 `;
 
 const Button = styled.button`
@@ -89,12 +91,24 @@ const ButtonLeft = styled(Button)`
   &:hover {
     left: 0px;
   }
+  @media screen and (max-width: 960px) {
+    left: 2.5rem;
+    &:hover {
+      left: 2rem;
+    }
+  }
 `;
 
 const ButtonRight = styled(Button)`
   right: 0.5rem;
   &:hover {
     right: 0px;
+  }
+  @media screen and (max-width: 960px) {
+    right: 2.5rem;
+    &:hover {
+      right: 2rem;
+    }
   }
 `;
 
@@ -105,6 +119,9 @@ const ImageContentContainer = styled.div`
   z-index: 5;
   height: 40%;
   width: 15%;
+  @media screen and (max-width: 960px) {
+    left: 3rem;
+  }
 `;
 
 const ButtonAbsolute = styled.button`

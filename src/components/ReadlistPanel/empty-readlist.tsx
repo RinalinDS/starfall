@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material';
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { styled } from 'styled-components';
+import { Typography } from '../../UI-kit/Typography/Typography';
 
 export const EmptyReadlist = () => {
   return (
@@ -8,19 +8,12 @@ export const EmptyReadlist = () => {
       <SvgContainer>
         <BsFillBookmarkPlusFill fontSize={'36px'} className="icon" />
       </SvgContainer>
-      <div>
-        <Typography variant="h4" textAlign={'center'} fontSize={'2.4rem'}>
-          Your readlist is empty
-        </Typography>
-        <Typography
-          variant="body1"
-          textAlign={'center'}
-          fontSize={'1.6rem'}
-          marginTop={'1.2rem'}
-        >
+      <TextContainer>
+        <Typography variant="h5">Your readlist is empty</Typography>
+        <Typography variant="body1">
           Save books to keep track of what you want to read
         </Typography>
-      </div>
+      </TextContainer>
       <div>
         <PopularLink href="#" className="popularLink">
           <span>Browse popular books</span>
@@ -29,6 +22,13 @@ export const EmptyReadlist = () => {
     </ContentContainer>
   );
 };
+
+const TextContainer = styled.div`
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  gap: 1.2rem;
+`;
 
 const ContentContainer = styled.div`
   display: flex;

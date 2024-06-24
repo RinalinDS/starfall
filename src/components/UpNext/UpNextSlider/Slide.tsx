@@ -1,6 +1,6 @@
-import Typography from '@mui/material/Typography/Typography';
 import { styled } from 'styled-components';
 import { Book } from '../../../mocks/sliderData.mock';
+import { Typography } from '../../../UI-kit/Typography/Typography';
 
 type Props = {
   slide: Book;
@@ -14,12 +14,10 @@ export const Slide = ({ slide }: Props) => {
         <StyledImage src={previewImage} alt={`${title} preview`} />
       </ImageContainer>
       <div>
-        <Typography variant="body1" fontSize={'2rem'}>
+        <Typography as="p" variant="h6">
           {title}
         </Typography>
-        <Typography variant="body2" fontSize={'1.2rem'}>
-          {description}
-        </Typography>
+        <Typography variant="subtitle2">{description}</Typography>
       </div>
     </Container>
   );
