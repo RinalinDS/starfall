@@ -2,32 +2,50 @@ import React from 'react';
 import s from './typography.module.css';
 import clsx from 'clsx';
 
-type Variant = 'body1' | 'body2' | 'italic' | 'bold' | 'error' | 'highlighted';
+type Variant =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'body1'
+  | 'body2'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'caption'
+  | 'overline'
+  | 'button';
 
-type TypographyProps = {
+type TypographyProps<T extends React.ElementType> = {
   className?: string;
   variant?: Variant;
+  as?: T;
 };
-
-type AsProp<T extends React.ElementType> = { as?: T };
-
-type PropsToOmit<T extends React.ElementType, P> = keyof (AsProp<T> & P);
 
 type PolymorphicComponentProps<
   T extends React.ElementType,
   P,
-> = React.PropsWithChildren<P & AsProp<T>> &
-  Omit<React.ComponentPropsWithoutRef<T>, PropsToOmit<T, P>>;
+> = React.PropsWithChildren<P> &
+  Omit<React.ComponentPropsWithoutRef<T>, keyof P>;
 
-export const Typography = <T extends React.ElementType = 'span'>({
+const defaultElement = 'span';
+
+export const Typography = <
+  T extends React.ElementType = typeof defaultElement,
+>({
   as,
   children,
   className,
   variant = 'body1',
   ...rest
-}: PolymorphicComponentProps<T, TypographyProps>) => {
-  const Tag = as || 'span';
-  const classNameComputed = clsx(s[variant], className && className);
+}: PolymorphicComponentProps<T, TypographyProps<T>>) => {
+  const Tag = as || defaultElement;
+  const classNameComputed = clsx(
+    s[variant],
+    s.typography,
+    className && className
+  );
   return (
     <Tag {...rest} className={classNameComputed}>
       {children}
