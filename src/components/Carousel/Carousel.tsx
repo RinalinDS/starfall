@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import { Book } from '../../mocks/sliderData.mock';
 import RightArrow from './../../assets/rightarrow.svg?react';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
+import { ButtonAbsolute } from '../sharedStyledComponents/sharedButtons';
 
 type Props = {
   mainSlide: Book;
@@ -121,38 +122,6 @@ const ImageContentContainer = styled.div`
   width: 15%;
   @media screen and (max-width: 960px) {
     left: 3rem;
-  }
-`;
-
-const ButtonAbsolute = styled.button`
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 1.2rem 0.8rem;
-  background-color: black;
-  color: white;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  clip-path: polygon(
-    30% 0%,
-    70% 0%,
-    100% 0,
-    100% 100%,
-    49% 64%,
-    0 100%,
-    0% 70%,
-    0 0
-  );
-  & svg {
-    fill: currentColor;
-    font-size: 2.4rem;
-    position: relative;
-    bottom: 1rem;
-  }
-  opacity: 0.6;
-  &:hover {
-    opacity: 1;
   }
 `;
 
