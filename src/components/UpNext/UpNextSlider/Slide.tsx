@@ -33,8 +33,9 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  flex: 1 0 20%;
+  flex: 0 0 20%;
 `;
 const StyledImage = styled.img`
   width: 100%;
+  max-width: 12rem;
 `;

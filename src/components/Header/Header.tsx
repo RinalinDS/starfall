@@ -99,7 +99,6 @@ const Button = styled.button`
   border: none;
   background-color: transparent;
   outline: none;
-  align-self: flex-start;
   display: flex;
   align-items: center;
   gap: 0.4rem;
