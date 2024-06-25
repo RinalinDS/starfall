@@ -1,9 +1,10 @@
 import { styled } from 'styled-components';
 import RightArrow from './../../assets/rightarrow.svg?react';
 import { EmptyReadlist } from './empty-readlist';
+import { Card } from '../Card/Card';
 
 export const ReadlistPanel = () => {
-  const isReadlistEmpty = true;
+  const isReadlistEmpty = false;
   return (
     <Container>
       <Title>
@@ -14,7 +15,15 @@ export const ReadlistPanel = () => {
       {isReadlistEmpty ? (
         <EmptyReadlist />
       ) : (
-        <div>mapped array of readlist cards</div>
+        <CardsContainer>
+          <Card />
+          <Card />
+
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </CardsContainer>
       )}
     </Container>
   );
@@ -24,6 +33,12 @@ const Container = styled.section`
   padding: 4.8rem 0;
   font-size: 1.6rem;
   position: relative;
+`;
+const CardsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 2.4rem;
+  margin-top: 2.4rem;
 `;
 
 const Title = styled.h3`
