@@ -15,7 +15,7 @@ const lightPallete = {
     primary: '#111',
     darkGrey: '#333',
     secondary: '#333',
-
+    links: '#3887be',
     hero: '#F1F3F1',
     fill: '#000',
     stroke: '#fff',
@@ -49,6 +49,7 @@ const darkPallete: ThemeType = {
     fill: '#fff',
     stroke: '#000',
     white: '#fff',
+    links: '#3887be',
   },
   background: {
     primary: '#333',
