@@ -1,0 +1,13 @@
+button .number {
+  margin-left: 0.8rem;
+  display: inline-block;
+  background-color: rgb(245, 197, 24);
+  padding: 0rem 5px;
+  border-radius: 100px;
+  color: #181818;
+}
+
+div button .number {
+  background-color: rgb(245, 197, 24);
+  color: #181818;
+}
