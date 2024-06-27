@@ -1,11 +1,12 @@
-import { FormEvent } from 'react';
+import { FormEvent, useContext } from 'react';
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { FaMoon } from 'react-icons/fa6';
 import { IoMdSunny } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { Search } from '../../UI-kit/Search/Search';
-import logo from './../../assets/logo.png';
 import { Typography } from '../../UI-kit/Typography/Typography';
+import { FavoriteContext } from '../../context/book.context';
+import logo from './../../assets/logo.png';
 
 type Props = {
   changeThemeHandler: () => void;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export const Header = ({ changeThemeHandler, themeMode }: Props) => {
+  const readlist = useContext(FavoriteContext);
   const isLoggedIn = false;
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,13 +40,16 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
         </SearchContainer>
         <LoginContainer>
           <Button>
-            <Typography variant="body1">
-              {isLoggedIn ? 'Denis' : 'Sign in'}
-            </Typography>
+            <Typography>{isLoggedIn ? 'Denis' : 'Sign in'}</Typography>
           </Button>
           <Button>
             <BsFillBookmarkPlusFill />
-            <span>Readlist</span>
+            <Typography variant="body2">
+              Readlist
+              <Typography variant="subtitle2" className="number">
+                {readlist.length || ''}
+              </Typography>
+            </Typography>
           </Button>
           <Button onClick={changeThemeHandler}>
             {themeMode === 'dark' ? <FaMoon /> : <IoMdSunny />}
@@ -72,6 +77,10 @@ const Container = styled.div`
 
   max-width: 120rem;
   margin: 0 auto;
+
+  @media screen and (max-width: 560px) {
+    gap: 1rem;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -123,5 +132,17 @@ const Button = styled.button`
   & span {
     font-size: 1.6rem;
     color: ${({ theme }) => theme.text.primary};
+  }
+  & .number,
+  &:hover .number {
+    margin-left: 0.8rem;
+    display: inline-block;
+    background-color: rgb(245, 197, 24);
+    padding: 0rem 5px;
+    border-radius: 100px;
+    color: #181818;
+  }
+  @media screen and (max-width: 560px) {
+    padding: 0.4rem 0.8rem;
   }
 `;

@@ -5,6 +5,12 @@ import { Book } from '../../mocks/sliderData.mock';
 import RightArrow from './../../assets/rightarrow.svg?react';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
 import { ButtonAbsolute } from '../sharedStyledComponents/sharedButtons';
+import { useContext, useMemo } from 'react';
+import {
+  BooksDispatchContext,
+  FavoriteContext,
+} from '../../context/book.context';
+import { IoMdCheckmark } from 'react-icons/io';
 
 type Props = {
   mainSlide: Book;
@@ -18,16 +24,33 @@ export const Carousel = ({
   changePrevSlide,
 }: Props) => {
   const { image, previewImage, title, description, id } = mainSlide;
-  const addToWatchlist = () => {
-    console.log('Added to watchlist', id);
+  const changeWatchlist = useContext(BooksDispatchContext);
+  const watchlist = useContext(FavoriteContext);
+
+  const isBookInWatchList = useMemo(
+    () => watchlist.some((item) => id === item.id),
+    [watchlist, id]
+  );
+
+  const addToWatchListHandler = () => {
+    if (isBookInWatchList) {
+      changeWatchlist &&
+        changeWatchlist((prev) => prev.filter((el) => el.id !== id));
+    } else {
+      changeWatchlist && changeWatchlist([mainSlide, ...watchlist]);
+    }
   };
+
   return (
     <Container>
       <img src={image} alt={title} className="main_image" />
       <ImageContentContainer>
         <StyledImage src={previewImage} alt={`${title} preview`} />
-        <ButtonAbsolute onClick={addToWatchlist}>
-          <FaPlus />
+        <ButtonAbsolute
+          onClick={addToWatchListHandler}
+          isBookInWatchList={isBookInWatchList}
+        >
+          {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
       </ImageContentContainer>
       <TextContainer>
@@ -133,7 +156,7 @@ const StyledImage = styled.img`
 
 const TextContainer = styled.div`
   position: absolute;
-  max-height: 30%;
+  max-height: 40%;
   width: 70%;
   right: 1rem;
   bottom: 1rem;

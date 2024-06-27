@@ -5,21 +5,27 @@ import { CarouselPanel } from './components/CarouselPanel/CarouselPanel.tsx';
 import { usePallete } from './hooks/usePallete.tsx';
 import { Footer } from './components/Footer/Footer.tsx';
 import { ReadlistPanel } from './components/ReadlistPanel/readlist-panel.tsx';
+import { BooksProvider } from './context/book.context.tsx';
 
 export const App = () => {
   const { theme, changeThemeHandler, themeMode } = usePallete();
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Layout>
-        <Header changeThemeHandler={changeThemeHandler} themeMode={themeMode} />
-        <Container>
-          <CarouselPanel />
-          <ReadlistPanel />
-        </Container>
-        <Footer />
-      </Layout>
+      <BooksProvider>
+        <GlobalStyle />
+        <Layout>
+          <Header
+            changeThemeHandler={changeThemeHandler}
+            themeMode={themeMode}
+          />
+          <Container>
+            <CarouselPanel />
+            <ReadlistPanel />
+          </Container>
+          <Footer />
+        </Layout>
+      </BooksProvider>
     </ThemeProvider>
   );
 };
