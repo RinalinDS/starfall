@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { Carousel } from '../Carousel/Carousel';
 import { UpNext } from '../UpNext/UpNext';
 import { Book, sliderData } from '../../mocks/sliderData.mock';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export const CarouselPanel = () => {
   const [currentSlide, setCurrentSlide] = useState<Book>(sliderData[0]);
@@ -21,6 +21,11 @@ export const CarouselPanel = () => {
     setUpNextSlides([currentSlide, ...upNextSlides.slice(0, -1)]);
   };
 
+  const firstThreeSliders = useMemo(
+    () => upNextSlides.slice(0, 3),
+    [upNextSlides]
+  );
+
   return (
     <Container>
       <Carousel
@@ -29,7 +34,7 @@ export const CarouselPanel = () => {
         changeNextSlide={changeNextSlide}
         changePrevSlide={changePrevSlide}
       />
-      <UpNext upNextSlides={upNextSlides} />
+      <UpNext upNextSlides={firstThreeSliders} />
     </Container>
   );
 };
