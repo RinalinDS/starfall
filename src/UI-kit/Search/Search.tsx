@@ -1,6 +1,6 @@
 import { ChangeEvent, memo, useCallback, useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 import styled from 'styled-components';
-import { GlassIcon } from './GlassIcon.tsx';
 
 export const Search = memo(() => {
   const [search, setSearch] = useState<string>('');
@@ -19,7 +19,7 @@ export const Search = memo(() => {
         name={'search'}
       />
       <Button type="submit">
-        <GlassIcon />
+        <FaSearch />
       </Button>
     </Container>
   );
