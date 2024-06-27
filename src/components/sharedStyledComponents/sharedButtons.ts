@@ -1,12 +1,13 @@
 import { styled } from 'styled-components';
 
-export const ButtonAbsolute = styled.button`
+export const ButtonAbsolute = styled.button<{ isBookInWatchList: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
   padding: 1rem 0.5rem;
-  background-color: black;
-  color: white;
+  background-color: ${(props) =>
+    props.isBookInWatchList ? 'yellow' : 'black'};
+  color: ${(props) => (props.isBookInWatchList ? 'black' : 'white')};
   outline: none;
   border: none;
   cursor: pointer;
