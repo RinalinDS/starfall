@@ -6,6 +6,8 @@ import theftOfSwords from './../assets/theft_of_swords_preview.jpg';
 import previewWayOfKings from './../assets/preview_wayofkings.jpg';
 import wot from './../assets/wot.png';
 import wayOfKings from './../assets/way_of_kings.png';
+import got from './../assets/got.jpg';
+import gotPreview from './../assets/got_preview.jpg';
 
 export type Book = {
   image: string;
@@ -14,6 +16,7 @@ export type Book = {
   description: string;
   author: string;
   id: string;
+  rating: number;
 };
 
 export const sliderData: Book[] = [
@@ -25,6 +28,7 @@ export const sliderData: Book[] = [
     image: ryiria,
     previewImage: theftOfSwords,
     title: 'The Riyria Revelations',
+    rating: 9.1,
   },
   {
     author: 'J. R. R. Tolkien',
@@ -34,6 +38,7 @@ export const sliderData: Book[] = [
     image: lotr,
     previewImage: previewLotr,
     title: 'The Lord of the Rings',
+    rating: 9.5,
   },
   {
     author: 'Brandon Sanderson',
@@ -43,6 +48,7 @@ export const sliderData: Book[] = [
     title: 'The Way of Kings',
     description:
       'The Way of Kings is an epic high fantasy novel written by American author Brandon Sanderson and the first book in The Stormlight Archive series',
+    rating: 9.0,
   },
 
   {
@@ -53,5 +59,16 @@ export const sliderData: Book[] = [
     image: wot,
     title: 'The Eye of the World',
     previewImage: eyeoftheworld_preview,
+    rating: 7.5,
+  },
+  {
+    author: 'George R. R. Martin',
+    description:
+      'A Game of Thrones is the first novel in A Song of Ice and Fire, a series of fantasy novels by American author George R. R. Martin.',
+    id: '5',
+    image: got,
+    previewImage: gotPreview,
+    title: 'A Game of Thrones',
+    rating: 8.6,
   },
 ];
