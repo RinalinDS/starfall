@@ -2,9 +2,12 @@ import { styled } from 'styled-components';
 import RightArrow from './../../assets/rightarrow.svg?react';
 import { EmptyReadlist } from './empty-readlist';
 import { Card } from '../Card/Card';
+import { useContext } from 'react';
+import { FavoriteContext } from '../../context/book.context';
 
 export const ReadlistPanel = () => {
-  const isReadlistEmpty = false;
+  const watchlist = useContext(FavoriteContext);
+  const isReadlistEmpty = !watchlist.length;
   return (
     <Container>
       <Title>
@@ -16,13 +19,9 @@ export const ReadlistPanel = () => {
         <EmptyReadlist />
       ) : (
         <CardsContainer>
-          <Card />
-          <Card />
-
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {watchlist.map((el) => (
+            <Card key={el.id} book={el}></Card>
+          ))}
         </CardsContainer>
       )}
     </Container>
@@ -30,7 +29,7 @@ export const ReadlistPanel = () => {
 };
 
 const Container = styled.section`
-  padding: 4.8rem 0;
+  padding: 4.8rem 2.4rem;
   font-size: 1.6rem;
   position: relative;
 `;

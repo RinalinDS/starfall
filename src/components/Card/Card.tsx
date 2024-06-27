@@ -1,27 +1,44 @@
-import { styled } from 'styled-components';
-import { Typography } from '../../UI-kit/Typography/Typography';
-import { ButtonAbsolute } from '../sharedStyledComponents/sharedButtons';
+import { useContext, useMemo } from 'react';
+import { FaPlay, FaRegStar, FaStar } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa6';
-import { FaRegStar } from 'react-icons/fa';
-import { FaStar } from 'react-icons/fa';
-import { FaPlay } from 'react-icons/fa';
-import { useState } from 'react';
+import { IoMdCheckmark } from 'react-icons/io';
+import { styled } from 'styled-components';
 import { Button } from '../../UI-kit/Button.tsx/Button';
+import { Typography } from '../../UI-kit/Typography/Typography';
+import {
+  BooksDispatchContext,
+  FavoriteContext,
+} from '../../context/book.context';
+import { Book } from '../../mocks/sliderData.mock';
+import { ButtonAbsolute } from '../sharedStyledComponents/sharedButtons';
 
-export const Card = () => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const addToWatchlist = () => {
-    console.log('Added to watchlist');
+export const Card = ({ book }: { book: Book }) => {
+  const { id, previewImage, title, rating } = book;
+  const changeWatchlist = useContext(BooksDispatchContext);
+  const watchlist = useContext(FavoriteContext);
+
+  const isBookInWatchList = useMemo(
+    () => watchlist.some((item) => id === item.id),
+    [watchlist, book]
+  );
+  const addToWatchListHandler = () => {
+    if (isBookInWatchList) {
+      changeWatchlist &&
+        changeWatchlist((prev) => prev.filter((el) => el.id !== id));
+    } else {
+      changeWatchlist && changeWatchlist([book, ...watchlist]);
+    }
   };
-  const addToFavorite = () => {
-    setIsFavorite((prev) => !prev);
-  };
+
   return (
     <Container>
       <ImageContainer>
-        <img src="https://via.placeholder.com/150" alt="Book preview" />
-        <ButtonAbsolute onClick={addToWatchlist}>
-          <FaPlus />
+        <img src={previewImage} alt="Book preview" />
+        <ButtonAbsolute
+          onClick={addToWatchListHandler}
+          isBookInWatchList={isBookInWatchList}
+        >
+          {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
       </ImageContainer>
       <ContentContainer>
@@ -30,18 +47,18 @@ export const Card = () => {
             variant="body2"
             style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
           >
-            <FaStar fill="yellow" /> 9.3
+            <FaStar fill="yellow" /> {rating}
           </Typography>
           <Typography
             variant="body2"
             style={{ display: 'flex', alignItems: 'center' }}
           >
-            {isFavorite ? (
-              <StyledButton onClick={addToFavorite}>
+            {isBookInWatchList ? (
+              <StyledButton onClick={addToWatchListHandler}>
                 <FaStar fill="lightblue" />
               </StyledButton>
             ) : (
-              <StyledButton onClick={addToFavorite}>
+              <StyledButton onClick={addToWatchListHandler}>
                 <FaRegStar fill="lightblue" />
               </StyledButton>
             )}
@@ -49,11 +66,11 @@ export const Card = () => {
         </div>
 
         <StyledTypography as="p" variant="subtitle2">
-          The Riyria Revelations
+          {title}
         </StyledTypography>
         <div>
           <PopularLink>
-            Readlist <FaPlus />
+            Readlist {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
           </PopularLink>
         </div>
         <TrailerLink>
@@ -127,6 +144,7 @@ const PopularLink = styled.a`
   border-radius: 4px;
   letter-spacing: 0.5px;
   transition: all 0.2s ease-in-out;
+  justify-content: center;
   &:link,
   &:visited,
   &:active {
@@ -147,7 +165,7 @@ const TrailerLink = styled.a`
   font-size: 1.4rem;
   font-weight: 600;
   text-decoration: none;
-
+  justify-content: center;
   padding: 0 1.6rem;
   min-height: 3.2rem;
   border-radius: 4px;
