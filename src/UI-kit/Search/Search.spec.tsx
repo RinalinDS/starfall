@@ -4,7 +4,7 @@ import { Search } from './Search';
 
 describe('Search should rendered correctly', () => {
   it('default render state', () => {
-    render(<Search onClick={vi.fn()} />);
+    render(<Search />);
 
     const input = screen.getByPlaceholderText('Search');
 
