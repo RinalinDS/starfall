@@ -31,15 +31,12 @@ export const App = () => {
 };
 
 const Layout = styled.div`
-  min-height: 100vh;
   background-color: ${({ theme }) => theme.background.primary};
-  display: flex;
-  flex-direction: column;
 `;
 
 const Container = styled.main`
   max-width: 120rem;
   margin: 0 auto;
-  flex: 1 0 auto;
-  padding: 4.8rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `;
