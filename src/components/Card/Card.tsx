@@ -47,7 +47,11 @@ export const Card = ({ book }: { book: Book }) => {
             variant="body2"
             style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
           >
-            <FaStar fill="yellow" /> {rating}
+            <FaStar fill="yellow" />
+            {rating.toLocaleString('en-US', {
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 1,
+            })}
           </Typography>
           <Typography
             variant="body2"
