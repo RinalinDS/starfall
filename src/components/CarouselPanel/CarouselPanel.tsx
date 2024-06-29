@@ -40,7 +40,8 @@ export const CarouselPanel = () => {
 };
 
 const Container = styled.section`
-  width: 100%;
+  grid-column: span 3;
+  padding: 2.4rem 0;
   display: flex;
   justify-content: space-between;
   gap: 4rem;
