@@ -28,7 +28,7 @@ export const sliderData: Book[] = [
     image: ryiria,
     previewImage: theftOfSwords,
     title: 'The Riyria Revelations',
-    rating: 9.1,
+    rating: 9.14,
   },
   {
     author: 'J. R. R. Tolkien',
