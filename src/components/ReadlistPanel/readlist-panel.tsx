@@ -29,6 +29,7 @@ export const ReadlistPanel = () => {
 };
 
 const Container = styled.section`
+  grid-column: span 3;
   padding: 4.8rem 2.4rem;
   font-size: 1.6rem;
   position: relative;
