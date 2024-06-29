@@ -7,6 +7,7 @@ import { Search } from '../../UI-kit/Search/Search';
 import { Typography } from '../../UI-kit/Typography/Typography';
 import { FavoriteContext } from '../../context/book.context';
 import logo from './../../assets/logo.png';
+import { Link } from '@tanstack/react-router';
 
 type Props = {
   changeThemeHandler: () => void;
@@ -15,7 +16,6 @@ type Props = {
 
 export const Header = ({ changeThemeHandler, themeMode }: Props) => {
   const readlist = useContext(FavoriteContext);
-  const isLoggedIn = false;
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;
@@ -31,7 +31,9 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
     <HeaderContainer>
       <Container>
         <ImageContainer>
-          <img src={logo} alt="imdb logo" className="logo" />
+          <Link to="/">
+            <img src={logo} alt="imdb logo" className="logo" />
+          </Link>
         </ImageContainer>
         <SearchContainer>
           <form onSubmit={onSubmit}>
@@ -40,7 +42,9 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
         </SearchContainer>
         <LoginContainer>
           <Button>
-            <Typography>{isLoggedIn ? 'Denis' : 'Sign in'}</Typography>
+            <Typography as={Link} to="/login">
+              Sign In
+            </Typography>
           </Button>
           <Button>
             <BsFillBookmarkPlusFill />

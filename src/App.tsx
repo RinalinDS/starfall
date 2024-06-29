@@ -1,11 +1,10 @@
+import { Outlet } from '@tanstack/react-router';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './GlobalStyles.ts';
-import { Header } from './components/Header/Header.tsx';
-import { CarouselPanel } from './components/CarouselPanel/CarouselPanel.tsx';
-import { usePallete } from './hooks/usePallete.tsx';
 import { Footer } from './components/Footer/Footer.tsx';
-import { ReadlistPanel } from './components/ReadlistPanel/readlist-panel.tsx';
+import { Header } from './components/Header/Header.tsx';
 import { BooksProvider } from './context/book.context.tsx';
+import { usePallete } from './hooks/usePallete.tsx';
 
 export const App = () => {
   const { theme, changeThemeHandler, themeMode } = usePallete();
@@ -20,9 +19,9 @@ export const App = () => {
             themeMode={themeMode}
           />
           <Container>
-            <CarouselPanel />
-            <ReadlistPanel />
+            <Outlet />
           </Container>
+
           <Footer />
         </Layout>
       </BooksProvider>
@@ -32,6 +31,9 @@ export const App = () => {
 
 const Layout = styled.div`
   background-color: ${({ theme }) => theme.background.primary};
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 `;
 
 const Container = styled.main`

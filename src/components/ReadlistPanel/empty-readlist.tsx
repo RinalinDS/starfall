@@ -1,6 +1,7 @@
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { styled } from 'styled-components';
 import { Typography } from '../../UI-kit/Typography/Typography';
+import { Link } from '@tanstack/react-router';
 
 export const EmptyReadlist = () => {
   return (
@@ -15,8 +16,8 @@ export const EmptyReadlist = () => {
         </Typography>
       </TextContainer>
       <div>
-        <PopularLink href="#" className="popularLink">
-          <span>Browse popular books</span>
+        <PopularLink to="/popular" className="popularLink">
+          <StyledTypography>Browse popular books</StyledTypography>
         </PopularLink>
       </div>
     </ContentContainer>
@@ -63,18 +64,16 @@ const SvgContainer = styled.div`
   }
 `;
 
-const PopularLink = styled.a`
+const PopularLink = styled(Link)`
   display: inline-flex;
   align-items: center;
   text-transform: none;
-  font-size: 1.4rem;
-  font-weight: 600;
+
   text-decoration: none;
   background-color: ${({ theme }) => theme.background.secondary};
   padding: 0 3.6rem;
   min-height: 3.2rem;
   border-radius: 4px;
-  letter-spacing: 0.5px;
   transition: all 0.2s ease-in-out;
   &:link,
   &:visited,
@@ -84,4 +83,10 @@ const PopularLink = styled.a`
   &:hover {
     filter: brightness(150%);
   }
+`;
+
+const StyledTypography = styled(Typography)`
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 `;
