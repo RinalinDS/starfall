@@ -35,11 +35,9 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
             <img src={logo} alt="imdb logo" className="logo" />
           </Link>
         </ImageContainer>
-        <SearchContainer>
-          <form onSubmit={onSubmit}>
-            <Search />
-          </form>
-        </SearchContainer>
+        <SearchForm onSubmit={onSubmit}>
+          <Search />
+        </SearchForm>
         <LoginContainer>
           <Button>
             <Typography as={Link} to="/login">
@@ -102,7 +100,7 @@ const LoginContainer = styled.div`
   justify-content: center;
 `;
 
-const SearchContainer = styled.div`
+const SearchForm = styled.form`
   flex-grow: 1;
 `;
 
