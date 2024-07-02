@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import styles from './login.module.css';
 import { createFileRoute } from '@tanstack/react-router';
+import styles from './login.module.css';
+import { Typography } from '../../UI-kit/Typography/Typography';
 
 export const Route = createFileRoute('/login/')({
   component: () => {
@@ -25,34 +25,64 @@ export const Route = createFileRoute('/login/')({
               <button className={styles.createAccount}>
                 Create a New Account
               </button>
-              <p className={styles.terms}>
+              <Typography variant="body2" className={styles.terms}>
                 By signing in, you agree to IMDb's{' '}
                 <a href="#">Conditions of Use</a> and{' '}
                 <a href="#">Privacy Policy</a>.
-              </p>
+              </Typography>
             </div>
 
             <div className={styles.benefits}>
-              <h3>Benefits of your free IMDb account</h3>
-              <ul>
-                <li>Personalized Recommendations</li>
-                <li>Your Watchlist</li>
-                <li>Your Ratings</li>
-                <li>Contribute to IMDb</li>
+              <Typography as="h3" className={styles.benefitsTitle}>
+                Benefits of your free IMDb account
+              </Typography>
+              <ul className={styles.list}>
+                <li>
+                  <Typography as="p" variant="h6">
+                    Personalized Recommendations
+                  </Typography>
+                  <Typography variant="body2">
+                    Discover shows you'll love.
+                  </Typography>
+                </li>
+                <li>
+                  <Typography as="p" variant="h6">
+                    Your Watchlist{' '}
+                  </Typography>
+                  <Typography variant="body2">
+                    Track everything you want to watch and receive e-mail when
+                    movies open in theaters.
+                  </Typography>
+                </li>
+                <li>
+                  <Typography as="p" variant="h6">
+                    Your Ratings{' '}
+                  </Typography>
+                  <Typography variant="body2">
+                    Rate and remember everything you've seen.
+                  </Typography>
+                </li>
+                <li>
+                  <Typography as="p" variant="h6">
+                    Contribute to IMDb
+                  </Typography>
+                  <Typography variant="body2">
+                    Add data that will be seen by millions of people and get
+                    cool badges.
+                  </Typography>
+                </li>
               </ul>
             </div>
           </div>
-
-          <div className={styles.recentlyViewed}>
-            <h3>Recently Viewed</h3>
-            <div className={styles.thumbnails}>
-              {/* Add thumbnail images here */}
-            </div>
-            <a href="#" className={styles.clearHistory}>
-              Clear your history
-            </a>
-          </div>
         </main>
+
+        <div className={styles.recentlyViewed}>
+          <h3>Recently Viewed</h3>
+          <div className={styles.thumbnails}></div>
+          <a href="#" className={styles.clearHistory}>
+            Clear your history
+          </a>
+        </div>
       </div>
     );
   },
