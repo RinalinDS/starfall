@@ -17,6 +17,8 @@ export type Book = {
   author: string;
   id: string;
   rating: number;
+  howManyTimeWereRated: number;
+  currentUserRating: number | null;
 };
 
 export const sliderData: Book[] = [
@@ -28,7 +30,9 @@ export const sliderData: Book[] = [
     image: ryiria,
     previewImage: theftOfSwords,
     title: 'The Riyria Revelations',
-    rating: 9.14,
+    rating: 9.17,
+    howManyTimeWereRated: 5,
+    currentUserRating: null,
   },
   {
     author: 'J. R. R. Tolkien',
@@ -39,6 +43,8 @@ export const sliderData: Book[] = [
     previewImage: previewLotr,
     title: 'The Lord of the Rings',
     rating: 9.5,
+    howManyTimeWereRated: 6,
+    currentUserRating: null,
   },
   {
     author: 'Brandon Sanderson',
@@ -49,6 +55,8 @@ export const sliderData: Book[] = [
     description:
       'The Way of Kings is an epic high fantasy novel written by American author Brandon Sanderson and the first book in The Stormlight Archive series',
     rating: 9.0,
+    howManyTimeWereRated: 5,
+    currentUserRating: null,
   },
 
   {
@@ -59,7 +67,9 @@ export const sliderData: Book[] = [
     image: wot,
     title: 'The Eye of the World',
     previewImage: eyeoftheworld_preview,
-    rating: 7.5,
+    rating: 7.6,
+    howManyTimeWereRated: 5,
+    currentUserRating: null,
   },
   {
     author: 'George R. R. Martin',
@@ -70,5 +80,7 @@ export const sliderData: Book[] = [
     previewImage: gotPreview,
     title: 'A Game of Thrones',
     rating: 8.6,
+    howManyTimeWereRated: 5,
+    currentUserRating: null,
   },
 ];
