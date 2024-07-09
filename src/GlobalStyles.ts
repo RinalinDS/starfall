@@ -20,5 +20,8 @@ html {
   @media screen and (max-width: 960px) {
     font-size: 50%;
   }
+  body {
+    font-size: 1.6rem;
+  }
 }
 `;
