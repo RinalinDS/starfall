@@ -11,11 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ReadlistImport } from './routes/readlist'
 import { Route as IndexImport } from './routes/index'
 import { Route as PopularIndexImport } from './routes/popular/index'
 import { Route as LoginIndexImport } from './routes/login/index'
 
 // Create/Update Routes
+
+const ReadlistRoute = ReadlistImport.update({
+  path: '/readlist',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -43,6 +49,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/readlist': {
+      id: '/readlist'
+      path: '/readlist'
+      fullPath: '/readlist'
+      preLoaderRoute: typeof ReadlistImport
+      parentRoute: typeof rootRoute
+    }
     '/login/': {
       id: '/login/'
       path: '/login'
@@ -64,6 +77,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  ReadlistRoute,
   LoginIndexRoute,
   PopularIndexRoute,
 })
@@ -77,12 +91,16 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/readlist",
         "/login/",
         "/popular/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/readlist": {
+      "filePath": "readlist.tsx"
     },
     "/login/": {
       "filePath": "login/index.tsx"
