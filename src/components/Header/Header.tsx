@@ -39,20 +39,22 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
           <Search />
         </SearchForm>
         <LoginContainer>
-          <Button>
-            <Typography as={Link} to="/login">
-              Sign In
-            </Typography>
-          </Button>
-          <Button>
-            <BsFillBookmarkPlusFill />
-            <Typography variant="body2">
-              Readlist
-              <Typography variant="subtitle2" className="number">
-                {readlist.length || ''}
+          <StyledLink to="/login">
+            <Button>
+              <Typography>Sign In</Typography>
+            </Button>
+          </StyledLink>
+          <StyledLink to="/readlist">
+            <Button>
+              <BsFillBookmarkPlusFill />
+              <Typography variant="body2">
+                Readlist
+                <Typography variant="subtitle2" className="number">
+                  {readlist.length || ''}
+                </Typography>
               </Typography>
-            </Typography>
-          </Button>
+            </Button>
+          </StyledLink>
           <Button onClick={changeThemeHandler}>
             {themeMode === 'dark' ? <FaMoon /> : <IoMdSunny />}
           </Button>
@@ -105,6 +107,7 @@ const SearchForm = styled.form`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
   padding: 0.6rem 1.2rem;
   border-radius: 0.4rem;
   border: none;
@@ -147,4 +150,9 @@ const Button = styled.button`
   @media screen and (max-width: 560px) {
     padding: 0.4rem 0.8rem;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  /* cursor: pointer; */
 `;
