@@ -4,13 +4,16 @@ import { Book } from '../../../mocks/sliderData.mock';
 
 type Props = {
   upNextSlides: Book[];
+  setActiveSlide: (slide: Book) => void;
 };
 
-export const UpNextSlider = ({ upNextSlides }: Props) => {
+export const UpNextSlider = ({ upNextSlides, setActiveSlide }: Props) => {
   return (
     <Container>
       {upNextSlides.map((slide) => {
-        return <Slide key={slide.id} slide={slide} />;
+        return (
+          <Slide key={slide.id} slide={slide} setActiveSlide={setActiveSlide} />
+        );
       })}
     </Container>
   );

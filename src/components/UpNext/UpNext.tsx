@@ -5,15 +5,19 @@ import { Typography } from '../../UI-kit/Typography/Typography';
 
 type Props = {
   upNextSlides: Book[];
+  setActiveSlide: (slide: Book) => void;
 };
 
-export const UpNext = ({ upNextSlides }: Props) => {
+export const UpNext = ({ upNextSlides, setActiveSlide }: Props) => {
   return (
     <Container>
       <Typography as="h2" variant="h5">
         Up Next
       </Typography>
-      <UpNextSlider upNextSlides={upNextSlides} />
+      <UpNextSlider
+        upNextSlides={upNextSlides}
+        setActiveSlide={setActiveSlide}
+      />
     </Container>
   );
 };

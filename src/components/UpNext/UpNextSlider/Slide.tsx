@@ -1,24 +1,30 @@
 import { styled } from 'styled-components';
 import { Book } from '../../../mocks/sliderData.mock';
 import { Typography } from '../../../UI-kit/Typography/Typography';
+import { useState } from 'react';
 
 type Props = {
   slide: Book;
+  setActiveSlide: (slide: Book) => void;
 };
 
-export const Slide = ({ slide }: Props) => {
+export const Slide = ({ slide, setActiveSlide }: Props) => {
+  const setActiveSlideHandler = () => {
+    setActiveSlide(slide);
+  };
+
   const { description, previewImage, title } = slide;
   return (
     <Container>
       <ImageContainer>
         <StyledImage src={previewImage} alt={`${title} preview`} />
       </ImageContainer>
-      <div>
-        <Typography as="p" variant="h6">
+      <TextContainer onClick={setActiveSlideHandler}>
+        <Typography as="p" variant="h6" className={'hovered'}>
           {title}
         </Typography>
         <Typography variant="subtitle2">{description}</Typography>
-      </div>
+      </TextContainer>
     </Container>
   );
 };
@@ -38,4 +44,11 @@ const ImageContainer = styled.div`
 const StyledImage = styled.img`
   width: 100%;
   max-width: 12rem;
+`;
+
+const TextContainer = styled.div`
+  cursor: pointer;
+  &:hover .hovered {
+    color: yellow;
+  }
 `;

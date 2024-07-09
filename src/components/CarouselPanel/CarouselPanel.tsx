@@ -21,7 +21,15 @@ export const CarouselPanel = () => {
     setUpNextSlides([currentSlide, ...upNextSlides.slice(0, -1)]);
   };
 
-  const firstThreeSliders = useMemo(
+  const setActiveSlide = (slide: Book) => {
+    const arr = [currentSlide, ...upNextSlides];
+    const index = arr.findIndex((s) => s.id === slide.id);
+
+    setUpNextSlides([...arr.slice(index + 1), ...arr.slice(0, index)]);
+    setCurrentSlide(slide);
+  };
+
+  const firstThreeSlides = useMemo(
     () => upNextSlides.slice(0, 3),
     [upNextSlides]
   );
@@ -29,12 +37,11 @@ export const CarouselPanel = () => {
   return (
     <Container>
       <Carousel
-        key={currentSlide.id}
         mainSlide={currentSlide}
         changeNextSlide={changeNextSlide}
         changePrevSlide={changePrevSlide}
       />
-      <UpNext upNextSlides={firstThreeSliders} />
+      <UpNext upNextSlides={firstThreeSlides} setActiveSlide={setActiveSlide} />
     </Container>
   );
 };
