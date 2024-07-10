@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import logo from './../../assets/logo.png';
-import { contactItems } from './data';
+import { contactItems } from '../../mocks/footerData';
 
 export const Footer = () => {
   return (

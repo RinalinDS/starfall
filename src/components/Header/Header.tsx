@@ -100,6 +100,11 @@ const LoginContainer = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
+
+  & button .number {
+    background-color: rgb(245, 197, 24);
+    color: #181818;
+  }
 `;
 
 const SearchForm = styled.form`
@@ -117,6 +122,7 @@ const Button = styled.button`
   align-items: center;
   gap: 0.4rem;
   color: ${({ theme }) => theme.text.primary};
+
   &:hover {
     background-color: ${({ theme }) => theme.background.hover};
     color: ${({ theme }) => theme.text.white};
@@ -154,5 +160,4 @@ const Button = styled.button`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  /* cursor: pointer; */
 `;
