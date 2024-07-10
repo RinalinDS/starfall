@@ -4,6 +4,7 @@ import { EmptyReadlist } from './empty-readlist';
 import { Card } from '../Card/Card';
 import { useContext } from 'react';
 import { FavoriteContext } from '../../context/book.context';
+import { Link } from '@tanstack/react-router';
 
 export const ReadlistPanel = () => {
   const watchlist = useContext(FavoriteContext);
@@ -11,9 +12,9 @@ export const ReadlistPanel = () => {
   return (
     <Container>
       <Title>
-        <a href="#" className="link">
+        <Link to="/readlist" className="link">
           From your Readlist <RightArrow className="icon" />
-        </a>
+        </Link>
       </Title>
       {isReadlistEmpty ? (
         <EmptyReadlist />

@@ -1,10 +1,10 @@
-import { Typography } from '../../UI-kit/Typography/Typography';
+import { Typography } from '../ui/Typography/typography';
 import { FaPlus } from 'react-icons/fa6';
 import { styled } from 'styled-components';
 import { Book } from '../../mocks/sliderData.mock';
 import RightArrow from './../../assets/rightarrow.svg?react';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
-import { ButtonAbsolute } from '../sharedStyledComponents/sharedButtons';
+import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 import { useContext, useMemo } from 'react';
 import {
   BooksDispatchContext,

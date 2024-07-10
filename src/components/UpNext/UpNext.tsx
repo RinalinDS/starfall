@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { UpNextSlider } from './UpNextSlider/UpNextSlider';
 import { Book } from '../../mocks/sliderData.mock';
-import { Typography } from '../../UI-kit/Typography/Typography';
+import { Typography } from '../ui/Typography/typography';
 
 type Props = {
   upNextSlides: Book[];

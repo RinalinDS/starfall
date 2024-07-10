@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import styles from './login.module.css';
-import { Typography } from '../../UI-kit/Typography/Typography';
+import { Typography } from '../../components/ui/Typography/typography';
 
 export const Route = createFileRoute('/login/')({
   component: () => {
