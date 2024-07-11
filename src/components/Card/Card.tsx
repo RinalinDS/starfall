@@ -3,19 +3,24 @@ import { FaPlay, FaRegStar, FaStar } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
-import { Button } from '../../UI-kit/Button.tsx/Button';
-import { Typography } from '../../UI-kit/Typography/Typography';
+import { Button } from '../ui/Button/button';
+import { Typography } from '../ui/Typography/typography';
 import {
   BooksDispatchContext,
   FavoriteContext,
 } from '../../context/book.context';
+import { useModalControls } from '../../hooks/useModalControls';
 import { Book } from '../../mocks/sliderData.mock';
-import { ButtonAbsolute } from '../sharedStyledComponents/sharedButtons';
+import { RatingModal } from '../RatingModal/rating-modal';
+import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 
 export const Card = ({ book }: { book: Book }) => {
-  const { id, previewImage, title, rating } = book;
   const changeWatchlist = useContext(BooksDispatchContext);
   const watchlist = useContext(FavoriteContext);
+
+  const { closeModal, isOpen, openModal } = useModalControls();
+
+  const { id, previewImage, title, rating, currentUserRating } = book;
 
   const isBookInWatchList = useMemo(
     () => watchlist.some((item) => id === item.id),
@@ -57,15 +62,13 @@ export const Card = ({ book }: { book: Book }) => {
             variant="body2"
             style={{ display: 'flex', alignItems: 'center' }}
           >
-            {isBookInWatchList ? (
-              <StyledButton onClick={addToWatchListHandler}>
+            <StyledButton onClick={openModal}>
+              {!!currentUserRating ? (
                 <FaStar fill="lightblue" />
-              </StyledButton>
-            ) : (
-              <StyledButton onClick={addToWatchListHandler}>
+              ) : (
                 <FaRegStar fill="lightblue" />
-              </StyledButton>
-            )}
+              )}
+            </StyledButton>
           </Typography>
         </div>
 
@@ -81,6 +84,7 @@ export const Card = ({ book }: { book: Book }) => {
           <FaPlay /> Trailer
         </TrailerLink>
       </ContentContainer>
+      {isOpen && <RatingModal closeModal={closeModal} title={title} />}
     </Container>
   );
 };

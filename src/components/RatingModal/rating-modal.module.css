@@ -1,0 +1,97 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  min-height: 24rem;
+  min-width: 48rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  padding: 4rem;
+  z-index: 1001;
+  color: white;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeButton {
+  color: white;
+  border: none;
+  font-size: 3.6rem;
+  background: none;
+  border-radius: 50%;
+  top: -50px;
+  padding: 0.4rem;
+  right: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeButton:hover {
+  background: #333333;
+  opacity: 0.8;
+}
+
+.rateText {
+  color: rgb(245, 197, 24);
+}
+
+.rateButton {
+  background: #555;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: lightblue;
+  position: absolute;
+  right: 50%;
+  left: 50%;
+  top: -20%;
+}
+
+.number {
+  color: #333;
+  transform: translateY(-4.5rem);
+}
+
+.activeRate {
+  background-color: rgb(245, 197, 24);
+  color: #333;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.activeRate:hover {
+  opacity: 0.9;
+}
