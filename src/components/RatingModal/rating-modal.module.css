@@ -84,7 +84,7 @@
   transform: translateY(-4.5rem);
 }
 
-.activeRate {
+.activeRateButton {
   background-color: rgb(245, 197, 24);
   color: #333;
   text-transform: capitalize;
@@ -92,6 +92,6 @@
   font-size: 2rem;
 }
 
-.activeRate:hover {
+.activeRateButton:hover {
   opacity: 0.9;
 }

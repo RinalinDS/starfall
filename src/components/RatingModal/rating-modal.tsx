@@ -18,9 +18,9 @@ export const RatingModal = ({
 
   return (
     <Modal closeModal={closeModal}>
-      <button className={styles.closeButton} onClick={closeModal}>
+      <Button className={styles.closeButton} onClick={closeModal}>
         <IoCloseSharp />
-      </button>
+      </Button>
       <div>
         <Star rating={rating} />
       </div>
@@ -31,7 +31,7 @@ export const RatingModal = ({
       <Typography variant="h6">{title}</Typography>
       <Rating rating={rating} setRating={setRating} />
       <Button
-        className={`${styles.rateButton} ${rating > 0 && styles.activeRate}`}
+        className={`${styles.rateButton} ${rating > 0 && styles.activeRateButton}`}
         onClick={closeModal}
         disabled={!rating}
       >
