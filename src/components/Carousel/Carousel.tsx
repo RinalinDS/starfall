@@ -1,16 +1,13 @@
-import { Typography } from '../ui/Typography/typography';
+import { useMemo } from 'react';
 import { FaPlus } from 'react-icons/fa6';
+import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { Book } from '../../mocks/sliderData.mock';
-import RightArrow from './../../assets/rightarrow.svg?react';
-import LeftArrow from './../../assets/leftarrrow.svg?react';
+import { useReadlistStore } from '../../store/useReadlistStore';
+import { Typography } from '../ui/Typography/typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
-import { useContext, useMemo } from 'react';
-import {
-  BooksDispatchContext,
-  FavoriteContext,
-} from '../../context/book.context';
-import { IoMdCheckmark } from 'react-icons/io';
+import LeftArrow from './../../assets/leftarrrow.svg?react';
+import RightArrow from './../../assets/rightarrow.svg?react';
 
 type Props = {
   mainSlide: Book;
@@ -23,21 +20,23 @@ export const Carousel = ({
   changeNextSlide,
   changePrevSlide,
 }: Props) => {
+  const readlist = useReadlistStore((state) => state.readlist);
+  const addToReadlist = useReadlistStore((state) => state.addToReadlist);
+  const removeFromReadlist = useReadlistStore(
+    (state) => state.removeFromReadlist
+  );
   const { image, previewImage, title, description, id } = mainSlide;
-  const changeWatchlist = useContext(BooksDispatchContext);
-  const watchlist = useContext(FavoriteContext);
 
-  const isBookInWatchList = useMemo(
-    () => watchlist.some((item) => id === item.id),
-    [watchlist, id]
+  const isBookInReadlist = useMemo(
+    () => readlist.some((item) => id === item.id),
+    [readlist, id]
   );
 
-  const addToWatchListHandler = () => {
-    if (isBookInWatchList) {
-      changeWatchlist &&
-        changeWatchlist((prev) => prev.filter((el) => el.id !== id));
+  const changeWatchlistHandler = () => {
+    if (isBookInReadlist) {
+      removeFromReadlist(id);
     } else {
-      changeWatchlist && changeWatchlist([mainSlide, ...watchlist]);
+      addToReadlist(mainSlide);
     }
   };
 
@@ -47,10 +46,10 @@ export const Carousel = ({
       <ImageContentContainer>
         <StyledImage src={previewImage} alt={`${title} preview`} />
         <ButtonAbsolute
-          onClick={addToWatchListHandler}
-          isBookInWatchList={isBookInWatchList}
+          onClick={changeWatchlistHandler}
+          isBookInWatchList={isBookInReadlist}
         >
-          {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
+          {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
       </ImageContentContainer>
       <TextContainer>

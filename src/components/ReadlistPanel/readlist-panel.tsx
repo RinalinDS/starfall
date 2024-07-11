@@ -1,14 +1,14 @@
+import { Link } from '@tanstack/react-router';
 import { styled } from 'styled-components';
+import { useReadlistStore } from '../../store/useReadlistStore';
+import { Card } from '../Card/Card';
 import RightArrow from './../../assets/rightarrow.svg?react';
 import { EmptyReadlist } from './empty-readlist';
-import { Card } from '../Card/Card';
-import { useContext } from 'react';
-import { FavoriteContext } from '../../context/book.context';
-import { Link } from '@tanstack/react-router';
 
 export const ReadlistPanel = () => {
-  const watchlist = useContext(FavoriteContext);
-  const isReadlistEmpty = !watchlist.length;
+  const readlist = useReadlistStore((state) => state.readlist);
+
+  const isReadlistEmpty = !readlist.length;
   return (
     <Container>
       <Title>
@@ -20,7 +20,7 @@ export const ReadlistPanel = () => {
         <EmptyReadlist />
       ) : (
         <CardsContainer>
-          {watchlist.map((el) => (
+          {readlist.map((el) => (
             <Card key={el.id} book={el}></Card>
           ))}
         </CardsContainer>

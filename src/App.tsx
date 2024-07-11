@@ -3,7 +3,6 @@ import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './GlobalStyles.ts';
 import { Footer } from './components/Footer/Footer.tsx';
 import { Header } from './components/Header/Header.tsx';
-import { BooksProvider } from './context/book.context.tsx';
 import { usePallete } from './hooks/usePallete.tsx';
 
 export const App = () => {
@@ -11,20 +10,15 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <BooksProvider>
-        <GlobalStyle />
-        <Layout>
-          <Header
-            changeThemeHandler={changeThemeHandler}
-            themeMode={themeMode}
-          />
-          <Container>
-            <Outlet />
-          </Container>
+      <GlobalStyle />
+      <Layout>
+        <Header changeThemeHandler={changeThemeHandler} themeMode={themeMode} />
+        <Container>
+          <Outlet />
+        </Container>
 
-          <Footer />
-        </Layout>
-      </BooksProvider>
+        <Footer />
+      </Layout>
     </ThemeProvider>
   );
 };

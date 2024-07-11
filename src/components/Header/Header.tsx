@@ -1,13 +1,13 @@
-import { FormEvent, useContext } from 'react';
+import { Link } from '@tanstack/react-router';
+import { FormEvent } from 'react';
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { FaMoon } from 'react-icons/fa6';
 import { IoMdSunny } from 'react-icons/io';
 import { styled } from 'styled-components';
+import { useReadlistStore } from '../../store/useReadlistStore';
 import { Search } from '../ui/Search/search';
 import { Typography } from '../ui/Typography/typography';
-import { FavoriteContext } from '../../context/book.context';
 import logo from './../../assets/logo.png';
-import { Link } from '@tanstack/react-router';
 
 type Props = {
   changeThemeHandler: () => void;
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const Header = ({ changeThemeHandler, themeMode }: Props) => {
-  const readlist = useContext(FavoriteContext);
+  const readlistLength = useReadlistStore((state) => state.readlist.length);
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;
@@ -50,7 +50,7 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
               <Typography variant="body2">
                 Readlist
                 <Typography variant="subtitle2" className="number">
-                  {readlist.length || ''}
+                  {readlistLength || ''}
                 </Typography>
               </Typography>
             </Button>

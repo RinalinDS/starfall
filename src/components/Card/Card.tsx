@@ -1,37 +1,36 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { FaPlay, FaRegStar, FaStar } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
-import { Button } from '../ui/Button/button';
-import { Typography } from '../ui/Typography/typography';
-import {
-  BooksDispatchContext,
-  FavoriteContext,
-} from '../../context/book.context';
 import { useModalControls } from '../../hooks/useModalControls';
 import { Book } from '../../mocks/sliderData.mock';
+import { useReadlistStore } from '../../store/useReadlistStore';
 import { RatingModal } from '../RatingModal/rating-modal';
+import { Button } from '../ui/Button/button';
+import { Typography } from '../ui/Typography/typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 
 export const Card = ({ book }: { book: Book }) => {
-  const changeWatchlist = useContext(BooksDispatchContext);
-  const watchlist = useContext(FavoriteContext);
+  const readlist = useReadlistStore((state) => state.readlist);
+  const addToReadlist = useReadlistStore((state) => state.addToReadlist);
+  const removeFromReadlist = useReadlistStore(
+    (state) => state.removeFromReadlist
+  );
 
   const { closeModal, isOpen, openModal } = useModalControls();
 
   const { id, previewImage, title, rating, currentUserRating } = book;
 
   const isBookInWatchList = useMemo(
-    () => watchlist.some((item) => id === item.id),
-    [watchlist, book]
+    () => readlist.some((item) => id === item.id),
+    [readlist, book]
   );
-  const addToWatchListHandler = () => {
+  const changeWatchlistHandler = () => {
     if (isBookInWatchList) {
-      changeWatchlist &&
-        changeWatchlist((prev) => prev.filter((el) => el.id !== id));
+      removeFromReadlist(id);
     } else {
-      changeWatchlist && changeWatchlist([book, ...watchlist]);
+      addToReadlist(book);
     }
   };
 
@@ -40,7 +39,7 @@ export const Card = ({ book }: { book: Book }) => {
       <ImageContainer>
         <img src={previewImage} alt="Book preview" />
         <ButtonAbsolute
-          onClick={addToWatchListHandler}
+          onClick={changeWatchlistHandler}
           isBookInWatchList={isBookInWatchList}
         >
           {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
