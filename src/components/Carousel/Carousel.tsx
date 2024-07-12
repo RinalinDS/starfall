@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 import { Book } from '../../mocks/sliderData.mock';
 import { useReadlistStore } from '../../store/useReadlistStore';
 import { Typography } from '../ui/Typography/typography';
-import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
+import { ButtonAbsolute as AddToReadlistButton } from '../ui/sharedStyledComponents/shared-buttons';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
 import RightArrow from './../../assets/rightarrow.svg?react';
 
@@ -45,12 +45,12 @@ export const Carousel = ({
       <img src={image} alt={title} className="main_image" />
       <ImageContentContainer>
         <StyledImage src={previewImage} alt={`${title} preview`} />
-        <ButtonAbsolute
+        <AddToReadlistButton
           onClick={changeWatchlistHandler}
           isBookInWatchList={isBookInReadlist}
         >
           {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-        </ButtonAbsolute>
+        </AddToReadlistButton>
       </ImageContentContainer>
       <TextContainer>
         <Typography variant="h4" as="h3">
