@@ -6,17 +6,20 @@ import styles from './rating-modal.module.css';
 import { Star } from './star';
 import { IoCloseSharp } from 'react-icons/io5';
 import { Modal } from '../ui/Modal/modal';
+import { styled } from 'styled-components';
 
 export const RatingModal = ({
   closeModal,
   title,
   currentUserRating,
   updateUserRatingHandler,
+  removeRateHandler,
 }: {
   closeModal: () => void;
   title: string;
   currentUserRating: number | null;
   updateUserRatingHandler: (rating: number) => void;
+  removeRateHandler: () => void;
 }) => {
   const [rating, setRating] = useState(currentUserRating || 0);
 
@@ -45,6 +48,36 @@ export const RatingModal = ({
       >
         rate
       </Button>
+      <RemoveRate onClick={removeRateHandler}>
+        <StyledTypography>Remove rate</StyledTypography>
+      </RemoveRate>
     </Modal>
   );
 };
+
+const RemoveRate = styled(Button)`
+  display: inline-flex;
+  align-items: center;
+  text-transform: none;
+
+  text-decoration: none;
+  background-color: ${({ theme }) => theme.background.secondary};
+  padding: 0 3.6rem;
+  min-height: 3.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  &:link,
+  &:visited,
+  &:active {
+    color: #3887be;
+  }
+  &:hover {
+    filter: brightness(150%);
+  }
+`;
+
+const StyledTypography = styled(Typography)`
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+`;

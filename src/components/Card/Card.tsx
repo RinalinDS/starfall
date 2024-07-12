@@ -19,6 +19,7 @@ export const Card = ({ book }: { book: Book }) => {
     (state) => state.removeFromReadlist
   );
   const updateUserRating = useBookStore((state) => state.updateUserRating);
+  const removeUserRating = useBookStore((state) => state.removeUserRating);
   const currentBook = useBookStore(
     (state) => state.books.find((el) => el.id === book.id)!
   );
@@ -43,6 +44,11 @@ export const Card = ({ book }: { book: Book }) => {
 
   const updateUserRatingHandler = (rating: number) => {
     updateUserRating(id, rating);
+    closeModal();
+  };
+
+  const removeRateHandler = () => {
+    removeUserRating(id);
     closeModal();
   };
 
@@ -101,6 +107,7 @@ export const Card = ({ book }: { book: Book }) => {
           title={title}
           currentUserRating={currentUserRating}
           updateUserRatingHandler={updateUserRatingHandler}
+          removeRateHandler={removeRateHandler}
         />
       )}
     </Container>

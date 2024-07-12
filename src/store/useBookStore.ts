@@ -24,6 +24,7 @@ export const useBookStore = create<State & Action>((set) => ({
                   (book.rating * book.howManyTimeWereRated + rating) /
                   (book.howManyTimeWereRated + 1),
                 currentUserRating: rating,
+                howManyTimeWereRated: book.howManyTimeWereRated + 1,
               }
             : {
                 ...book,
@@ -46,9 +47,9 @@ export const useBookStore = create<State & Action>((set) => ({
               rating:
                 (book.rating * book.howManyTimeWereRated -
                   book.currentUserRating) /
-                  book.howManyTimeWereRated -
-                1,
+                (book.howManyTimeWereRated - 1),
               currentUserRating: null,
+              howManyTimeWereRated: book.howManyTimeWereRated - 1,
             }
           : book;
       }),
