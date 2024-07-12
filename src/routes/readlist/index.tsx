@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { Readlist } from '../../pages/Readlist/readlist';
 
 export const Route = createFileRoute('/readlist/')({
-  component: () => <div>hello there will be your readlist. Soon!</div>,
+  component: Readlist,
 });
