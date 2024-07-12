@@ -21,7 +21,7 @@ export type Book = {
   currentUserRating: number | null;
 };
 
-export const sliderData: Book[] = [
+export const booksData: Book[] = [
   {
     author: 'Michael J. Sullivan',
     description:

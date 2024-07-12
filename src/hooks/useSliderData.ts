@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
-import { Book, sliderData } from '../mocks/sliderData.mock';
+import { Book } from '../mocks/sliderData.mock';
+import { useBookStore } from '../store/useBookStore';
 
 export const useSliderData = () => {
-  const [currentSlide, setCurrentSlide] = useState<Book>(sliderData[0]);
-  const [upNextSlides, setUpNextSlides] = useState<Book[]>(sliderData.slice(1));
+  const booksData = useBookStore((state) => state.books);
+  const [currentSlide, setCurrentSlide] = useState<Book>(booksData[0]);
+  const [upNextSlides, setUpNextSlides] = useState<Book[]>(booksData.slice(1));
 
   const changeNextSlide = () => {
     setCurrentSlide(upNextSlides[0]);

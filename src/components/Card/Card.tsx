@@ -5,6 +5,7 @@ import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { useModalControls } from '../../hooks/useModalControls';
 import { Book } from '../../mocks/sliderData.mock';
+import { useBookStore } from '../../store/useBookStore';
 import { useReadlistStore } from '../../store/useReadlistStore';
 import { RatingModal } from '../RatingModal/rating-modal';
 import { Button } from '../ui/Button/button';
@@ -17,10 +18,16 @@ export const Card = ({ book }: { book: Book }) => {
   const removeFromReadlist = useReadlistStore(
     (state) => state.removeFromReadlist
   );
+  const updateUserRating = useBookStore((state) => state.updateUserRating);
+  const currentBook = useBookStore(
+    (state) => state.books.find((el) => el.id === book.id)!
+  );
+
+  const { currentUserRating, rating } = currentBook;
 
   const { closeModal, isOpen, openModal } = useModalControls();
 
-  const { id, previewImage, title, rating, currentUserRating } = book;
+  const { id, previewImage, title } = book;
 
   const isBookInWatchList = useMemo(
     () => readlist.some((item) => id === item.id),
@@ -32,6 +39,11 @@ export const Card = ({ book }: { book: Book }) => {
     } else {
       addToReadlist(book);
     }
+  };
+
+  const updateUserRatingHandler = (rating: number) => {
+    updateUserRating(id, rating);
+    closeModal();
   };
 
   return (
@@ -83,7 +95,14 @@ export const Card = ({ book }: { book: Book }) => {
           <FaPlay /> Trailer
         </TrailerLink>
       </ContentContainer>
-      {isOpen && <RatingModal closeModal={closeModal} title={title} />}
+      {isOpen && (
+        <RatingModal
+          closeModal={closeModal}
+          title={title}
+          currentUserRating={currentUserRating}
+          updateUserRatingHandler={updateUserRatingHandler}
+        />
+      )}
     </Container>
   );
 };
