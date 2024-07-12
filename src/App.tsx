@@ -33,6 +33,7 @@ const Layout = styled.div`
 const Container = styled.main`
   max-width: 120rem;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
