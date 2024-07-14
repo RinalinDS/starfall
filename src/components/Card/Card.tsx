@@ -88,7 +88,7 @@ export const Card = ({ id }: { id: string }) => {
           {book?.title}
         </StyledTypography>
         <div>
-          <PopularLink>
+          <PopularLink onClick={changeWatchlistHandler}>
             Readlist {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
           </PopularLink>
         </div>
@@ -155,7 +155,7 @@ const ContentContainer = styled.div`
   width: 100%;
 `;
 
-const PopularLink = styled.a`
+const PopularLink = styled(Button)`
   display: flex;
   width: 100%;
   gap: 0.8rem;
@@ -170,14 +170,10 @@ const PopularLink = styled.a`
   padding: 0 3.6rem;
   min-height: 3.2rem;
   border-radius: 4px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   transition: all 0.2s ease-in-out;
   justify-content: center;
-  &:link,
-  &:visited,
-  &:active {
-    color: #3887be;
-  }
+
   &:hover {
     filter: brightness(150%);
   }
