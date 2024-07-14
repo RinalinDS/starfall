@@ -53,11 +53,6 @@ const ModalContent = styled.div`
   background: #333;
   padding: 4rem;
   z-index: 1001;
-  color: white;
-  border-radius: 5px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  border-radius: 5px;
 `;
