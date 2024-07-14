@@ -4,7 +4,6 @@ import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { useModalControls } from '../../hooks/useModalControls';
-import { Book } from '../../mocks/sliderData.mock';
 import { useBookStore } from '../../store/useBookStore';
 import { useReadlistStore } from '../../store/useReadlistStore';
 import { RatingModal } from '../RatingModal/rating-modal';
@@ -12,7 +11,7 @@ import { Button } from '../ui/Button/button';
 import { Typography } from '../ui/Typography/typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 
-export const Card = ({ book }: { book: Book }) => {
+export const Card = ({ id }: { id: string }) => {
   const readlist = useReadlistStore((state) => state.readlist);
   const addToReadlist = useReadlistStore((state) => state.addToReadlist);
   const removeFromReadlist = useReadlistStore(
@@ -20,25 +19,21 @@ export const Card = ({ book }: { book: Book }) => {
   );
   const updateUserRating = useBookStore((state) => state.updateUserRating);
   const removeUserRating = useBookStore((state) => state.removeUserRating);
-  const currentBook = useBookStore(
-    (state) => state.books.find((el) => el.id === book.id)!
+  const book = useBookStore((state) =>
+    state.books.find((book) => book.id === id)
   );
-
-  const { currentUserRating, rating } = currentBook;
 
   const { closeModal, isOpen, openModal } = useModalControls();
 
-  const { id, previewImage, title } = book;
-
   const isBookInWatchList = useMemo(
-    () => readlist.some((item) => id === item.id),
-    [readlist, book]
+    () => readlist.some((item) => id === item),
+    [readlist, id]
   );
   const changeWatchlistHandler = () => {
     if (isBookInWatchList) {
       removeFromReadlist(id);
     } else {
-      addToReadlist(book);
+      addToReadlist(id);
     }
   };
 
@@ -55,7 +50,7 @@ export const Card = ({ book }: { book: Book }) => {
   return (
     <Container>
       <ImageContainer>
-        <img src={previewImage} alt="Book preview" />
+        <img src={book?.previewImage || ''} alt="Book preview" />
         <ButtonAbsolute
           onClick={changeWatchlistHandler}
           isBookInWatchList={isBookInWatchList}
@@ -70,7 +65,7 @@ export const Card = ({ book }: { book: Book }) => {
             style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
           >
             <FaStar fill="yellow" />
-            {rating.toLocaleString('en-US', {
+            {(book?.rating || 0).toLocaleString('en-US', {
               maximumFractionDigits: 2,
               minimumFractionDigits: 1,
             })}
@@ -80,7 +75,7 @@ export const Card = ({ book }: { book: Book }) => {
             style={{ display: 'flex', alignItems: 'center' }}
           >
             <StyledButton onClick={openModal}>
-              {!!currentUserRating ? (
+              {!!book?.currentUserRating ? (
                 <FaStar fill="lightblue" />
               ) : (
                 <FaRegStar fill="lightblue" />
@@ -90,7 +85,7 @@ export const Card = ({ book }: { book: Book }) => {
         </div>
 
         <StyledTypography as="p" variant="subtitle2">
-          {title}
+          {book?.title}
         </StyledTypography>
         <div>
           <PopularLink>
@@ -104,8 +99,8 @@ export const Card = ({ book }: { book: Book }) => {
       {isOpen && (
         <RatingModal
           closeModal={closeModal}
-          title={title}
-          currentUserRating={currentUserRating}
+          title={book?.title || ''}
+          currentUserRating={book?.currentUserRating || 0}
           updateUserRatingHandler={updateUserRatingHandler}
           removeRateHandler={removeRateHandler}
         />

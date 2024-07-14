@@ -20,8 +20,8 @@ export const ReadlistPanel = () => {
         <EmptyReadlist />
       ) : (
         <CardsContainer>
-          {readlist.map((el) => (
-            <Card key={el.id} book={el}></Card>
+          {readlist.map((id) => (
+            <Card key={id} id={id}></Card>
           ))}
         </CardsContainer>
       )}

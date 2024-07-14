@@ -23,7 +23,7 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
   const { image, previewImage, title, description, id } = mainSlide;
 
   const isBookInReadlist = useMemo(
-    () => readlist.some((item) => id === item.id),
+    () => readlist.some((item) => id === item),
     [readlist, id]
   );
 
@@ -31,7 +31,7 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
     if (isBookInReadlist) {
       removeFromReadlist(id);
     } else {
-      addToReadlist(mainSlide);
+      addToReadlist(id);
     }
   };
 
