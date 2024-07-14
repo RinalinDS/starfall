@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import styles from './rating-modal.module.css';
 
 export const Star = ({ rating }: { rating: number }) => {
+  const size = 80 + 3 * rating;
   return (
     <Container className={styles.container}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={50 + 6 * rating}
-        height={50 + 6 * rating}
+        width={size}
+        height={size}
         viewBox="0 0 85 81"
         fill="currentColor"
         role="presentation"
