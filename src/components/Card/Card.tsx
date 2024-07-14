@@ -75,7 +75,7 @@ export const Card = ({ id }: { id: string }) => {
             style={{ display: 'flex', alignItems: 'center' }}
           >
             <StyledButton onClick={openModal}>
-              {!!book?.currentUserRating ? (
+              {book?.currentUserRating ? (
                 <FaStar fill="lightblue" />
               ) : (
                 <FaRegStar fill="lightblue" />
