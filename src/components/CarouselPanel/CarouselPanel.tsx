@@ -4,21 +4,12 @@ import { Carousel } from '../Carousel/Carousel';
 import { UpNext } from '../UpNext/UpNext';
 
 export const CarouselPanel = () => {
-  const {
-    changeNextSlide,
-    changePrevSlide,
-    currentSlide,
-    firstThreeSlides,
-    setActiveSlide,
-  } = useSliderData();
+  const { currentSlide, firstThreeSlides, setActiveSlide, changeSlide } =
+    useSliderData();
 
   return (
     <Container>
-      <Carousel
-        mainSlide={currentSlide}
-        changeNextSlide={changeNextSlide}
-        changePrevSlide={changePrevSlide}
-      />
+      <Carousel mainSlide={currentSlide} changeSlide={changeSlide} />
       <UpNext upNextSlides={firstThreeSlides} setActiveSlide={setActiveSlide} />
     </Container>
   );

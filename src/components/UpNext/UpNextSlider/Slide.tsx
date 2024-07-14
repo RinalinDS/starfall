@@ -1,18 +1,20 @@
 import { styled } from 'styled-components';
 import { Book } from '../../../mocks/sliderData.mock';
 import { Typography } from '../../ui/Typography/typography';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   slide: Book;
-  setActiveSlide: (slide: Book) => void;
+  setActiveSlide: Dispatch<SetStateAction<string>>;
 };
 
 export const Slide = ({ slide, setActiveSlide }: Props) => {
+  const { description, previewImage, title, id } = slide;
+
   const setActiveSlideHandler = () => {
-    setActiveSlide(slide);
+    setActiveSlide(id);
   };
 
-  const { description, previewImage, title } = slide;
   return (
     <Container>
       <ImageContainer>

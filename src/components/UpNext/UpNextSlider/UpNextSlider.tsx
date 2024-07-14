@@ -1,10 +1,11 @@
 import { styled } from 'styled-components';
 import { Slide } from './Slide';
 import { Book } from '../../../mocks/sliderData.mock';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   upNextSlides: Book[];
-  setActiveSlide: (slide: Book) => void;
+  setActiveSlide: Dispatch<SetStateAction<string>>;
 };
 
 export const UpNextSlider = ({ upNextSlides, setActiveSlide }: Props) => {

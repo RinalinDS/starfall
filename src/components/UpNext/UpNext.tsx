@@ -2,10 +2,11 @@ import { styled } from 'styled-components';
 import { UpNextSlider } from './UpNextSlider/UpNextSlider';
 import { Book } from '../../mocks/sliderData.mock';
 import { Typography } from '../ui/Typography/typography';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   upNextSlides: Book[];
-  setActiveSlide: (slide: Book) => void;
+  setActiveSlide: Dispatch<SetStateAction<string>>;
 };
 
 export const UpNext = ({ upNextSlides, setActiveSlide }: Props) => {

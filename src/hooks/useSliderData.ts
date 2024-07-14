@@ -1,43 +1,49 @@
 import { useMemo, useState } from 'react';
-import { Book } from '../mocks/sliderData.mock';
 import { useBookStore } from '../store/useBookStore';
 
 export const useSliderData = () => {
   const booksData = useBookStore((state) => state.books);
-  const [currentSlide, setCurrentSlide] = useState<Book>(booksData[0]);
-  const [upNextSlides, setUpNextSlides] = useState<Book[]>(booksData.slice(1));
 
-  const changeNextSlide = () => {
-    setCurrentSlide(upNextSlides[0]);
-    setUpNextSlides([...upNextSlides.slice(1), currentSlide]);
-  };
+  const [id, setId] = useState(booksData[0].id);
 
-  const changePrevSlide = () => {
-    const lastSlide = upNextSlides.at(-1);
-    if (lastSlide) {
-      setCurrentSlide(lastSlide);
+  const currentSlide = useMemo(() => {
+    const slide = booksData.find((book) => book.id === id);
+    if (!slide) {
+      return booksData[0];
     }
-    setUpNextSlides([currentSlide, ...upNextSlides.slice(0, -1)]);
-  };
+    return slide;
+  }, [booksData, id]);
 
-  const setActiveSlide = (slide: Book) => {
-    const arr = [currentSlide, ...upNextSlides];
-    const index = arr.findIndex((s) => s.id === slide.id);
+  const upNextSlides = useMemo(() => {
+    const index = booksData.findIndex((s) => s.id === id);
 
-    setUpNextSlides([...arr.slice(index + 1), ...arr.slice(0, index)]);
-    setCurrentSlide(slide);
-  };
+    return [...booksData.slice(index + 1), ...booksData.slice(0, index)];
+  }, [booksData, id]);
 
   const firstThreeSlides = useMemo(
     () => upNextSlides.slice(0, 3),
     [upNextSlides]
   );
 
+  const changeSlide = (direction: 'next' | 'prev') => {
+    const index = booksData.findIndex((s) => s.id === id);
+    const nextIndex =
+      direction === 'next'
+        ? index + 1
+        : index - 1 < 0
+          ? booksData.length - 1
+          : index - 1;
+    if (nextIndex === booksData.length) {
+      setId(booksData[0].id);
+      return;
+    }
+    setId(booksData[nextIndex].id);
+  };
+
   return {
     currentSlide,
     firstThreeSlides,
-    changeNextSlide,
-    changePrevSlide,
-    setActiveSlide,
+    setActiveSlide: setId,
+    changeSlide,
   };
 };

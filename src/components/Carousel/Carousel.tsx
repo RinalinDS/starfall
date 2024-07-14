@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { Dispatch, SetStateAction, useMemo } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
@@ -11,15 +11,10 @@ import RightArrow from './../../assets/rightarrow.svg?react';
 
 type Props = {
   mainSlide: Book;
-  changeNextSlide: () => void;
-  changePrevSlide: () => void;
+  changeSlide: (direction: 'next' | 'prev') => void;
 };
 
-export const Carousel = ({
-  mainSlide,
-  changeNextSlide,
-  changePrevSlide,
-}: Props) => {
+export const Carousel = ({ mainSlide, changeSlide }: Props) => {
   const readlist = useReadlistStore((state) => state.readlist);
   const addToReadlist = useReadlistStore((state) => state.addToReadlist);
   const removeFromReadlist = useReadlistStore(
@@ -38,6 +33,13 @@ export const Carousel = ({
     } else {
       addToReadlist(mainSlide);
     }
+  };
+
+  const changePrevSlide = () => {
+    changeSlide('prev');
+  };
+  const changeNextSlide = () => {
+    changeSlide('next');
   };
 
   return (
