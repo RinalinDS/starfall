@@ -67,23 +67,6 @@
   font-size: 2rem;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: lightblue;
-  position: absolute;
-  right: 50%;
-  left: 50%;
-  top: -20%;
-}
-
-.number {
-  color: #333;
-  transform: translateY(-4.5rem);
-}
-
 .activeRateButton {
   background-color: rgb(245, 197, 24);
   color: #333;
