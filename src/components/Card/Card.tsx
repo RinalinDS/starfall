@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import { FaPlay, FaRegStar, FaStar } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa6';
@@ -10,10 +11,9 @@ import { RatingModal } from '../RatingModal/rating-modal';
 import { Button } from '../ui/Button/button';
 import { Typography } from '../ui/Typography/typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
-import { Link, getRouteApi } from '@tanstack/react-router';
 
-const routeApi = getRouteApi('/');
-
+// feels like this component is too heavy, because a lot of state management and the fact it's mapped component.
+// TODO: compound component
 export const Card = ({ id }: { id: string }) => {
   const readlist = useReadlistStore((state) => state.readlist);
   const addToReadlist = useReadlistStore((state) => state.addToReadlist);
@@ -25,16 +25,20 @@ export const Card = ({ id }: { id: string }) => {
   const book = useBookStore((state) =>
     state.books.find((book) => book.id === id)
   );
-  const navigate = routeApi.useNavigate();
 
   const { closeModal, isOpen, openModal } = useModalControls();
 
-  const isBookInWatchList = useMemo(
+  const ratingToDisplay = (book?.rating || 0).toLocaleString('en-US', {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 1,
+  });
+
+  const isBookInReadlist = useMemo(
     () => readlist.some((item) => id === item),
     [readlist, id]
   );
-  const changeWatchlistHandler = () => {
-    if (isBookInWatchList) {
+  const changeReadlistHandler = () => {
+    if (isBookInReadlist) {
       removeFromReadlist(id);
     } else {
       addToReadlist(id);
@@ -46,7 +50,7 @@ export const Card = ({ id }: { id: string }) => {
     closeModal();
   };
 
-  const removeRateHandler = () => {
+  const removeUserRatingHandler = () => {
     removeUserRating(id);
     closeModal();
   };
@@ -58,76 +62,53 @@ export const Card = ({ id }: { id: string }) => {
           <img src={book?.previewImage || ''} alt="Book preview" />
         </Link>
         <ButtonAbsolute
-          onClick={changeWatchlistHandler}
-          isBookInWatchList={isBookInWatchList}
+          onClick={changeReadlistHandler}
+          isBookInWatchList={isBookInReadlist}
         >
-          {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
+          {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
       </ImageContainer>
+
       <ContentContainer>
-        <div style={{ display: 'flex', gap: '2.5rem' }}>
-          <Typography
-            variant="body2"
-            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
-          >
+        <RatingContainer>
+          <DisplayRating variant="body2">
             <FaStar fill="yellow" />
-            {(book?.rating || 0).toLocaleString('en-US', {
-              maximumFractionDigits: 2,
-              minimumFractionDigits: 1,
-            })}
-          </Typography>
-          <Typography
-            variant="body2"
-            style={{ display: 'flex', alignItems: 'center' }}
-          >
-            <StyledButton onClick={openModal}>
+            {ratingToDisplay}
+          </DisplayRating>
+          <DisplayModal variant="body2">
+            <DisplayModalButton onClick={openModal}>
               {book?.currentUserRating ? (
                 <FaStar fill="lightblue" />
               ) : (
                 <FaRegStar fill="lightblue" />
               )}
-            </StyledButton>
-          </Typography>
-        </div>
+            </DisplayModalButton>
+          </DisplayModal>
+        </RatingContainer>
 
-        <StyledTypography as="p" variant="subtitle2">
+        <Title as="p" variant="subtitle2">
           {book?.title}
-        </StyledTypography>
-        <div>
-          <PopularLink onClick={changeWatchlistHandler}>
-            Readlist {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
-          </PopularLink>
-        </div>
+        </Title>
+        <ReadlistButton onClick={changeReadlistHandler}>
+          Readlist {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
+        </ReadlistButton>
         <TrailerLink to="/preview/$bookId" params={{ bookId: id }}>
           <FaPlay /> Trailer
         </TrailerLink>
       </ContentContainer>
-      {isOpen && (
+
+      {isOpen ? (
         <RatingModal
           closeModal={closeModal}
           title={book?.title || ''}
           currentUserRating={book?.currentUserRating || 0}
           updateUserRatingHandler={updateUserRatingHandler}
-          removeRateHandler={removeRateHandler}
+          removeRateHandler={removeUserRatingHandler}
         />
-      )}
+      ) : null}
     </Container>
   );
 };
-
-const StyledTypography = styled(Typography)`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const StyledButton = styled(Button)`
-  padding: 0.8rem 1.6rem;
-  border-radius: 4px;
-  &:hover {
-    background-color: ${({ theme }) => theme.background.primary};
-  }
-`;
 
 const Container = styled.div`
   display: flex;
@@ -165,7 +146,37 @@ const ContentContainer = styled.div`
   width: 100%;
 `;
 
-const PopularLink = styled(Button)`
+const RatingContainer = styled.div`
+  display: flex;
+  gap: 2.5rem;
+`;
+
+const Title = styled(Typography)`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const DisplayRating = styled(Typography)`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+`;
+
+const DisplayModalButton = styled(Button)`
+  padding: 0.8rem 1.6rem;
+  border-radius: 4px;
+  &:hover {
+    background-color: ${({ theme }) => theme.background.primary};
+  }
+`;
+
+const DisplayModal = styled(Typography)`
+  display: flex;
+  align-items: center;
+`;
+
+const ReadlistButton = styled(Button)`
   display: flex;
   width: 100%;
   gap: 0.8rem;
