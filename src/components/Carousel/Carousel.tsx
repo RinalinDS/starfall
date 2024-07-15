@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction, useMemo } from 'react';
+import { useMemo } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
+import { Direction } from '../../constants/direction';
 import { Book } from '../../mocks/sliderData.mock';
 import { useReadlistStore } from '../../store/useReadlistStore';
 import { Typography } from '../ui/Typography/typography';
@@ -11,7 +12,7 @@ import RightArrow from './../../assets/rightarrow.svg?react';
 
 type Props = {
   mainSlide: Book;
-  changeSlide: (direction: 'next' | 'prev') => void;
+  changeSlide: (direction: Direction) => void;
 };
 
 export const Carousel = ({ mainSlide, changeSlide }: Props) => {

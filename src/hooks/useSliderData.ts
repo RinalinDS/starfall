@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useBookStore } from '../store/useBookStore';
+import { Direction } from '../constants/direction';
 
 export const useSliderData = () => {
   const booksData = useBookStore((state) => state.books);
@@ -25,7 +26,7 @@ export const useSliderData = () => {
     [upNextSlides]
   );
 
-  const changeSlide = (direction: 'next' | 'prev') => {
+  const changeSlide = (direction: Direction) => {
     const index = booksData.findIndex((s) => s.id === id);
     const nextIndex =
       direction === 'next'
