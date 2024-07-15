@@ -1,8 +1,8 @@
-import { styled } from 'styled-components';
-import { UpNextSlider } from './UpNextSlider/UpNextSlider';
-import { Book } from '../../mocks/sliderData.mock';
-import { Typography } from '../ui/Typography/typography';
 import { Dispatch, SetStateAction } from 'react';
+import { styled } from 'styled-components';
+import { Typography } from '../ui/Typography/typography';
+import { UpNextSlider } from './UpNextSlider/UpNextSlider';
+import { Book } from '../../types/book';
 
 type Props = {
   upNextSlides: Book[];

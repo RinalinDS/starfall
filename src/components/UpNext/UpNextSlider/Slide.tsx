@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import { Book } from '../../../mocks/sliderData.mock';
 import { Typography } from '../../ui/Typography/typography';
 import { Dispatch, SetStateAction } from 'react';
+import { Book } from '../../../types/book';
 
 type Props = {
   slide: Book;

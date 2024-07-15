@@ -16,7 +16,6 @@ export const CarouselPanel = () => {
 };
 
 const Container = styled.section`
-  grid-column: span 3;
   padding: 2.4rem 0;
   display: flex;
   justify-content: space-between;
