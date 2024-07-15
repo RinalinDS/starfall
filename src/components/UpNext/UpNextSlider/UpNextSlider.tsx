@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { Slide } from './Slide';
-import { Book } from '../../../mocks/sliderData.mock';
 import { Dispatch, SetStateAction } from 'react';
+import { Book } from '../../../types/book';
 
 type Props = {
   upNextSlides: Book[];

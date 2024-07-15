@@ -8,18 +8,7 @@ import wot from './../assets/wot.png';
 import wayOfKings from './../assets/way_of_kings.png';
 import got from './../assets/got.jpg';
 import gotPreview from './../assets/got_preview.jpg';
-
-export type Book = {
-  image: string;
-  previewImage: string;
-  title: string;
-  description: string;
-  author: string;
-  id: string;
-  rating: number;
-  howManyTimeWereRated: number;
-  currentUserRating: number | null;
-};
+import { Book } from '../types/book';
 
 export const booksData: Book[] = [
   {
