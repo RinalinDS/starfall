@@ -13,8 +13,10 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as ReadlistIndexImport } from './routes/readlist/index'
+import { Route as PreviewIndexImport } from './routes/preview/index'
 import { Route as PopularIndexImport } from './routes/popular/index'
 import { Route as LoginIndexImport } from './routes/login/index'
+import { Route as PreviewBookIdImport } from './routes/preview/$bookId'
 
 // Create/Update Routes
 
@@ -28,6 +30,11 @@ const ReadlistIndexRoute = ReadlistIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const PreviewIndexRoute = PreviewIndexImport.update({
+  path: '/preview/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const PopularIndexRoute = PopularIndexImport.update({
   path: '/popular/',
   getParentRoute: () => rootRoute,
@@ -35,6 +42,11 @@ const PopularIndexRoute = PopularIndexImport.update({
 
 const LoginIndexRoute = LoginIndexImport.update({
   path: '/login/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PreviewBookIdRoute = PreviewBookIdImport.update({
+  path: '/preview/$bookId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -47,6 +59,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/preview/$bookId': {
+      id: '/preview/$bookId'
+      path: '/preview/$bookId'
+      fullPath: '/preview/$bookId'
+      preLoaderRoute: typeof PreviewBookIdImport
       parentRoute: typeof rootRoute
     }
     '/login/': {
@@ -63,6 +82,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PopularIndexImport
       parentRoute: typeof rootRoute
     }
+    '/preview/': {
+      id: '/preview/'
+      path: '/preview'
+      fullPath: '/preview'
+      preLoaderRoute: typeof PreviewIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/readlist/': {
       id: '/readlist/'
       path: '/readlist'
@@ -77,8 +103,10 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  PreviewBookIdRoute,
   LoginIndexRoute,
   PopularIndexRoute,
+  PreviewIndexRoute,
   ReadlistIndexRoute,
 })
 
@@ -91,19 +119,27 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/preview/$bookId",
         "/login/",
         "/popular/",
+        "/preview/",
         "/readlist/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/preview/$bookId": {
+      "filePath": "preview/$bookId.tsx"
+    },
     "/login/": {
       "filePath": "login/index.tsx"
     },
     "/popular/": {
       "filePath": "popular/index.tsx"
+    },
+    "/preview/": {
+      "filePath": "preview/index.tsx"
     },
     "/readlist/": {
       "filePath": "readlist/index.tsx"

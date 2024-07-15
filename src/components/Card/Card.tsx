@@ -10,6 +10,9 @@ import { RatingModal } from '../RatingModal/rating-modal';
 import { Button } from '../ui/Button/button';
 import { Typography } from '../ui/Typography/typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
+import { Link, getRouteApi } from '@tanstack/react-router';
+
+const routeApi = getRouteApi('/');
 
 export const Card = ({ id }: { id: string }) => {
   const readlist = useReadlistStore((state) => state.readlist);
@@ -22,6 +25,7 @@ export const Card = ({ id }: { id: string }) => {
   const book = useBookStore((state) =>
     state.books.find((book) => book.id === id)
   );
+  const navigate = routeApi.useNavigate();
 
   const { closeModal, isOpen, openModal } = useModalControls();
 
@@ -50,7 +54,9 @@ export const Card = ({ id }: { id: string }) => {
   return (
     <Container>
       <ImageContainer>
-        <img src={book?.previewImage || ''} alt="Book preview" />
+        <Link to="/preview/$bookId" params={{ bookId: id }}>
+          <img src={book?.previewImage || ''} alt="Book preview" />
+        </Link>
         <ButtonAbsolute
           onClick={changeWatchlistHandler}
           isBookInWatchList={isBookInWatchList}
@@ -92,7 +98,7 @@ export const Card = ({ id }: { id: string }) => {
             Readlist {isBookInWatchList ? <IoMdCheckmark /> : <FaPlus />}
           </PopularLink>
         </div>
-        <TrailerLink>
+        <TrailerLink to="/preview/$bookId" params={{ bookId: id }}>
           <FaPlay /> Trailer
         </TrailerLink>
       </ContentContainer>
@@ -141,7 +147,11 @@ const ImageContainer = styled.div`
   position: relative;
   width: 100%;
 
-  & img {
+  a {
+    width: 100%;
+  }
+
+  img {
     max-height: 16rem;
     width: 100%;
   }
@@ -179,7 +189,7 @@ const PopularLink = styled(Button)`
   }
 `;
 
-const TrailerLink = styled.a`
+const TrailerLink = styled(Link)`
   align-self: center;
   display: flex;
   gap: 0.8rem;
