@@ -4,7 +4,7 @@ import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { FaMoon } from 'react-icons/fa6';
 import { IoMdSunny } from 'react-icons/io';
 import { styled } from 'styled-components';
-import { useReadlistStore } from '../../store/useReadlistStore';
+import { useBoundStore } from '../../store/useBoundStore';
 import { Search } from '../ui/Search/search';
 import { Typography } from '../ui/Typography/typography';
 import logo from './../../assets/logo.png';
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const Header = ({ changeThemeHandler, themeMode }: Props) => {
-  const readlistLength = useReadlistStore((state) => state.readlist.length);
+  const readlistLength = useBoundStore((state) => state.readlist.length);
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;

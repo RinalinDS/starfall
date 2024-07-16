@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
-import { useBookStore } from '../store/useBookStore';
 import { Direction } from '../constants/direction';
+import { useBoundStore } from '../store/useBoundStore';
 
 export const useSliderData = () => {
-  const booksData = useBookStore((state) => state.books);
+  const booksData = useBoundStore((state) => state.books);
 
   const [id, setId] = useState(booksData[0].id);
 

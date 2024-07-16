@@ -3,12 +3,12 @@ import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { Direction } from '../../constants/direction';
-import { useReadlistStore } from '../../store/useReadlistStore';
+import { useBoundStore } from '../../store/useBoundStore';
+import { Book } from '../../types/book';
 import { Typography } from '../ui/Typography/typography';
 import { ButtonAbsolute as AddToReadlistButton } from '../ui/sharedStyledComponents/shared-buttons';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
 import RightArrow from './../../assets/rightarrow.svg?react';
-import { Book } from '../../types/book';
 
 type Props = {
   mainSlide: Book;
@@ -16,11 +16,10 @@ type Props = {
 };
 
 export const Carousel = ({ mainSlide, changeSlide }: Props) => {
-  const readlist = useReadlistStore((state) => state.readlist);
-  const addToReadlist = useReadlistStore((state) => state.addToReadlist);
-  const removeFromReadlist = useReadlistStore(
-    (state) => state.removeFromReadlist
-  );
+  const readlist = useBoundStore((state) => state.readlist);
+  const addToReadlist = useBoundStore((state) => state.addToReadlist);
+  const removeFromReadlist = useBoundStore((state) => state.removeFromReadlist);
+
   const { image, previewImage, title, description, id } = mainSlide;
 
   const isBookInReadlist = useMemo(

@@ -1,15 +1,15 @@
-import { create } from 'zustand';
-import { Book, booksData } from '../mocks/sliderData.mock';
+import { StateCreator } from 'zustand';
+import { booksData } from '../mocks/sliderData.mock';
+import { Book } from '../types/book';
 
-type State = {
+export type BookSlice = {
   books: Book[];
-};
-
-type Action = {
   updateUserRating: (id: string, rating: number) => void;
   removeUserRating: (id: string) => void;
 };
-export const useBookStore = create<State & Action>((set) => ({
+export const createBookSlice: StateCreator<BookSlice, [], [], BookSlice> = (
+  set
+) => ({
   books: booksData,
   updateUserRating: (id: string, rating: number) =>
     set((state) => ({
@@ -54,4 +54,4 @@ export const useBookStore = create<State & Action>((set) => ({
           : book;
       }),
     })),
-}));
+});

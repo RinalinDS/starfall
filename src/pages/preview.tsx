@@ -1,12 +1,12 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { preview } from '../mocks/preview';
-import { useBookStore } from '../store/useBookStore';
+import { useBoundStore } from '../store/useBoundStore';
 
 const routeApi = getRouteApi('/preview/$bookId');
 
 export const Preview = () => {
   const { bookId } = routeApi.useParams();
-  const book = useBookStore((state) =>
+  const book = useBoundStore((state) =>
     state.books.find((book) => book.id === bookId)
   );
 

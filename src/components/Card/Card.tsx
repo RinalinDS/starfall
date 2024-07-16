@@ -5,8 +5,7 @@ import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { useModalControls } from '../../hooks/useModalControls';
-import { useBookStore } from '../../store/useBookStore';
-import { useReadlistStore } from '../../store/useReadlistStore';
+import { useBoundStore } from '../../store/useBoundStore';
 import { RatingModal } from '../RatingModal/rating-modal';
 import { Button } from '../ui/Button/button';
 import { Typography } from '../ui/Typography/typography';
@@ -15,14 +14,12 @@ import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 // feels like this component is too heavy, because a lot of state management and the fact it's mapped component.
 // TODO: compound component
 export const Card = ({ id }: { id: string }) => {
-  const readlist = useReadlistStore((state) => state.readlist);
-  const addToReadlist = useReadlistStore((state) => state.addToReadlist);
-  const removeFromReadlist = useReadlistStore(
-    (state) => state.removeFromReadlist
-  );
-  const updateUserRating = useBookStore((state) => state.updateUserRating);
-  const removeUserRating = useBookStore((state) => state.removeUserRating);
-  const book = useBookStore((state) =>
+  const readlist = useBoundStore((state) => state.readlist);
+  const addToReadlist = useBoundStore((state) => state.addToReadlist);
+  const removeFromReadlist = useBoundStore((state) => state.removeFromReadlist);
+  const updateUserRating = useBoundStore((state) => state.updateUserRating);
+  const removeUserRating = useBoundStore((state) => state.removeUserRating);
+  const book = useBoundStore((state) =>
     state.books.find((book) => book.id === id)
   );
 

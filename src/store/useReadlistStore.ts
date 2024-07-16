@@ -1,15 +1,17 @@
-import { create } from 'zustand';
+import { StateCreator } from 'zustand';
 
-type State = {
+export type ReadlistSlice = {
   readlist: string[];
-};
-
-type Action = {
   addToReadlist: (id: string) => void;
   removeFromReadlist: (id: string) => void;
 };
 
-export const useReadlistStore = create<State & Action>((set) => ({
+export const createReadlistSlice: StateCreator<
+  ReadlistSlice,
+  [],
+  [],
+  ReadlistSlice
+> = (set) => ({
   readlist: [],
   addToReadlist: (id) =>
     set((state) => ({ readlist: [...state.readlist, id] })),
@@ -17,4 +19,4 @@ export const useReadlistStore = create<State & Action>((set) => ({
     set((state) => ({
       readlist: state.readlist.filter((el) => el !== id),
     })),
-}));
+});
