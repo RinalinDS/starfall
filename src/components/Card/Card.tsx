@@ -79,7 +79,6 @@ export const Card = ({ id }: { id: string }) => {
               ) : (
                 <FaRegStar fill="lightblue" />
               )}
-
               {book?.currentUserRating || ''}
             </DisplayRating>
           </DisplayModalButton>
@@ -163,7 +162,10 @@ const DisplayRating = styled(Typography)`
 `;
 
 const DisplayModalButton = styled(Button)`
-  padding: 0.8rem 1.6rem;
+  // to avoid screen shaking after rating appears
+  min-width: 6rem;
+  min-height: 3.2rem;
+
   border-radius: 4px;
   color: inherit;
   &:hover {
