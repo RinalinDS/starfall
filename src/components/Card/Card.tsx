@@ -72,15 +72,17 @@ export const Card = ({ id }: { id: string }) => {
             <FaStar fill="yellow" />
             {ratingToDisplay}
           </DisplayRating>
-          <DisplayModal variant="body2">
-            <DisplayModalButton onClick={openModal}>
+          <DisplayModalButton onClick={openModal}>
+            <DisplayRating variant="body2">
               {book?.currentUserRating ? (
                 <FaStar fill="lightblue" />
               ) : (
                 <FaRegStar fill="lightblue" />
               )}
-            </DisplayModalButton>
-          </DisplayModal>
+
+              {book?.currentUserRating || ''}
+            </DisplayRating>
+          </DisplayModalButton>
         </RatingContainer>
 
         <Title as="p" variant="subtitle2">
@@ -163,14 +165,10 @@ const DisplayRating = styled(Typography)`
 const DisplayModalButton = styled(Button)`
   padding: 0.8rem 1.6rem;
   border-radius: 4px;
+  color: inherit;
   &:hover {
     background-color: ${({ theme }) => theme.background.primary};
   }
-`;
-
-const DisplayModal = styled(Typography)`
-  display: flex;
-  align-items: center;
 `;
 
 const ReadlistButton = styled(Button)`
