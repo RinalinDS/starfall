@@ -78,6 +78,9 @@ const Container = styled.div`
     border: 2px solid ${({ theme }) => theme.border.primary};
     border-radius: 1rem;
     padding: 1.2rem 4.8rem;
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
     & .link {
       color: ${({ theme }) => theme.text.secondary};
 

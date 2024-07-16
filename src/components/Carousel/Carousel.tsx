@@ -170,4 +170,7 @@ const TextContainer = styled.div`
   align-items: flex-start;
   color: ${({ theme }) => theme.text.white};
   font-size: 1.6rem;
+  @media screen and (max-width: 640px) {
+    bottom: 2rem;
+  }
 `;
