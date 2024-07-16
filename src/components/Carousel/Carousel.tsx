@@ -103,11 +103,14 @@ const Button = styled.button`
   color: hsla(0, 0%, 100%, 0.7);
   transition: all 0.25s ease-out;
   z-index: 5;
-  top: 50%;
   padding: 1.2rem 0.8rem;
   border-radius: 7px;
   &:hover {
     color: yellow;
+  }
+  @media screen and (max-width: 960px) {
+    top: 0;
+    transform: translateY(0%);
   }
 `;
 
@@ -157,7 +160,7 @@ const StyledImage = styled.img`
 
 const TextContainer = styled.div`
   position: absolute;
-  max-height: 40%;
+  max-height: 50%;
   width: 70%;
   right: 1rem;
   bottom: 1rem;
