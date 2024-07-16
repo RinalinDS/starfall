@@ -56,7 +56,7 @@ export const Card = ({ id }: { id: string }) => {
     <Container>
       <ImageContainer>
         <Link to="/preview/$bookId" params={{ bookId: id }}>
-          <img src={book?.previewImage || ''} alt="Book preview" />
+          <img src={book?.previewImage} alt="Book preview" />
         </Link>
         <ButtonAbsolute
           onClick={changeReadlistHandler}
