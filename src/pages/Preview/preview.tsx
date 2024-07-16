@@ -1,6 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { preview } from '../mocks/preview';
-import { useBoundStore } from '../store/useBoundStore';
+import { preview } from '../../mocks/preview';
+import { useBoundStore } from '../../store/useBoundStore';
 
 const routeApi = getRouteApi('/preview/$bookId');
 
