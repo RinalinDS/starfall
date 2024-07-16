@@ -185,7 +185,6 @@ const ReadlistButton = styled(Button)`
   text-decoration: none;
   background-color: ${({ theme }) => theme.background.primary};
   color: ${({ theme }) => theme.text.links};
-  padding: 0 3.6rem;
   min-height: 3.2rem;
   border-radius: 4px;
   letter-spacing: 1px;
