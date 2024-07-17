@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../ui/Button/button';
-import { Typography } from '../ui/Typography/typography';
+import { Typography } from '../ui/Typography/Typography';
 import { Rating } from '../Rating/rating';
 import styles from './rating-modal.module.css';
 import { Star } from './star';

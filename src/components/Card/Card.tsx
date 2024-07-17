@@ -8,7 +8,7 @@ import { useModalControls } from '../../hooks/useModalControls';
 import { useBoundStore } from '../../store/useBoundStore';
 import { RatingModal } from '../RatingModal/rating-modal';
 import { Button } from '../ui/Button/button';
-import { Typography } from '../ui/Typography/typography';
+import { Typography } from '../ui/Typography/Typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 
 // feels like this component is too heavy, because a lot of state management and the fact it's mapped component.

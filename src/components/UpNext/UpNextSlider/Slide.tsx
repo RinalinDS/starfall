@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { Typography } from '../../ui/Typography/typography';
+import { Typography } from '../../ui/Typography/Typography';
 import { Dispatch, SetStateAction } from 'react';
 import { Book } from '../../../types/book';
 

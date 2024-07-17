@@ -1,6 +1,6 @@
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { styled } from 'styled-components';
-import { Typography } from '../ui/Typography/typography';
+import { Typography } from '../ui/Typography/Typography';
 import { Link } from '@tanstack/react-router';
 
 export const EmptyReadlist = () => {

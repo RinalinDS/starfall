@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { styled } from 'styled-components';
-import { Typography } from '../ui/Typography/typography';
+import { Typography } from '../ui/Typography/Typography';
 import { UpNextSlider } from './UpNextSlider/UpNextSlider';
 import { Book } from '../../types/book';
 

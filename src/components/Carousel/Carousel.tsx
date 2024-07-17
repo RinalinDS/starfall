@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 import { Direction } from '../../constants/direction';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Book } from '../../types/book';
-import { Typography } from '../ui/Typography/typography';
+import { Typography } from '../ui/Typography/Typography';
 import { ButtonAbsolute as AddToReadlistButton } from '../ui/sharedStyledComponents/shared-buttons';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
 import RightArrow from './../../assets/rightarrow.svg?react';

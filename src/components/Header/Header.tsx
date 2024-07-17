@@ -6,7 +6,7 @@ import { IoMdSunny } from 'react-icons/io';
 import { styled } from 'styled-components';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Search } from '../ui/Search/search';
-import { Typography } from '../ui/Typography/typography';
+import { Typography } from '../ui/Typography/Typography';
 import logo from './../../assets/logo.png';
 
 type Props = {

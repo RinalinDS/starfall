@@ -1,4 +1,4 @@
-import { Typography } from '../../components/ui/Typography/typography';
+import { Typography } from '../../components/ui/Typography/Typography';
 import styles from './login.module.css';
 
 export const Login = () => {
