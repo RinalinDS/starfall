@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Search } from './search';
+import { Search } from './Search';
 
 describe('Search should rendered correctly', () => {
   it('default render state', () => {
