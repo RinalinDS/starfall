@@ -14,7 +14,7 @@ export const Preview = () => {
     return <div>Book not found</div>;
   }
 
-  const { preview: bookPreview } = preview[bookId];
+  const { preview: bookPreviewData } = preview[bookId];
 
   return (
     <div>
@@ -22,7 +22,7 @@ export const Preview = () => {
       <div>
         ID from params: {bookId}, title: {book.title}
       </div>
-      <div>{bookPreview}</div>
+      <div>{bookPreviewData}</div>
     </div>
   );
 };
