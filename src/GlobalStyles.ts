@@ -71,4 +71,14 @@ html {
     font-size: 1.6rem;
   }
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
 `;
