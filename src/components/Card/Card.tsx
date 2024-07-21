@@ -12,7 +12,6 @@ import { Typography } from '../ui/Typography/Typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 
 // feels like this component is too heavy, because a lot of state management and the fact it's mapped component.
-// TODO: compound component
 export const Card = ({ id }: { id: string }) => {
   const readlist = useBoundStore((state) => state.readlist);
   const addToReadlist = useBoundStore((state) => state.addToReadlist);
@@ -54,46 +53,25 @@ export const Card = ({ id }: { id: string }) => {
 
   return (
     <Container>
-      <ImageContainer>
-        <Link to="/preview/$bookId" params={{ bookId: id }}>
-          <img src={book?.previewImage} alt="Book preview" />
-        </Link>
-        <ButtonAbsolute
-          onClick={changeReadlistHandler}
-          isBookInWatchList={isBookInReadlist}
-        >
-          {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-        </ButtonAbsolute>
-      </ImageContainer>
-
-      <ContentContainer>
-        <RatingContainer>
-          <DisplayRating variant="body2">
-            <FaStar fill="yellow" />
-            {ratingToDisplay}
-          </DisplayRating>
-          <DisplayModalButton onClick={openModal}>
-            <DisplayRating variant="body2">
-              {book?.currentUserRating ? (
-                <FaStar fill="lightblue" />
-              ) : (
-                <FaRegStar fill="lightblue" />
-              )}
-              {book?.currentUserRating || ''}
-            </DisplayRating>
-          </DisplayModalButton>
-        </RatingContainer>
-
-        <Title as="p" variant="subtitle2">
-          {book?.title}
-        </Title>
-        <ReadlistButton onClick={changeReadlistHandler}>
-          Readlist {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-        </ReadlistButton>
-        <TrailerLink to="/preview/$bookId" params={{ bookId: id }}>
-          <FaPlay /> Trailer
-        </TrailerLink>
-      </ContentContainer>
+      <Card.Image
+        id={id}
+        previewImage={book?.previewImage || ''}
+        changeReadlistHandler={changeReadlistHandler}
+        isBookInReadlist={isBookInReadlist}
+      />
+      <Card.ContentContainer>
+        <Card.Title title={book?.title || ''} />
+        <Card.Rating
+          ratingToDisplay={Number(ratingToDisplay)}
+          currentUserRating={book?.currentUserRating || 0}
+          openModal={openModal}
+        />
+        <Card.ReadlistButton
+          isBookInReadlist={isBookInReadlist}
+          changeReadlistHandler={changeReadlistHandler}
+        />
+        <Card.TrailerLink id={id} />
+      </Card.ContentContainer>
 
       {isOpen ? (
         <RatingModal
@@ -107,6 +85,85 @@ export const Card = ({ id }: { id: string }) => {
     </Container>
   );
 };
+
+Card.ContentContainer = ({ children }: { children: React.ReactNode }) => (
+  <ContentContainer>{children}</ContentContainer>
+);
+
+Card.Image = ({
+  id,
+  previewImage = '',
+  changeReadlistHandler,
+  isBookInReadlist,
+}: {
+  id: string;
+  previewImage: string;
+  changeReadlistHandler: () => void;
+  isBookInReadlist: boolean;
+}) => (
+  <ImageContainer>
+    <Link to="/preview/$bookId" params={{ bookId: id }}>
+      <img src={previewImage} alt="Book preview" />
+    </Link>
+    <ButtonAbsolute
+      onClick={changeReadlistHandler}
+      isBookInWatchList={isBookInReadlist}
+    >
+      {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
+    </ButtonAbsolute>
+  </ImageContainer>
+);
+
+Card.Rating = ({
+  ratingToDisplay,
+  currentUserRating = 0,
+  openModal,
+}: {
+  ratingToDisplay: number;
+  currentUserRating: number | null;
+  openModal: () => void;
+}) => (
+  <RatingContainer>
+    <DisplayRating variant="body2">
+      <FaStar fill="yellow" />
+      {ratingToDisplay}
+    </DisplayRating>
+    <DisplayModalButton onClick={openModal}>
+      <DisplayRating variant="body2">
+        {currentUserRating ? (
+          <FaStar fill="lightblue" />
+        ) : (
+          <FaRegStar fill="lightblue" />
+        )}
+        {currentUserRating}
+      </DisplayRating>
+    </DisplayModalButton>
+  </RatingContainer>
+);
+
+Card.Title = ({ title }: { title: string }) => (
+  <Title as="p" variant="subtitle2">
+    {title}
+  </Title>
+);
+
+Card.ReadlistButton = ({
+  isBookInReadlist,
+  changeReadlistHandler,
+}: {
+  isBookInReadlist: boolean;
+  changeReadlistHandler: () => void;
+}) => (
+  <ReadlistButton onClick={changeReadlistHandler}>
+    Readlist {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
+  </ReadlistButton>
+);
+
+Card.TrailerLink = ({ id }: { id: string }) => (
+  <TrailerLink to="/preview/$bookId" params={{ bookId: id }}>
+    <FaPlay /> Trailer
+  </TrailerLink>
+);
 
 const Container = styled.div`
   display: flex;
