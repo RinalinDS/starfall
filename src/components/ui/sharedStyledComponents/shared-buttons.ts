@@ -17,7 +17,7 @@ export const ButtonAbsolute = styled.button<{ isBookInWatchList: boolean }>`
     100% 49%,
     100% 100%,
     100% 100%,
-    50% 65%,
+    50% 75%,
     0 100%,
     0 100%,
     0% 35%,
