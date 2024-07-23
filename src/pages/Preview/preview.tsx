@@ -68,13 +68,23 @@ export const Preview = () => {
         </Title>
         <RatingContainer>
           <DisplayRating variant="body2">
-            IBDb rating
-            <div>
+            <Typography>IBDb rating</Typography>
+            <RandomContainerNumberOne>
               <FaStar fill="yellow" />
-              {ratingToDisplay}/10
-            </div>
-            <Typography variant="body2">{book.howManyTimeWereRated}</Typography>
+              <RandomContainerNumberTwo>
+                <Typography style={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography variant="h6">{ratingToDisplay}</Typography>/10
+                </Typography>
+                <Typography
+                  variant="body2"
+                  style={{ position: 'relative', bottom: '0.5rem' }}
+                >
+                  {book.howManyTimeWereRated}
+                </Typography>
+              </RandomContainerNumberTwo>
+            </RandomContainerNumberOne>
           </DisplayRating>
+
           <DisplayModalButton onClick={openModal}>
             <DisplayRating variant="body2">
               YOUR RATING
@@ -98,11 +108,11 @@ export const Preview = () => {
         <img src={book.previewImage} alt="preview image" />
         <img src={book.image} alt="book image" />
         <ButtonAbsolute
-          onClick={() => {}}
-          isBookInWatchList={true}
+          onClick={changeReadlistHandler}
+          isBookInWatchList={isBookInReadlist}
           style={{ padding: '1.6rem 0.8rem' }}
         >
-          {true ? <IoMdCheckmark /> : <FaPlus />}
+          {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
       </ImageContainer>
       <ul>
@@ -165,6 +175,23 @@ const RatingContainer = styled.div`
   display: flex;
   gap: 2rem;
 `;
+const RandomContainerNumberOne = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 1.6rem;
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.background.primary};
+  }
+`;
+const RandomContainerNumberTwo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Title = styled(Typography)`
   color: ${({ theme }) => theme.text.primary};
@@ -174,9 +201,10 @@ const Title = styled(Typography)`
 
 const DisplayRating = styled(Typography)`
   color: ${({ theme }) => theme.text.primary};
-  display: flex;
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  padding: 0.25rem;
 `;
 
 const DisplayModalButton = styled(Button)`
