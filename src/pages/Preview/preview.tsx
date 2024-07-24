@@ -157,7 +157,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.6rem;
-  background-color: ${({ theme }) => theme.background.tertiary};
 `;
 const TitleContainer = styled.div`
   color: ${({ theme }) => theme.text.primary};
@@ -165,12 +164,14 @@ const TitleContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
+  text-transform: uppercase;
 `;
 
 const PreviewHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1.6rem;
 `;
 
 const ImageContainer = styled.div`
@@ -197,6 +198,7 @@ const TestContainer = styled.div`
 const RatingContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 3rem;
 `;
 const RandomContainerNumberOne = styled.div`
   display: flex;
@@ -212,7 +214,7 @@ const RandomContainerNumberOne = styled.div`
     height: 2.4rem;
   }
   &:hover {
-    background-color: ${({ theme }) => theme.background.primary};
+    background-color: ${({ theme }) => theme.background.secondary};
   }
 `;
 
@@ -251,7 +253,7 @@ const DisplayModalButton = styled(Button)`
   min-height: 6rem;
   min-width: 12rem;
   &:hover {
-    background-color: ${({ theme }) => theme.background.primary};
+    background-color: ${({ theme }) => theme.background.secondary};
   }
   height: 100%;
   width: 100%;
