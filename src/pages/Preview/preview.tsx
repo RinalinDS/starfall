@@ -66,42 +66,51 @@ export const Preview = () => {
         <Title as="h2" variant="h3">
           {book.title}
         </Title>
-        <RatingContainer>
-          <DisplayRating variant="body2">
-            <Typography>IBDb rating</Typography>
-            <RandomContainerNumberOne>
-              <FaStar fill="yellow" />
-              <RandomContainerNumberTwo>
-                <Typography style={{ display: 'flex', alignItems: 'center' }}>
-                  <Typography variant="h6">{ratingToDisplay}</Typography>/10
-                </Typography>
-                <Typography
-                  variant="body2"
-                  style={{ position: 'relative', bottom: '0.5rem' }}
-                >
-                  {book.howManyTimeWereRated}
-                </Typography>
-              </RandomContainerNumberTwo>
-            </RandomContainerNumberOne>
-          </DisplayRating>
 
-          <DisplayModalButton onClick={openModal}>
+        <TestContainer>
+          <TitleContainer>
+            <Typography>IBDb rating</Typography>
+            <Typography>Your rating</Typography>
+          </TitleContainer>
+
+          <RatingContainer>
             <DisplayRating variant="body2">
-              YOUR RATING
-              {book.currentUserRating ? (
-                <>
-                  <FaStar fill="lightblue" />
-                  {book.currentUserRating}/10
-                </>
-              ) : (
-                <>
-                  <FaRegStar fill="lightblue" />
-                  Rate
-                </>
-              )}
+              <RandomContainerNumberOne>
+                <FaStar fill="yellow" />
+                <RandomContainerNumberTwo>
+                  <Typography style={{ display: 'flex', alignItems: 'center' }}>
+                    <Typography variant="h6">{ratingToDisplay}</Typography>/10
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    style={{ position: 'relative', bottom: '0.5rem' }}
+                  >
+                    {book.howManyTimeWereRated}
+                  </Typography>
+                </RandomContainerNumberTwo>
+              </RandomContainerNumberOne>
             </DisplayRating>
-          </DisplayModalButton>
-        </RatingContainer>
+
+            <DisplayRating variant="body2">
+              <DisplayModalButton onClick={openModal}>
+                {book.currentUserRating ? (
+                  <StyledTypography>
+                    <FaStar fill="aquamarine" />
+                    <Typography variant="h6">
+                      {book.currentUserRating}
+                    </Typography>
+                    /10
+                  </StyledTypography>
+                ) : (
+                  <StyledTypography>
+                    <FaRegStar fill="aquamarine" />
+                    Rate
+                  </StyledTypography>
+                )}
+              </DisplayModalButton>
+            </DisplayRating>
+          </RatingContainer>
+        </TestContainer>
       </PreviewHeader>
 
       <ImageContainer>
@@ -150,6 +159,13 @@ const Container = styled.div`
   padding: 1.6rem;
   background-color: ${({ theme }) => theme.background.tertiary};
 `;
+const TitleContainer = styled.div`
+  color: ${({ theme }) => theme.text.primary};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+`;
 
 const PreviewHeader = styled.header`
   display: flex;
@@ -171,15 +187,26 @@ const ImageContainer = styled.div`
   }
 `;
 
+const TestContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const RatingContainer = styled.div`
   display: flex;
-  gap: 2rem;
+  align-items: center;
 `;
 const RandomContainerNumberOne = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 1px 1.6rem;
+  justify-content: center;
+  min-height: 6rem;
+  min-width: 12rem;
+
+  border-radius: 4px;
   svg {
     width: 2.4rem;
     height: 2.4rem;
@@ -188,6 +215,18 @@ const RandomContainerNumberOne = styled.div`
     background-color: ${({ theme }) => theme.background.primary};
   }
 `;
+
+const StyledTypography = styled(Typography)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+`;
+
 const RandomContainerNumberTwo = styled.div`
   display: flex;
   flex-direction: column;
@@ -204,17 +243,18 @@ const DisplayRating = styled(Typography)`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.25rem;
+  gap: 4px;
 `;
 
 const DisplayModalButton = styled(Button)`
   // to avoid screen shaking after rating appears
-  min-width: 6rem;
-  min-height: 3.2rem;
-
-  border-radius: 4px;
-  color: inherit;
+  min-height: 6rem;
+  min-width: 12rem;
   &:hover {
     background-color: ${({ theme }) => theme.background.primary};
   }
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  color: inherit;
 `;
