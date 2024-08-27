@@ -8,4 +8,6 @@ export type Book = {
   rating: number;
   howManyTimeWereRated: number;
   currentUserRating: number | null;
+  year: number;
+  tags: string[];
 };

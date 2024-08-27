@@ -83,7 +83,12 @@ export const Preview = () => {
                   </Typography>
                   <Typography
                     variant="subtitle2"
-                    style={{ position: 'relative', bottom: '0.5rem' }}
+                    style={{
+                      position: 'relative',
+                      bottom: '0.5rem',
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}
                   >
                     {book.howManyTimeWereRated}
                   </Typography>
@@ -124,22 +129,32 @@ export const Preview = () => {
           {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
       </ImageContainer>
-      <ul>
-        <li>action</li>
-        <li>adventure</li>
-        <li>fantasy</li>
-      </ul>
-      <div>очень короткое описание</div>
-      <Typography as="h5" variant="h5">
-        creator: {book.author}
-        year: ? add year
-      </Typography>
 
-      <div>главы книги названия?</div>
-      <div>
-        все таки описание внизу
-        <p>{bookPreviewData}</p>
-      </div>
+      <ContentContainer>
+        <TagList>
+          {book.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </TagList>
+        <DescriptionText as="p" variant="body1">
+          {book.description}
+        </DescriptionText>
+        <CreatorContainer>
+          <CreatorContent>
+            <CreatorTypography>creator</CreatorTypography> {book.author}
+          </CreatorContent>
+          <CreatorContent>
+            <CreatorTypography>year</CreatorTypography> {book.year}
+          </CreatorContent>
+        </CreatorContainer>
+
+        {/* <div>главы книги названия?</div> */}
+
+        <PreviewText as="p" variant="body1">
+          {bookPreviewData}
+        </PreviewText>
+      </ContentContainer>
+
       {isOpen ? (
         <RatingModal
           closeModal={closeModal}
@@ -259,4 +274,60 @@ const DisplayModalButton = styled(Button)`
   width: 100%;
   border-radius: 4px;
   color: inherit;
+`;
+
+const PreviewText = styled(Typography)`
+  color: ${({ theme }) => theme.text.secondary};
+  letter-spacing: 1px;
+  text-indent: 2rem;
+`;
+
+const DescriptionText = styled(Typography)`
+  color: ${({ theme }) => theme.text.secondary};
+  letter-spacing: 1px;
+`;
+
+const TagList = styled.ul`
+  display: flex;
+  gap: 1.6rem;
+`;
+
+const Tag = styled.li`
+  color: ${({ theme }) => theme.text.secondary};
+  border: 1px solid ${({ theme }) => theme.border.primary};
+  border-radius: 50px;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 0.8rem;
+`;
+
+const CreatorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  & > * {
+    border-top: 1px solid ${({ theme }) => theme.border.secondary};
+  }
+  border-bottom: 1px solid ${({ theme }) => theme.border.secondary};
+`;
+
+const CreatorTypography = styled(Typography)`
+  color: ${({ theme }) => theme.text.secondary};
+  font-weight: 500;
+  font-size: 2rem;
+  text-transform: capitalize;
+`;
+
+const ContentContainer = styled.div`
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+`;
+
+const CreatorContent = styled(Typography)`
+  display: flex;
+  color: ${({ theme }) => theme.text.secondary};
+  gap: 2.4rem;
+  align-items: center;
 `;

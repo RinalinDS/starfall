@@ -32,6 +32,7 @@ const lightPallete = {
   },
   border: {
     primary: '#515151',
+    secondary: '#313131',
   },
 };
 
@@ -60,7 +61,8 @@ const darkPallete: ThemeType = {
     hover: '#444',
   },
   border: {
-    primary: '#313131',
+    primary: '#fff',
+    secondary: '#515151',
   },
 };
 

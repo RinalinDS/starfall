@@ -22,6 +22,8 @@ export const booksData: Book[] = [
     rating: 9.17,
     howManyTimeWereRated: 5,
     currentUserRating: null,
+    year: 2008,
+    tags: ['action', 'adventure', 'fantasy', 'mystery'],
   },
   {
     author: 'J. R. R. Tolkien',
@@ -34,6 +36,8 @@ export const booksData: Book[] = [
     rating: 9.5,
     howManyTimeWereRated: 6,
     currentUserRating: null,
+    year: 1954,
+    tags: ['action', 'adventure', 'fantasy', 'mythology'],
   },
   {
     author: 'Brandon Sanderson',
@@ -46,6 +50,8 @@ export const booksData: Book[] = [
     rating: 9.0,
     howManyTimeWereRated: 5,
     currentUserRating: null,
+    year: 2010,
+    tags: ['action', 'adventure', 'fantasy', 'kosmere'],
   },
 
   {
@@ -59,6 +65,8 @@ export const booksData: Book[] = [
     rating: 7.6,
     howManyTimeWereRated: 5,
     currentUserRating: null,
+    year: 1990,
+    tags: ['action', 'adventure', 'fantasy', 'wheeloftime'],
   },
   {
     author: 'George R. R. Martin',
@@ -71,5 +79,7 @@ export const booksData: Book[] = [
     rating: 8.6,
     howManyTimeWereRated: 5,
     currentUserRating: null,
+    year: 1996,
+    tags: ['action', 'adventure', 'fantasy', 'history', 'politics'],
   },
 ];
