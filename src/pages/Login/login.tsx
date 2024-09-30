@@ -10,14 +10,16 @@ export const Login = () => {
           <div className={styles.signInOptions}>
             <h2>Sign in</h2>
             <button className={styles.imdbSignIn}>Sign in with IMDb</button>
-            <button className={styles.amazonSignIn}>Sign in with Amazon</button>
             <button className={styles.googleSignIn}>Sign in with Google</button>
-            <button className={styles.appleSignIn}>Sign in with Apple</button>
             <Accordion>
-              <button className={styles.googleSignIn}>
-                Sign in with Google
-              </button>
-              <button className={styles.appleSignIn}>Sign in with Apple</button>
+              <div className={styles.moreOptions}>
+                <button className={styles.appleSignIn}>
+                  Sign in with Apple
+                </button>
+                <button className={styles.amazonSignIn}>
+                  Sign in with Amazon
+                </button>
+              </div>
             </Accordion>
             <div className={styles.divider}>or</div>
             <button className={styles.createAccount}>

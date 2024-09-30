@@ -13,12 +13,21 @@ export const Accordion = ({ children }: Props) => {
   };
 
   return (
-    <div>
-      <Title onClick={toggleAccordion}>Show more options</Title>
+    <Container>
+      <Title onClick={toggleAccordion}>
+        Show {isOpen ? 'less' : 'more'} options
+      </Title>
       {isOpen ? <div>{children}</div> : null}
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
 const Title = styled.div`
   text-align: center;
