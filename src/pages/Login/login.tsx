@@ -1,3 +1,4 @@
+import { Accordion } from '../../components/Accordion/Accordion';
 import { Typography } from '../../components/ui/Typography/Typography';
 import styles from './login.module.css';
 
@@ -12,9 +13,12 @@ export const Login = () => {
             <button className={styles.amazonSignIn}>Sign in with Amazon</button>
             <button className={styles.googleSignIn}>Sign in with Google</button>
             <button className={styles.appleSignIn}>Sign in with Apple</button>
-            <a href="#" className={styles.moreOptions}>
-              Show more options
-            </a>
+            <Accordion>
+              <button className={styles.googleSignIn}>
+                Sign in with Google
+              </button>
+              <button className={styles.appleSignIn}>Sign in with Apple</button>
+            </Accordion>
             <div className={styles.divider}>or</div>
             <button className={styles.createAccount}>
               Create a New Account
