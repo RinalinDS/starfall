@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { Typography } from '../../ui/Typography/Typography';
 import { Dispatch, SetStateAction } from 'react';
 import { Book } from '../../../types/book';
+import { Link } from '@tanstack/react-router';
 
 type Props = {
   slide: Book;
@@ -18,7 +19,9 @@ export const Slide = ({ slide, setActiveSlide }: Props) => {
   return (
     <Container>
       <ImageContainer>
-        <StyledImage src={previewImage} alt={`${title} preview`} />
+        <Link to="/preview/$bookId" params={{ bookId: id }}>
+          <StyledImage src={previewImage} alt={`${title} preview`} />
+        </Link>
       </ImageContainer>
       <TextContainer onClick={setActiveSlideHandler}>
         <Typography as="p" variant="h6" className={'hovered'}>
