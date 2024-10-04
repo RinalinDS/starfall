@@ -1,10 +1,11 @@
 import { styled } from 'styled-components';
+import { AccordionGroup } from '../../components/Accordion/AccordionGroup';
 
 export const Readlist = () => {
   return (
     <Container>
-      <header>hello there will be your readlist. Soon!</header>
-      <section>hello , it actually will be here</section>
+      {/* temp  for test purpose */}
+      <AccordionGroup />
     </Container>
   );
 };

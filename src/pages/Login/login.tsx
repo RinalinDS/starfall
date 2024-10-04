@@ -1,4 +1,4 @@
-import { Accordion } from '../../components/Accordion/Accordion';
+import { ShowMoreOptions } from './ShowMoreOptions.tsx/ShowMoreOptions';
 import { Typography } from '../../components/ui/Typography/Typography';
 import styles from './login.module.css';
 
@@ -11,7 +11,7 @@ export const Login = () => {
             <h2>Sign in</h2>
             <button className={styles.imdbSignIn}>Sign in with IMDb</button>
             <button className={styles.googleSignIn}>Sign in with Google</button>
-            <Accordion>
+            <ShowMoreOptions>
               <div className={styles.moreOptions}>
                 <button className={styles.appleSignIn}>
                   Sign in with Apple
@@ -20,7 +20,7 @@ export const Login = () => {
                   Sign in with Amazon
                 </button>
               </div>
-            </Accordion>
+            </ShowMoreOptions>
             <div className={styles.divider}>or</div>
             <button className={styles.createAccount}>
               Create a New Account
