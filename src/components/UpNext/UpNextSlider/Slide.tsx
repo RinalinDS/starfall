@@ -1,8 +1,7 @@
-import { styled } from 'styled-components';
-import { Typography } from '../../ui/Typography/Typography';
+import { Link } from '@tanstack/react-router';
 import { Dispatch, SetStateAction } from 'react';
 import { Book } from '../../../types/book';
-import { Link } from '@tanstack/react-router';
+import { Typography } from '../../ui/Typography/Typography';
 
 type Props = {
   slide: Book;
@@ -17,42 +16,47 @@ export const Slide = ({ slide, setActiveSlide }: Props) => {
   };
 
   return (
-    <Container>
-      <ImageContainer>
+    <section className="flex h-full w-full grow items-center gap-4">
+      <div className="flex-[0_0_20%]">
         <Link to="/preview/$bookId" params={{ bookId: id }}>
-          <StyledImage src={previewImage} alt={`${title} preview`} />
+          <img
+            className="w-full max-w-[12rem]"
+            src={previewImage}
+            alt={`${title} preview`}
+          />
         </Link>
-      </ImageContainer>
-      <TextContainer onClick={setActiveSlideHandler}>
-        <Typography as="p" variant="h6" className={'hovered'}>
+      </div>
+      <button className="group block text-left" onClick={setActiveSlideHandler}>
+        <Typography as="p" variant="h6" className="group-hover:text-yellow-400">
           {title}
         </Typography>
         <Typography variant="subtitle2">{description}</Typography>
-      </TextContainer>
-    </Container>
+      </button>
+    </section>
   );
 };
+// onClick={setActiveSlideHandler}
+// const StyledImage = styled.img`
+//   width: 100%;
+//   max-width: 12rem;
+// `;
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  height: 100%;
-  flex-grow: 1;
-`;
+// const TextContainer = styled.div`
+//   cursor: pointer;
+//   &:hover .hovered {
+//     color: yellow;
+//   }
+// `;
 
-const ImageContainer = styled.div`
-  flex: 0 0 20%;
-`;
-const StyledImage = styled.img`
-  width: 100%;
-  max-width: 12rem;
-`;
+// const Container = styled.div`
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+//   gap: 1rem;
+//   height: 100%;
+//   flex-grow: 1;
+// `;
 
-const TextContainer = styled.div`
-  cursor: pointer;
-  &:hover .hovered {
-    color: yellow;
-  }
-`;
+// const ImageContainer = styled.div`
+//   flex: 0 0 20%;
+// `;

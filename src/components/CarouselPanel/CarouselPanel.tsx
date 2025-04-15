@@ -1,4 +1,3 @@
-import { styled } from 'styled-components';
 import { useSliderData } from '../../hooks/useSliderData';
 import { Carousel } from '../Carousel/Carousel';
 import { UpNext } from '../UpNext/UpNext';
@@ -8,20 +7,9 @@ export const CarouselPanel = () => {
     useSliderData();
 
   return (
-    <Container>
+    <section className="flex flex-col items-center justify-between gap-16 py-8 md:flex-row md:items-stretch">
       <Carousel mainSlide={currentSlide} changeSlide={changeSlide} />
       <UpNext upNextSlides={firstThreeSlides} setActiveSlide={setActiveSlide} />
-    </Container>
+    </section>
   );
 };
-
-const Container = styled.section`
-  padding: 2.4rem 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 4rem;
-  @media screen and (max-width: 960px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;

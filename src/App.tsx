@@ -11,8 +11,8 @@ export const App = () => {
     <ThemeProvider theme={theme}>
       <div className="grid min-h-screen grid-rows-[auto_1fr_auto] bg-gray-400">
         <Header changeThemeHandler={changeThemeHandler} themeMode={themeMode} />
-        {/*fix important in m-auto "!" */}
-        <main className="!m-auto flex w-full max-w-[120rem] flex-col">
+
+        <main className="mx-auto flex w-full max-w-[120rem] flex-col">
           <Outlet />
         </main>
 

@@ -40,14 +40,11 @@ export const Typography = <
   variant = 'body1',
   ...rest
 }: PolymorphicComponentProps<T, TypographyProps<T>>) => {
+  // TODO мне кажется чтобы тейлвинд не лагал ему прямо тут нужен объект со стилями а не через модульный CSS
   const Tag = as || defaultElement;
-  const classNameComputed = clsx(
-    s[variant],
-    s.typography,
-    className && className
-  );
+  const classNameComputed = clsx(s[variant], s.typography);
   return (
-    <Tag {...rest} className={classNameComputed}>
+    <Tag {...rest} className={`${classNameComputed} ${className || ''}`}>
       {children}
     </Tag>
   );
