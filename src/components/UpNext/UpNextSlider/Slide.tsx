@@ -26,7 +26,10 @@ export const Slide = ({ slide, setActiveSlide }: Props) => {
           />
         </Link>
       </div>
-      <button className="group block text-left" onClick={setActiveSlideHandler}>
+      <button
+        className="group block cursor-pointer text-left"
+        onClick={setActiveSlideHandler}
+      >
         <Typography as="p" variant="h6" className="group-hover:text-yellow-400">
           {title}
         </Typography>
@@ -35,28 +38,3 @@ export const Slide = ({ slide, setActiveSlide }: Props) => {
     </section>
   );
 };
-// onClick={setActiveSlideHandler}
-// const StyledImage = styled.img`
-//   width: 100%;
-//   max-width: 12rem;
-// `;
-
-// const TextContainer = styled.div`
-//   cursor: pointer;
-//   &:hover .hovered {
-//     color: yellow;
-//   }
-// `;
-
-// const Container = styled.div`
-//   width: 100%;
-//   display: flex;
-//   align-items: center;
-//   gap: 1rem;
-//   height: 100%;
-//   flex-grow: 1;
-// `;
-
-// const ImageContainer = styled.div`
-//   flex: 0 0 20%;
-// `;

@@ -7,7 +7,7 @@ export const CarouselPanel = () => {
     useSliderData();
 
   return (
-    <section className="flex flex-col items-center justify-between gap-16 py-8 md:flex-row md:items-stretch">
+    <section className="flex flex-col items-center justify-between gap-6 py-8 md:flex-row md:items-stretch lg:gap-16">
       <Carousel mainSlide={currentSlide} changeSlide={changeSlide} />
       <UpNext upNextSlides={firstThreeSlides} setActiveSlide={setActiveSlide} />
     </section>

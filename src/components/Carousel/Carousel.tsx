@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { styled } from 'styled-components';
-import { Direction } from '../../constants/direction';
+import { Direction, directions } from '../../constants/direction';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Book } from '../../types/book';
 import { Typography } from '../ui/Typography/Typography';
@@ -36,61 +36,49 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
   };
 
   const changePrevSlide = () => {
-    changeSlide('prev');
+    changeSlide(directions.prev);
   };
   const changeNextSlide = () => {
-    changeSlide('next');
+    changeSlide(directions.next);
   };
 
   return (
-    <Container>
-      <img src={image} alt={title} className="main_image" />
-      <ImageContentContainer>
-        <StyledImage src={previewImage} alt={`${title} preview`} />
+    <div className="relative h-[48rem] w-full grow-[2] overflow-hidden rounded-lg px-8 2xl:w-2/3 2xl:px-0">
+      <img
+        src={image}
+        alt={title}
+        className="h-full max-h-[48rem] w-full object-fill brightness-75"
+        key={id}
+      />
+      <div className="absolute bottom-4 left-12 z-10 h-2/5 w-[15%] 2xl:left-4">
+        <img
+          className="h-full w-full"
+          src={previewImage}
+          alt={`${title} preview`}
+        />
         <AddToReadlistButton
           onClick={changeWatchlistHandler}
           isBookInWatchList={isBookInReadlist}
         >
           {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
         </AddToReadlistButton>
-      </ImageContentContainer>
-      <TextContainer>
+      </div>
+      <div className="absolute right-4 bottom-4 flex max-h-1/2 w-7/10 flex-col items-start justify-evenly text-lg text-white sm:bottom-8">
         <Typography variant="h4" as="h3">
           {title}
         </Typography>
         <Typography variant="body1">{description}</Typography>
-      </TextContainer>
+      </div>
       <ButtonLeft onClick={changePrevSlide}>
         <LeftArrow />
       </ButtonLeft>
       <ButtonRight onClick={changeNextSlide}>
         <RightArrow />
       </ButtonRight>
-    </Container>
+      <div />
+    </div>
   );
 };
-
-const Container = styled.div`
-  width: 67%;
-  flex-grow: 2;
-  position: relative;
-  overflow: hidden;
-  border-radius: 9px;
-  height: 48rem;
-
-  & .main_image {
-    height: 100%;
-    width: 100%;
-    object-fit: fill;
-    max-height: 48rem;
-    // experimental for better text readability
-    filter: brightness(75%);
-  }
-  @media screen and (max-width: 960px) {
-    width: 100%;
-    padding: 0 2rem;
-  }
-`;
 
 const Button = styled.button`
   position: absolute;
@@ -137,40 +125,5 @@ const ButtonRight = styled(Button)`
     &:hover {
       right: 2rem;
     }
-  }
-`;
-
-const ImageContentContainer = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  z-index: 5;
-  height: 40%;
-  width: 15%;
-  @media screen and (max-width: 960px) {
-    left: 3rem;
-  }
-`;
-
-const StyledImage = styled.img`
-  height: 100%;
-  width: 100%;
-  /* object-fit: contain; */
-`;
-
-const TextContainer = styled.div`
-  position: absolute;
-  max-height: 50%;
-  width: 70%;
-  right: 1rem;
-  bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  color: ${({ theme }) => theme.text.white};
-  font-size: 1.6rem;
-  @media screen and (max-width: 640px) {
-    bottom: 2rem;
   }
 `;
