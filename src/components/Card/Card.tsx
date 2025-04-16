@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import { FaPlay, FaRegStar, FaStar } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
-import { styled } from 'styled-components';
 import { useModalControls } from '../../hooks/useModalControls';
 import { useBoundStore } from '../../store/useBoundStore';
 import { RatingModal } from '../RatingModal/rating-modal';
@@ -11,7 +10,7 @@ import { Button } from '../ui/Button/button';
 import { Typography } from '../ui/Typography/Typography';
 import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
 
-// feels like this component is too heavy, because a lot of state management and the fact it's mapped component.
+// TODO: feels like this component is too heavy, because a lot of state management and the fact it's mapped component.
 export const Card = ({ id }: { id: string }) => {
   const readlist = useBoundStore((state) => state.readlist);
   const addToReadlist = useBoundStore((state) => state.addToReadlist);
@@ -52,7 +51,7 @@ export const Card = ({ id }: { id: string }) => {
   };
 
   return (
-    <Container>
+    <div className="flex max-h-192 max-w-96 flex-col overflow-hidden rounded-md bg-gray-800 text-gray-100">
       <Card.Image
         id={id}
         previewImage={book?.previewImage || ''}
@@ -82,12 +81,12 @@ export const Card = ({ id }: { id: string }) => {
           removeRateHandler={removeUserRatingHandler}
         />
       ) : null}
-    </Container>
+    </div>
   );
 };
 
 Card.ContentContainer = ({ children }: { children: React.ReactNode }) => (
-  <ContentContainer>{children}</ContentContainer>
+  <div className="flex w-full flex-col gap-5 px-3 py-6">{children}</div>
 );
 
 Card.Image = ({
@@ -101,9 +100,9 @@ Card.Image = ({
   changeReadlistHandler: () => void;
   isBookInReadlist: boolean;
 }) => (
-  <ImageContainer>
-    <Link to="/preview/$bookId" params={{ bookId: id }}>
-      <img src={previewImage} alt="Book preview" />
+  <div className="relative flex w-full flex-col items-start">
+    <Link to="/preview/$bookId" params={{ bookId: id }} className="w-full">
+      <img src={previewImage} alt="Book preview" className="max-h-64 w-full" />
     </Link>
     <ButtonAbsolute
       onClick={changeReadlistHandler}
@@ -111,7 +110,7 @@ Card.Image = ({
     >
       {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
     </ButtonAbsolute>
-  </ImageContainer>
+  </div>
 );
 
 Card.Rating = ({
@@ -123,28 +122,31 @@ Card.Rating = ({
   currentUserRating: number | null;
   openModal: () => void;
 }) => (
-  <RatingContainer>
-    <DisplayRating variant="body2">
+  <div className="flex gap-10">
+    <Typography variant="body2" className="flex items-center gap-2.5">
       <FaStar fill="yellow" />
       {ratingToDisplay}
-    </DisplayRating>
-    <DisplayModalButton onClick={openModal}>
-      <DisplayRating variant="body2">
+    </Typography>
+    <Button
+      onClick={openModal}
+      className="min-h-12 min-w-24 rounded-sm text-inherit hover:bg-emerald-800"
+    >
+      <Typography variant="body2" className="flex items-center gap-2.5">
         {currentUserRating ? (
           <FaStar fill="lightblue" />
         ) : (
           <FaRegStar fill="lightblue" />
         )}
         {currentUserRating}
-      </DisplayRating>
-    </DisplayModalButton>
-  </RatingContainer>
+      </Typography>
+    </Button>
+  </div>
 );
 
 Card.Title = ({ title }: { title: string }) => (
-  <Title as="p" variant="subtitle2">
+  <Typography as="p" variant="subtitle2" className="truncate">
     {title}
-  </Title>
+  </Typography>
 );
 
 Card.ReadlistButton = ({
@@ -154,128 +156,20 @@ Card.ReadlistButton = ({
   isBookInReadlist: boolean;
   changeReadlistHandler: () => void;
 }) => (
-  <ReadlistButton onClick={changeReadlistHandler}>
+  <Button
+    className="flex min-h-12 w-full cursor-pointer items-center justify-center gap-3 rounded bg-blue-700 text-2xl font-semibold text-blue-500 normal-case no-underline transition-all duration-200 ease-in-out hover:brightness-150"
+    onClick={changeReadlistHandler}
+  >
     Readlist {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-  </ReadlistButton>
+  </Button>
 );
 
 Card.TrailerLink = ({ id }: { id: string }) => (
-  <TrailerLink to="/preview/$bookId" params={{ bookId: id }}>
+  <Link
+    className="flex min-h-12 cursor-pointer items-center justify-center gap-3 self-center rounded px-6 text-2xl font-semibold tracking-wider text-gray-900 normal-case no-underline transition-all duration-200 ease-in-out hover:bg-emerald-600 hover:brightness-150"
+    to="/preview/$bookId"
+    params={{ bookId: id }}
+  >
     <FaPlay /> Trailer
-  </TrailerLink>
+  </Link>
 );
-
-const Container = styled.div`
-  display: flex;
-  max-height: 48rem;
-  max-width: 24rem;
-  flex-direction: column;
-  background-color: ${({ theme }) => theme.background.secondary};
-  border-radius: 9px;
-  overflow: hidden;
-  color: ${({ theme }) => theme.text.primary};
-`;
-
-const ImageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  width: 100%;
-
-  a {
-    width: 100%;
-  }
-
-  img {
-    max-height: 16rem;
-    width: 100%;
-  }
-`;
-
-const ContentContainer = styled.div`
-  padding: 1.6rem 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-`;
-
-const RatingContainer = styled.div`
-  display: flex;
-  gap: 2.5rem;
-`;
-
-const Title = styled(Typography)`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const DisplayRating = styled(Typography)`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-`;
-
-const DisplayModalButton = styled(Button)`
-  // to avoid screen shaking after rating appears
-  min-width: 6rem;
-  min-height: 3.2rem;
-
-  border-radius: 4px;
-  color: inherit;
-  &:hover {
-    background-color: ${({ theme }) => theme.background.primary};
-  }
-`;
-
-const ReadlistButton = styled(Button)`
-  display: flex;
-  width: 100%;
-  gap: 0.8rem;
-  cursor: pointer;
-  align-items: center;
-  text-transform: none;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-decoration: none;
-  background-color: ${({ theme }) => theme.background.primary};
-  color: ${({ theme }) => theme.text.links};
-  min-height: 3.2rem;
-  border-radius: 4px;
-  letter-spacing: 1px;
-  transition: all 0.2s ease-in-out;
-  justify-content: center;
-
-  &:hover {
-    filter: brightness(150%);
-  }
-`;
-
-const TrailerLink = styled(Link)`
-  align-self: center;
-  display: flex;
-  gap: 0.8rem;
-  cursor: pointer;
-  align-items: center;
-  text-transform: none;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-decoration: none;
-  justify-content: center;
-  padding: 0 1.6rem;
-  min-height: 3.2rem;
-  border-radius: 4px;
-  letter-spacing: 0.5px;
-  transition: all 0.2s ease-in-out;
-  &:link,
-  &:visited,
-  &:active {
-    color: ${({ theme }) => theme.text.primary};
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.background.primary};
-    filter: brightness(150%);
-  }
-`;

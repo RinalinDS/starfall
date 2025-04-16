@@ -1,6 +1,5 @@
 import { ChangeEvent, memo, useCallback, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import styled from 'styled-components';
 
 export const Search = memo(() => {
   const [search, setSearch] = useState<string>('');
@@ -10,49 +9,21 @@ export const Search = memo(() => {
   }, []);
 
   return (
-    <Container>
-      <Input
+    <div className="flex">
+      <input
         type="text"
         placeholder="Search IBDb..."
         onChange={onChangeHandler}
         value={search}
         name={'search'}
+        className="w-full rounded-l-lg border border-r-0 border-solid border-gray-300 p-2 outline-none"
       />
-      <Button type="submit">
-        <FaSearch />
-      </Button>
-    </Container>
+      <button
+        type="submit"
+        className="cursor-pointer rounded-r-lg border border-l-0 border-solid border-gray-300 bg-white px-3 py-3 pl-4"
+      >
+        <FaSearch className="h-[1.6rem] w-[3.2rem] fill-blue-700 active:translate-y-0.5" />
+      </button>
+    </div>
   );
 });
-
-const Container = styled.div`
-  display: flex;
-`;
-
-const Input = styled.input`
-  padding: 0.4rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem 0 0 0.5rem;
-  outline: none;
-  border-right: none;
-  width: 100%;
-`;
-const Button = styled.button`
-  background-color: #fff;
-  border-radius: 0 0.5rem 0.5rem 0;
-  cursor: pointer;
-  padding: 0.8rem;
-  padding-left: 1rem;
-  border: 1px solid #ccc;
-  border-left: none;
-
-  & svg {
-    width: 3.2rem;
-    height: 1.6rem;
-    fill: var(--color-primary);
-
-    &:active {
-      transform: translateY(2px);
-    }
-  }
-`;
