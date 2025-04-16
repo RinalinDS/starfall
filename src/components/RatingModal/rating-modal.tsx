@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Button } from '../ui/Button/button';
-import { Typography } from '../ui/Typography/Typography';
+import { IoCloseSharp } from 'react-icons/io5';
 import { Rating } from '../Rating/rating';
+import { Button } from '../ui/Button/button';
+import { Modal } from '../ui/Modal/modal';
+import { Typography } from '../ui/Typography/Typography';
 import styles from './rating-modal.module.css';
 import { Star } from './star';
-import { IoCloseSharp } from 'react-icons/io5';
-import { Modal } from '../ui/Modal/modal';
-import { styled } from 'styled-components';
 
 export const RatingModal = ({
   closeModal,
@@ -29,7 +28,7 @@ export const RatingModal = ({
 
   return (
     <Modal closeModal={closeModal}>
-      <Container>
+      <div className="flex flex-col items-center justify-between gap-4 text-slate-800">
         <Button className={styles.closeButton} onClick={closeModal}>
           <IoCloseSharp />
         </Button>
@@ -40,8 +39,9 @@ export const RatingModal = ({
 
         <Typography variant="h6">{title}</Typography>
         <Rating rating={rating || 0} setRating={setRating} />
-        <ButtonContainer>
+        <div className="flex w-full flex-col items-center gap-4">
           <Button
+            // TODO change to tailwind if possbiel? mb classnames library ?
             className={`${styles.rateButton} ${rating !== currentUserRating && styles.activeRateButton}`}
             onClick={updateUserRatingInnerHandler}
             disabled={!rating || rating === currentUserRating}
@@ -49,76 +49,17 @@ export const RatingModal = ({
             rate
           </Button>
           {currentUserRating ? (
-            <RemoveRate onClick={removeRateHandler}>
-              <StyledTypography>Remove rating</StyledTypography>
-            </RemoveRate>
+            <Button
+              onClick={removeRateHandler}
+              className="relative inline-flex min-h-12 w-full items-center rounded px-14 text-[#3887be] normal-case no-underline transition-all duration-200 ease-in-out before:pointer-events-none before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:m-auto before:h-full before:w-full before:origin-center before:bg-current before:opacity-0 before:transition-transform before:duration-200 before:ease-in-out before:content-[''] after:pointer-events-none after:absolute after:top-0 after:right-0 after:bottom-0 after:left-0 after:m-auto after:h-full after:w-full after:origin-center after:bg-current after:opacity-0 after:transition-transform after:duration-200 after:ease-in-out after:content-[''] hover:before:opacity-8 hover:after:opacity-8"
+            >
+              <Typography className="text-[1.4rem] font-semibold tracking-wider">
+                Remove rating
+              </Typography>
+            </Button>
           ) : null}
-        </ButtonContainer>
-      </Container>
+        </div>
+      </div>
     </Modal>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  color: ${({ theme }) => theme.text.primary};
-`;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const RemoveRate = styled(Button)`
-  display: inline-flex;
-  align-items: center;
-  text-transform: none;
-  width: 100%;
-  text-decoration: none;
-  padding: 0 3.6rem;
-  min-height: 3.2rem;
-  border-radius: 4px;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  color: #3887be;
-  border-radius: 4px;
-
-  &::before,
-  &::after {
-    background: currentColor;
-    opacity: 0;
-    bottom: 0;
-    content: '';
-    height: 100%;
-    left: 0;
-    margin: auto;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform-origin: center center;
-    transition:
-      transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1),
-      opacity 0.2s cubic-bezier(0.175, 0.885, 0.32, 1);
-    width: 100%;
-  }
-
-  &:hover::before,
-  &:hover::after {
-    opacity: 0.08;
-  }
-`;
-
-const StyledTypography = styled(Typography)`
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-`;

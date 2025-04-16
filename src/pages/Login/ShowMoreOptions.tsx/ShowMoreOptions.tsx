@@ -1,5 +1,4 @@
 import { ReactNode, useState } from 'react';
-import { styled } from 'styled-components';
 
 type Props = {
   children: ReactNode;
@@ -13,23 +12,14 @@ export const ShowMoreOptions = ({ children }: Props) => {
   };
 
   return (
-    <Container>
+    <div className="flex w-full flex-col gap-4">
       {isOpen ? (
         children
       ) : (
-        <Title onClick={toggleAccordion}>Show more options</Title>
+        <div className="text-center" onClick={toggleAccordion}>
+          Show more options
+        </div>
       )}
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const Title = styled.div`
-  text-align: center;
-`;

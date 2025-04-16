@@ -1,6 +1,5 @@
 import { ReactNode, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { styled } from 'styled-components';
 
 export const Modal = ({
   closeModal,
@@ -20,39 +19,22 @@ export const Modal = ({
     return () => {
       window.removeEventListener('keydown', onEscPressHandler);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   if (root) {
     return createPortal(
       <>
-        <Overlay onClick={closeModal} />
-        <ModalContent>{children}</ModalContent>
+        <div
+          className="fixed top-0 right-0 bottom-0 left-0 z-1000 bg-black/70"
+          onClick={closeModal}
+        />
+        <div className="fixed top-1/2 left-1/2 z-[1001] min-h-96 min-w-192 -translate-x-1/2 -translate-y-1/2 rounded bg-[#333] p-16">
+          {children}
+        </div>
       </>,
       root
     );
   }
   return null;
 };
-
-const Overlay = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-`;
-
-const ModalContent = styled.div`
-  position: fixed;
-  min-height: 24rem;
-  min-width: 48rem;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #333;
-  padding: 4rem;
-  z-index: 1001;
-
-  border-radius: 5px;
-`;

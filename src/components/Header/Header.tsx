@@ -3,7 +3,6 @@ import { FormEvent } from 'react';
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
 import { FaMoon } from 'react-icons/fa6';
 import { IoMdSunny } from 'react-icons/io';
-import { styled } from 'styled-components';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Search } from '../ui/Search/Search';
 import { Typography } from '../ui/Typography/Typography';
@@ -27,6 +26,7 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
     }
   };
   // TODO SPLIT
+
   return (
     <header className="w-full bg-slate-700">
       <div className="mx-auto flex max-h-24 max-w-[120rem] items-center justify-between gap-4 p-5 text-slate-800 md:gap-8">
@@ -40,77 +40,38 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
         </form>
         <div className="flex items-center justify-center gap-4">
           <Link to="/login">
-            <Button>
-              <Typography>Sign In</Typography>
-            </Button>
+            <button className="group text-primary flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-amber-900 sm:px-3 sm:py-1.5">
+              <Typography className="text-[1.6rem] group-hover:text-white">
+                Sign In
+              </Typography>
+            </button>
           </Link>
           <Link to="/readlist">
-            <Button>
-              <BsFillBookmarkPlusFill />
-              <Typography variant="body2">
+            <button className="group text-primary flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-amber-950 sm:px-3 sm:py-1.5">
+              <BsFillBookmarkPlusFill className="fill-blue-500 stroke-amber-500 text-5xl opacity-60 group-hover:opacity-100" />
+              <Typography variant="body2" className="group-hover:text-white">
                 Readlist
                 <Typography
                   variant="subtitle2"
-                  className="number bg-[#f5c518] text-[#181818]"
+                  className="number ml-3 inline-block rounded-full bg-[rgb(245,197,24)] px-1.5 text-[#181818]"
                 >
                   {readlistLength || ''}
                 </Typography>
               </Typography>
-            </Button>
+            </button>
           </Link>
-          <Button onClick={changeThemeHandler}>
-            {themeMode === 'dark' ? <FaMoon /> : <IoMdSunny />}
-          </Button>
+          <button
+            onClick={changeThemeHandler}
+            className="group text-primary flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-amber-900 sm:px-3 sm:py-1.5"
+          >
+            {themeMode === 'dark' ? (
+              <FaMoon className="text-4xl opacity-60 group-hover:opacity-100" />
+            ) : (
+              <IoMdSunny className="text-4xl opacity-60 group-hover:opacity-100" />
+            )}
+          </button>
         </div>
       </div>
     </header>
   );
 };
-
-// TODO
-const Button = styled.button`
-  cursor: pointer;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.4rem;
-  border: none;
-  background-color: transparent;
-  outline: none;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: ${({ theme }) => theme.text.primary};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.background.hover};
-    color: ${({ theme }) => theme.text.white};
-    span {
-      color: ${({ theme }) => theme.text.white};
-    }
-    svg {
-      opacity: 1;
-    }
-  }
-  svg {
-    opacity: 0.6;
-    fill: ${({ theme }) => theme.text.fill};
-    stroke: ${({ theme }) => theme.text.stroke};
-    font-size: 2.4rem;
-  }
-
-  & span {
-    font-size: 1.6rem;
-    color: ${({ theme }) => theme.text.primary};
-  }
-  & .number,
-  &:hover .number {
-    margin-left: 0.8rem;
-    display: inline-block;
-    background-color: rgb(245, 197, 24);
-    padding: 0rem 5px;
-    border-radius: 100px;
-    color: #181818;
-  }
-  @media screen and (max-width: 560px) {
-    padding: 0.4rem 0.8rem;
-  }
-`;
