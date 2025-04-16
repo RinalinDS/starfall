@@ -44,6 +44,7 @@ export const Typography = <
   const Tag = as || defaultElement;
   const classNameComputed = clsx(s[variant], s.typography);
   return (
+    // ${className || ''} this because tailwind was lagging with clsx , maybe tw-merge would've helped ? didn't check. now it's working
     <Tag {...rest} className={`${classNameComputed} ${className || ''}`}>
       {children}
     </Tag>

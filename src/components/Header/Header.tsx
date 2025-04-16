@@ -26,91 +26,48 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
       object[key] = value;
     }
   };
-
+  // TODO SPLIT
   return (
-    <HeaderContainer>
-      <Container>
-        <ImageContainer>
+    <header className="w-full bg-slate-700">
+      <div className="mx-auto flex max-h-24 max-w-[120rem] items-center justify-between gap-4 p-5 text-slate-800 md:gap-8">
+        <div>
           <Link to="/">
-            <img src={logo} alt="imdb logo" className="logo" />
+            <img className="w-[7.2rem]" src={logo} alt="imdb logo" />
           </Link>
-        </ImageContainer>
-        <SearchForm onSubmit={onSubmit}>
+        </div>
+        <form className="grow" onSubmit={onSubmit}>
           <Search />
-        </SearchForm>
-        <LoginContainer>
-          <StyledLink to="/login">
+        </form>
+        <div className="flex items-center justify-center gap-4">
+          <Link to="/login">
             <Button>
               <Typography>Sign In</Typography>
             </Button>
-          </StyledLink>
-          <StyledLink to="/readlist">
+          </Link>
+          <Link to="/readlist">
             <Button>
               <BsFillBookmarkPlusFill />
               <Typography variant="body2">
                 Readlist
-                <Typography variant="subtitle2" className="number">
+                <Typography
+                  variant="subtitle2"
+                  className="number bg-[#f5c518] text-[#181818]"
+                >
                   {readlistLength || ''}
                 </Typography>
               </Typography>
             </Button>
-          </StyledLink>
+          </Link>
           <Button onClick={changeThemeHandler}>
             {themeMode === 'dark' ? <FaMoon /> : <IoMdSunny />}
           </Button>
-        </LoginContainer>
-      </Container>
-    </HeaderContainer>
+        </div>
+      </div>
+    </header>
   );
 };
 
-const HeaderContainer = styled.header`
-  background-color: ${({ theme }) => theme.background.secondary};
-  width: 100%;
-`;
-
-const Container = styled.div`
-  display: flex;
-  padding: 1.2rem;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  color: ${({ theme }) => theme.text.primary};
-  max-height: 6.4rem;
-  font-size: 1.6rem;
-
-  max-width: 120rem;
-  margin: 0 auto;
-
-  @media screen and (max-width: 560px) {
-    gap: 1rem;
-  }
-`;
-
-const ImageContainer = styled.div`
-  width: 7.2rem;
-  & img {
-    width: 7.2rem;
-  }
-`;
-
-const LoginContainer = styled.div`
-  font-size: 1.6rem;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-
-  & button .number {
-    background-color: rgb(245, 197, 24);
-    color: #181818;
-  }
-`;
-
-const SearchForm = styled.form`
-  flex-grow: 1;
-`;
-
+// TODO
 const Button = styled.button`
   cursor: pointer;
   padding: 0.6rem 1.2rem;
@@ -156,8 +113,4 @@ const Button = styled.button`
   @media screen and (max-width: 560px) {
     padding: 0.4rem 0.8rem;
   }
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
 `;

@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, memo } from 'react';
 import { FaArrowDown } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa6';
-import { styled } from 'styled-components';
 
 type Props = {
   title: string;
@@ -17,41 +16,19 @@ export const Accordion = memo(
       setActiveIndex((prev) => (prev === index ? -1 : index));
     };
     return (
-      <Container>
-        <AccordionTitle onClick={toggleAccordion}>
+      <div className="flex w-full flex-col gap-4 p-10">
+        <button
+          className="flex w-full cursor-pointer justify-between rounded-lg border-none bg-amber-300 px-5 py-10 outline-none"
+          onClick={toggleAccordion}
+        >
           {title} {isActive ? <FaArrowDown /> : <FaArrowRight />}
-        </AccordionTitle>
-        {isActive && <AccordionContent>{content}</AccordionContent>}
-      </Container>
+        </button>
+        {isActive && (
+          <div className="w-full rounded-lg bg-emerald-400 px-5 py-10 text-slate-900">
+            {content}
+          </div>
+        )}
+      </div>
     );
   }
 );
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 2.4rem;
-`;
-
-const AccordionTitle = styled.button`
-  width: 100%;
-  background-color: ${({ theme }) => theme.background.tertiary};
-  padding: 1.2rem 2.4rem;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  font-size: 1.6rem;
-  border-radius: 9px;
-`;
-
-const AccordionContent = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.background.hero};
-  color: yellow;
-  padding: 1.2rem 2.4rem;
-  border-radius: 9px;
-`;
