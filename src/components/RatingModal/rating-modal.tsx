@@ -32,7 +32,7 @@ export const RatingModal = ({
         <Button className={styles.closeButton} onClick={closeModal}>
           <IoCloseSharp />
         </Button>
-        <Star rating={rating || 0} />
+        <Star rating={rating} />
         <Typography variant="body1" className={styles.rateText}>
           Rate this
         </Typography>

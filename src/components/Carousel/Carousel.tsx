@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
-import { styled } from 'styled-components';
 import { Direction, directions } from '../../constants/direction';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Book } from '../../types/book';
@@ -79,51 +78,37 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
     </div>
   );
 };
-
-const Button = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: hsla(0, 0%, 7%, 0.45);
-  border: 1px solid hsla(0, 0%, 100%, 0.7);
-  font-size: 1.5rem;
-  line-height: 0;
-  color: hsla(0, 0%, 100%, 0.7);
-  transition: all 0.25s ease-out;
-  z-index: 5;
-  padding: 1.2rem 0.8rem;
-  border-radius: 7px;
-  &:hover {
-    color: yellow;
-  }
-  @media screen and (max-width: 960px) {
-    top: 0;
-    transform: translateY(0%);
-  }
-`;
-
-const ButtonLeft = styled(Button)`
-  left: 0.5rem;
-  &:hover {
-    left: 0px;
-  }
-  @media screen and (max-width: 960px) {
-    left: 2.5rem;
-    &:hover {
-      left: 2rem;
-    }
-  }
-`;
-
-const ButtonRight = styled(Button)`
-  right: 0.5rem;
-  &:hover {
-    right: 0px;
-  }
-  @media screen and (max-width: 960px) {
-    right: 2.5rem;
-    &:hover {
-      right: 2rem;
-    }
-  }
-`;
+// TODO change
+// @ts-expect-error lazy
+const StyledButton = ({ children, className, ...props }) => {
+  return (
+    <button
+      {...props}
+      className={`absolute top-0 z-5 translate-y-0 rounded-md border border-white/70 bg-black/45 px-3 py-5 text-2xl leading-none text-white/70 transition-all duration-250 hover:text-yellow-400 md:top-1/2 md:-translate-y-1/2 ${className} `}
+    >
+      {children}
+    </button>
+  );
+};
+// @ts-expect-error lazy
+const ButtonLeft = ({ children, ...props }) => {
+  return (
+    <StyledButton
+      className="left-10 hover:left-8 lg:left-2 lg:hover:left-0"
+      {...props}
+    >
+      {children}
+    </StyledButton>
+  );
+};
+// @ts-expect-error lazy
+const ButtonRight = ({ children, ...props }) => {
+  return (
+    <StyledButton
+      className="right-10 hover:right-8 lg:right-2 lg:hover:right-0"
+      {...props}
+    >
+      {children}
+    </StyledButton>
+  );
+};
