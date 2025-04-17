@@ -1,15 +1,14 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { preview } from '../../mocks/preview';
-import { useBoundStore } from '../../store/useBoundStore';
-import { styled } from 'styled-components';
-import { Typography } from '../../components/ui/Typography/Typography';
-import { ButtonAbsolute } from '../../components/ui/sharedStyledComponents/shared-buttons';
+import { useMemo } from 'react';
 import { FaPlus, FaRegStar, FaStar } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
-import { useModalControls } from '../../hooks/useModalControls';
-import { useMemo } from 'react';
-import { Button } from '../../components/ui/Button/button';
 import { RatingModal } from '../../components/RatingModal/rating-modal';
+import { Button } from '../../components/ui/Button/button';
+import { Typography } from '../../components/ui/Typography/Typography';
+import { ButtonAbsolute } from '../../components/ui/sharedStyledComponents/shared-buttons';
+import { useModalControls } from '../../hooks/useModalControls';
+import { preview } from '../../mocks/preview';
+import { useBoundStore } from '../../store/useBoundStore';
 
 const routeApi = getRouteApi('/preview/$bookId');
 
@@ -61,23 +60,26 @@ export const Preview = () => {
   const { preview: bookPreviewData } = preview[bookId];
 
   return (
-    <Container>
-      <PreviewHeader>
-        <Title as="h2" variant="h3">
+    <div className="flex flex-col p-6">
+      <header className="mb-6 flex items-center justify-between">
+        <Typography as="h2" variant="h3" className="py-6 text-7xl text-white">
           {book.title}
-        </Title>
+        </Typography>
 
-        <TestContainer>
-          <TitleContainer>
+        <div className="flex flex-col items-center justify-between">
+          <div className="flex items-center justify-between gap-12 text-slate-800 uppercase">
             <Typography>IBDb rating</Typography>
             <Typography>Your rating</Typography>
-          </TitleContainer>
+          </div>
 
-          <RatingContainer>
-            <DisplayRating variant="body2">
-              <RandomContainerNumberOne>
-                <FaStar fill="yellow" />
-                <RandomContainerNumberTwo>
+          <div className="flex items-center gap-12">
+            <Typography
+              variant="body2"
+              className="inline-flex flex-col items-center gap-1 text-slate-800"
+            >
+              <div className="flex min-h-24 min-w-48 items-center justify-center gap-1.5 rounded-sm hover:bg-amber-400">
+                <FaStar fill="yellow" className="h-10 w-10" />
+                <div className="flex flex-col">
                   <Typography style={{ display: 'flex', alignItems: 'center' }}>
                     <Typography variant="h6">{ratingToDisplay}</Typography>/10
                   </Typography>
@@ -92,35 +94,41 @@ export const Preview = () => {
                   >
                     {book.howManyTimeWereRated}
                   </Typography>
-                </RandomContainerNumberTwo>
-              </RandomContainerNumberOne>
-            </DisplayRating>
+                </div>
+              </div>
+            </Typography>
 
-            <DisplayRating variant="body2">
-              <DisplayModalButton onClick={openModal}>
+            <Typography
+              variant="body2"
+              className="inline-flex flex-col items-center gap-1 text-slate-800"
+            >
+              <Button
+                onClick={openModal}
+                className="h-full min-h-24 w-full min-w-48 rounded-sm text-inherit hover:bg-emerald-600"
+              >
                 {book.currentUserRating ? (
-                  <StyledTypography>
-                    <FaStar fill="aquamarine" />
+                  <Typography className="flex items-center justify-between gap-1.5">
+                    <FaStar fill="aquamarine" className="h-10 w-10" />
                     <Typography variant="h6">
                       {book.currentUserRating}
                     </Typography>
                     /10
-                  </StyledTypography>
+                  </Typography>
                 ) : (
-                  <StyledTypography>
-                    <FaRegStar fill="aquamarine" />
+                  <Typography className="flex items-center justify-between gap-1.5">
+                    <FaRegStar fill="aquamarine" className="h-10 w-10" />
                     Rate
-                  </StyledTypography>
+                  </Typography>
                 )}
-              </DisplayModalButton>
-            </DisplayRating>
-          </RatingContainer>
-        </TestContainer>
-      </PreviewHeader>
+              </Button>
+            </Typography>
+          </div>
+        </div>
+      </header>
 
-      <ImageContainer>
-        <img src={book.previewImage} alt="preview image" />
-        <img src={book.image} alt="book image" />
+      <div className="relative flex w-full gap-1.5">
+        <img src={book.previewImage} alt="preview image" className="w-1/4" />
+        <img src={book.image} alt="book image" className="h-[40rem] w-3/4" />
         <ButtonAbsolute
           onClick={changeReadlistHandler}
           isBookInWatchList={isBookInReadlist}
@@ -128,32 +136,51 @@ export const Preview = () => {
         >
           {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
-      </ImageContainer>
+      </div>
 
-      <ContentContainer>
-        <TagList>
+      <div className="mt-6 flex flex-col gap-6">
+        <ul className="flex gap-6">
           {book.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
+            <li
+              className="rounded-4xl border-1 border-solid border-slate-500 p-3 text-2xl font-medium capitalize"
+              key={tag}
+            >
+              {tag}
+            </li>
           ))}
-        </TagList>
-        <DescriptionText as="p" variant="body1">
+        </ul>
+
+        <Typography
+          as="p"
+          variant="body1"
+          className="tracking-wide text-slate-600"
+        >
           {book.description}
-        </DescriptionText>
-        <CreatorContainer>
-          <CreatorContent>
-            <CreatorTypography>creator</CreatorTypography> {book.author}
-          </CreatorContent>
-          <CreatorContent>
-            <CreatorTypography>year</CreatorTypography> {book.year}
-          </CreatorContent>
-        </CreatorContainer>
-
-        {/* <div>главы книги названия?</div> */}
-
-        <PreviewText as="p" variant="body1">
+        </Typography>
+        <div
+          className={`flex flex-col border-b border-b-gray-600 [&>*]:border-t [&>*]:border-t-gray-600`}
+        >
+          <Typography className="flex items-center gap-10 text-slate-600">
+            <Typography className="text-4xl font-medium text-slate-600 capitalize">
+              creator
+            </Typography>{' '}
+            {book.author}
+          </Typography>
+          <Typography className="flex items-center gap-10 text-slate-600">
+            <Typography className="text-4xl font-medium text-slate-600 capitalize">
+              year
+            </Typography>
+            {book.year}
+          </Typography>
+        </div>
+        <Typography
+          as="p"
+          variant="body1"
+          className="indent-8 tracking-wide text-slate-600"
+        >
           {bookPreviewData}
-        </PreviewText>
-      </ContentContainer>
+        </Typography>
+      </div>
 
       {isOpen ? (
         <RatingModal
@@ -164,170 +191,6 @@ export const Preview = () => {
           removeRateHandler={removeUserRatingHandler}
         />
       ) : null}
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1.6rem;
-`;
-const TitleContainer = styled.div`
-  color: ${({ theme }) => theme.text.primary};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  text-transform: uppercase;
-`;
-
-const PreviewHeader = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.6rem;
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  gap: 6px;
-  width: 100%;
-  display: flex;
-  & img:first-child {
-    width: 25%;
-  }
-  & img {
-    width: 75%;
-    height: 40rem;
-  }
-`;
-
-const TestContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const RatingContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-`;
-const RandomContainerNumberOne = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
-  min-height: 6rem;
-  min-width: 12rem;
-
-  border-radius: 4px;
-  svg {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.background.secondary};
-  }
-`;
-
-const StyledTypography = styled(Typography)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  svg {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-`;
-
-const RandomContainerNumberTwo = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled(Typography)`
-  color: ${({ theme }) => theme.text.primary};
-  font-size: 4.8rem;
-  padding: 1.6rem 0;
-`;
-
-const DisplayRating = styled(Typography)`
-  color: ${({ theme }) => theme.text.primary};
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-`;
-
-const DisplayModalButton = styled(Button)`
-  // to avoid screen shaking after rating appears
-  min-height: 6rem;
-  min-width: 12rem;
-  &:hover {
-    background-color: ${({ theme }) => theme.background.secondary};
-  }
-  height: 100%;
-  width: 100%;
-  border-radius: 4px;
-  color: inherit;
-`;
-
-const PreviewText = styled(Typography)`
-  color: ${({ theme }) => theme.text.secondary};
-  letter-spacing: 1px;
-  text-indent: 2rem;
-`;
-
-const DescriptionText = styled(Typography)`
-  color: ${({ theme }) => theme.text.secondary};
-  letter-spacing: 1px;
-`;
-
-const TagList = styled.ul`
-  display: flex;
-  gap: 1.6rem;
-`;
-
-const Tag = styled.li`
-  color: ${({ theme }) => theme.text.secondary};
-  border: 1px solid ${({ theme }) => theme.border.primary};
-  border-radius: 50px;
-  text-transform: capitalize;
-  font-weight: 500;
-  font-size: 1.4rem;
-  padding: 0.8rem;
-`;
-
-const CreatorContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  & > * {
-    border-top: 1px solid ${({ theme }) => theme.border.secondary};
-  }
-  border-bottom: 1px solid ${({ theme }) => theme.border.secondary};
-`;
-
-const CreatorTypography = styled(Typography)`
-  color: ${({ theme }) => theme.text.secondary};
-  font-weight: 500;
-  font-size: 2rem;
-  text-transform: capitalize;
-`;
-
-const ContentContainer = styled.div`
-  margin-top: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-`;
-
-const CreatorContent = styled(Typography)`
-  display: flex;
-  color: ${({ theme }) => theme.text.secondary};
-  gap: 2.4rem;
-  align-items: center;
-`;
