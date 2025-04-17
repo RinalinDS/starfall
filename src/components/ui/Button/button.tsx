@@ -1,41 +1,44 @@
-import { forwardRef } from 'react';
+import {
+  forwardRef,
+  ElementType,
+  ComponentPropsWithoutRef,
+  PropsWithChildren,
+} from 'react';
 import s from './button.module.css';
 import { clsx } from 'clsx';
 
-// Polymorphic Button component,
-// Only rule: don't take ref from props object, it only meant to be 2nd argument in render function
-// Limitaiton of forwardRef.
-
-type ButtonOwnProps<T extends React.ElementType> = {
+type ButtonOwnProps<T extends ElementType> = {
   as?: T;
   className?: string;
 };
 
-type ButtonProps<T extends React.ElementType> = React.PropsWithChildren<
-  Omit<React.ComponentPropsWithoutRef<T>, keyof ButtonOwnProps<T> & 'ref'> &
-    ButtonOwnProps<T> & { ref?: PolymorphicRef<T> }
+type ButtonProps<T extends ElementType> = PropsWithChildren<
+  ButtonOwnProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonOwnProps<T>>
 >;
 
-type PolymorphicRef<T extends React.ElementType> =
-  React.ComponentPropsWithRef<T>['ref'];
+type ButtonComponent = <T extends ElementType = 'button'>(
+  props: ButtonProps<T> & { ref?: React.ForwardedRef<ComponentRef<T>> }
+) => React.ReactElement;
 
-type ButtonComponent = <T extends React.ElementType = 'button'>(
-  props: ButtonProps<T>
-) => React.ReactNode | null;
+type ComponentRef<T extends ElementType> =
+  React.ComponentPropsWithRef<T>['ref'];
 
 const defaultElement = 'button';
 
-export const Button: ButtonComponent = forwardRef(
-  <T extends React.ElementType = typeof defaultElement>(
-    { as, children, className, ...restProps }: ButtonProps<T>,
-    ref: PolymorphicRef<T>
-  ) => {
-    const classNameComputed = clsx(s.button, className && className);
-    const Component = as || defaultElement;
-    return (
-      <Component {...restProps} className={classNameComputed} ref={ref}>
-        {children}
-      </Component>
-    );
-  }
-);
+const Button = forwardRef(function Button<
+  T extends ElementType = typeof defaultElement,
+>(
+  { as, children, className, ...restProps }: ButtonProps<T>,
+  ref: React.ForwardedRef<ComponentRef<T>>
+) {
+  const Component = as || defaultElement;
+  const classNameComputed = clsx(s.button, className);
+
+  return (
+    <Component {...restProps} className={classNameComputed} ref={ref}>
+      {children}
+    </Component>
+  );
+}) as ButtonComponent;
+
+export { Button };
