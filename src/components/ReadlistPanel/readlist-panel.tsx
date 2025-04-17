@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import { styled } from 'styled-components';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Card } from '../Card/Card';
 import RightArrow from './../../assets/rightarrow.svg?react';
@@ -10,70 +9,27 @@ export const ReadlistPanel = () => {
 
   const isReadlistEmpty = !readlist.length;
   return (
-    <Container>
-      <Title>
-        <Link to="/readlist" className="link">
-          From your Readlist <RightArrow className="icon" />
+    <div className="g relative col-span-3 px-10 py-20 text-[1.6rem]">
+      <h3
+        className={`group text-primary relative inline-block before:absolute before:-ml-6 before:h-full before:w-1 before:self-start before:rounded before:bg-[#f5c518] before:content-['']`}
+      >
+        <Link
+          to="/readlist"
+          className="flex items-center gap-5 text-[2.4rem] leading-1.5 font-semibold text-inherit no-underline"
+        >
+          From your Readlist
+          <RightArrow className="w-7 fill-white group-hover:fill-amber-400" />
         </Link>
-      </Title>
+      </h3>
       {isReadlistEmpty ? (
         <EmptyReadlist />
       ) : (
-        <CardsContainer>
+        <div className="grid-col mt-10 grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-10">
           {readlist.map((id) => (
             <Card key={id} id={id}></Card>
           ))}
-        </CardsContainer>
+        </div>
       )}
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.section`
-  grid-column: span 3;
-  padding: 4.8rem 2.4rem;
-  font-size: 1.6rem;
-  position: relative;
-`;
-const CardsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-  gap: 2.4rem;
-  margin-top: 2.4rem;
-`;
-
-const Title = styled.h3`
-  display: inline-block;
-  position: relative;
-  color: ${({ theme }) => theme.text.primary};
-  & .link,
-  & .link:link,
-  & .link:visited,
-  & .link:active {
-    font-size: 2.4rem;
-    font-weight: 600;
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    text-decoration: none;
-    color: inherit;
-  }
-  &:hover .icon {
-    fill: #f5c518;
-  }
-  &::before {
-    background: #f5c518;
-    border-radius: 4px;
-    content: '';
-    margin-left: -1.5rem;
-    align-self: flex-start;
-    position: absolute;
-    height: 100%;
-    width: 4px;
-  }
-  & .icon {
-    fill: #fff;
-    width: 1.8rem;
-  }
-`;
