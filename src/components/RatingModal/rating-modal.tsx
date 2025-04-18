@@ -7,6 +7,8 @@ import { Typography } from '../ui/Typography/Typography';
 import styles from './rating-modal.module.css';
 import { Star } from './star';
 
+// TODO delete module css
+
 export const RatingModal = ({
   closeModal,
   title,

@@ -2,6 +2,8 @@ import { ShowMoreOptions } from './ShowMoreOptions.tsx/ShowMoreOptions';
 import { Typography } from '../../components/ui/Typography/Typography';
 import styles from './login.module.css';
 
+// TODO delete module css
+
 export const Login = () => {
   return (
     <div className={styles.container}>

@@ -2,6 +2,8 @@ import React from 'react';
 import s from './typography.module.css';
 import clsx from 'clsx';
 
+// TODO replace module CSS with tailwind object (?)
+
 type Variant =
   | 'h1'
   | 'h2'

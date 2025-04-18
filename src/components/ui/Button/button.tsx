@@ -7,6 +7,8 @@ import {
 import s from './button.module.css';
 import { clsx } from 'clsx';
 
+// TODO replace module css with tailwind object (?)
+
 type ButtonOwnProps<T extends ElementType> = {
   as?: T;
   className?: string;
