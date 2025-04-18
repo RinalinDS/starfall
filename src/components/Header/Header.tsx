@@ -7,14 +7,14 @@ import { useBoundStore } from '../../store/useBoundStore';
 import { Search } from '../ui/Search/Search';
 import { Typography } from '../ui/Typography/Typography';
 import logo from './../../assets/logo.png';
+import { useTheme } from '../../hooks/useTheme';
 
-type Props = {
-  changeThemeHandler: () => void;
-  themeMode: string;
-};
-
-export const Header = ({ changeThemeHandler, themeMode }: Props) => {
+export const Header = () => {
   const readlistLength = useBoundStore((state) => state.readlist.length);
+  // TODO FIX
+  // @ts-expect-error weird bullshit
+  const { theme, changeTheme } = useTheme();
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;
@@ -27,9 +27,10 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
   };
   // TODO SPLIT
 
+  // TODO REUSE Buttons
   return (
-    <header className="w-full bg-slate-700">
-      <div className="mx-auto flex max-h-24 max-w-[120rem] items-center justify-between gap-4 p-5 text-slate-800 md:gap-8">
+    <header className="w-full bg-gray-200 dark:bg-gray-800">
+      <div className="mx-auto flex max-h-24 max-w-[120rem] items-center justify-between gap-4 p-5 md:gap-8">
         <div>
           <Link to="/">
             <img className="w-[7.2rem]" src={logo} alt="imdb logo" />
@@ -40,31 +41,33 @@ export const Header = ({ changeThemeHandler, themeMode }: Props) => {
         </form>
         <div className="flex items-center justify-center gap-4">
           <Link to="/login">
-            <button className="group text-primary flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-amber-900 sm:px-3 sm:py-1.5">
+            <button className="group flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-emerald-700 sm:px-3 sm:py-1.5 dark:hover:bg-emerald-600">
               <Typography className="text-[1.6rem] group-hover:text-white">
                 Sign In
               </Typography>
             </button>
           </Link>
           <Link to="/readlist">
-            <button className="group text-primary flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-amber-950 sm:px-3 sm:py-1.5">
-              <BsFillBookmarkPlusFill className="fill-blue-500 stroke-amber-500 text-5xl opacity-60 group-hover:opacity-100" />
-              <Typography variant="body2" className="group-hover:text-white">
+            <button className="group flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-emerald-700 sm:px-3 sm:py-1.5 dark:hover:bg-emerald-600">
+              <BsFillBookmarkPlusFill className="fill-amber-600 text-4xl opacity-60 group-hover:opacity-100 dark:fill-amber-500" />
+              <Typography className="flex items-center gap-1 text-[1.6rem] group-hover:text-white">
                 Readlist
-                <Typography
-                  variant="subtitle2"
-                  className="number ml-3 inline-block rounded-full bg-[rgb(245,197,24)] px-1.5 text-[#181818]"
-                >
-                  {readlistLength || ''}
-                </Typography>
+                {readlistLength ? (
+                  <Typography
+                    variant="subtitle2"
+                    className="flex h-8 w-8 items-center justify-center rounded-[50%] bg-[rgb(245,197,24)] px-1.5 text-center text-[#181818]"
+                  >
+                    {readlistLength}
+                  </Typography>
+                ) : null}
               </Typography>
             </button>
           </Link>
           <button
-            onClick={changeThemeHandler}
-            className="group text-primary flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-amber-900 sm:px-3 sm:py-1.5"
+            onClick={changeTheme}
+            className="group text-primary flex cursor-pointer items-center gap-1.5 rounded border-none px-5 py-2.5 outline-none hover:bg-emerald-700 sm:px-3 sm:py-1.5 dark:hover:bg-emerald-600"
           >
-            {themeMode === 'dark' ? (
+            {theme === 'dark' ? (
               <FaMoon className="text-4xl opacity-60 group-hover:opacity-100" />
             ) : (
               <IoMdSunny className="text-4xl opacity-60 group-hover:opacity-100" />

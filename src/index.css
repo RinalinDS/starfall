@@ -16,3 +16,34 @@ html {
 ul {
   list-style: none;
 }
+
+/* Основной фон: bg-white (или bg-gray-50 для мягкого белого)
+Текст: text-gray-900 
+Вторичный текст: text-gray-600
+Акцентный цвет (основной): text-amber-600 / bg-amber-600
+Акцентный цвет (второстепенный): text-purple-600 / bg-purple-600
+Кнопки: bg-amber-600 text-white hover:bg-amber-700
+
+Hover фон: bg-emerald-700
+
+Вторичные кнопки: bg-gray-100 text-gray-900 hover:bg-gray-200
+Границы: border-gray-200
+Ошибки: text-red-600 
+Успешные действия: text-green-600
+Фон карточек: bg-white */
+
+/* 
+Основной фон: bg-gray-900
+Текст: text-gray-50 
+Вторичный текст: text-gray-400
+Акцентный цвет (основной): text-amber-500 / bg-amber-500
+Акцентный цвет (второстепенный): text-purple-400 / bg-purple-400
+
+Hover фон: bg-emerald-600
+
+Кнопки: bg-amber-500 text-gray-900 hover:bg-amber-400
+Вторичные кнопки: bg-gray-800 text-gray-100 hover:bg-gray-700
+Границы: border-gray-700
+Ошибки: text-red-500 
+Успешные действия: text-green-500
+Фон карточек: bg-gray-800 */
