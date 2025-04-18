@@ -25,7 +25,6 @@
   "include": [
     "svg.d.ts",
     "src",
-    "styled.d.ts",
     "global.d.ts",
   ],
   "references": [
