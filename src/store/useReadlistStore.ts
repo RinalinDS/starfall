@@ -4,6 +4,7 @@ export type ReadlistSlice = {
   readlist: string[];
   addToReadlist: (id: string) => void;
   removeFromReadlist: (id: string) => void;
+  setReadlist: (list: string[]) => void;
 };
 
 export const createReadlistSlice: StateCreator<
@@ -19,4 +20,5 @@ export const createReadlistSlice: StateCreator<
     set((state) => ({
       readlist: state.readlist.filter((el) => el !== id),
     })),
+  setReadlist: (list: string[]) => set(() => ({ readlist: list })),
 });

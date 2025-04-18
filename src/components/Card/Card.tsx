@@ -1,8 +1,11 @@
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { Link } from '@tanstack/react-router';
-import { useMemo } from 'react';
+import { ReactElement, useMemo } from 'react';
 import { FaPlay, FaRegStar, FaStar } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
+import { RxDragHandleHorizontal } from 'react-icons/rx';
 import { useModalControls } from '../../hooks/useModalControls';
 import { useBoundStore } from '../../store/useBoundStore';
 import { RatingModal } from '../RatingModal/rating-modal';
@@ -20,6 +23,21 @@ export const Card = ({ id }: { id: string }) => {
   const book = useBoundStore((state) =>
     state.books.find((book) => book.id === id)
   );
+
+  const {
+    setNodeRef,
+    isDragging,
+    transition,
+    transform,
+    listeners,
+    attributes,
+  } = useSortable({
+    id,
+  });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   const { closeModal, isOpen, openModal } = useModalControls();
 
@@ -51,7 +69,12 @@ export const Card = ({ id }: { id: string }) => {
   };
 
   return (
-    <div className="flex max-h-192 max-w-96 flex-col overflow-hidden rounded-md bg-gray-800 text-gray-100">
+    <div
+      className="flex max-h-192 max-w-96 flex-col overflow-hidden rounded-md bg-gray-800 text-gray-100"
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+    >
       <Card.Image
         id={id}
         previewImage={book?.previewImage || ''}
@@ -69,7 +92,14 @@ export const Card = ({ id }: { id: string }) => {
           isBookInReadlist={isBookInReadlist}
           changeReadlistHandler={changeReadlistHandler}
         />
-        <Card.TrailerLink id={id} />
+        <Card.TrailerLink id={id}>
+          <div
+            {...listeners}
+            className={`p-2 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          >
+            <RxDragHandleHorizontal className="h-10 w-10 fill-amber-800 text-fuchsia-700" />
+          </div>
+        </Card.TrailerLink>
       </Card.ContentContainer>
 
       {isOpen ? (
@@ -164,12 +194,21 @@ Card.ReadlistButton = ({
   </Button>
 );
 
-Card.TrailerLink = ({ id }: { id: string }) => (
-  <Link
-    className="flex min-h-12 cursor-pointer items-center justify-center gap-3 self-center rounded px-6 text-2xl font-semibold tracking-wider text-gray-900 normal-case no-underline transition-all duration-200 ease-in-out hover:bg-emerald-600 hover:brightness-150"
-    to="/preview/$bookId"
-    params={{ bookId: id }}
-  >
-    <FaPlay /> Trailer
-  </Link>
+Card.TrailerLink = ({
+  id,
+  children,
+}: {
+  id: string;
+  children: ReactElement;
+}) => (
+  <div className="flex items-center justify-between">
+    <Link
+      className="flex min-h-12 cursor-pointer items-center justify-center gap-3 self-center rounded px-6 text-2xl font-semibold tracking-wider text-gray-900 normal-case no-underline transition-all duration-200 ease-in-out hover:bg-emerald-600 hover:brightness-150"
+      to="/preview/$bookId"
+      params={{ bookId: id }}
+    >
+      <FaPlay /> Trailer
+    </Link>
+    {children}
+  </div>
 );

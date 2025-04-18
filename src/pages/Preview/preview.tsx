@@ -127,8 +127,16 @@ export const Preview = () => {
       </header>
 
       <div className="relative flex w-full gap-1.5">
-        <img src={book.previewImage} alt="preview image" className="w-1/4" />
-        <img src={book.image} alt="book image" className="h-[40rem] w-3/4" />
+        <img
+          src={book.previewImage}
+          alt="preview image"
+          className="h-[clamp(24rem,25vw,48rem)] w-1/4"
+        />
+        <img
+          src={book.image}
+          alt="book image"
+          className="h-[clamp(24rem,25vw,48rem)] w-3/4"
+        />
         <ButtonAbsolute
           onClick={changeReadlistHandler}
           isBookInWatchList={isBookInReadlist}
