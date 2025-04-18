@@ -1,20 +1,24 @@
 import {
   createContext,
   ReactElement,
+  useCallback,
   useContext,
   useEffect,
   useState,
 } from 'react';
 
-type ThemeContextType = 'light' | 'dark';
+type Context = {
+  changeTheme: () => void;
+  theme: string;
+};
 
-const ThemeContext = createContext<ThemeContextType | null>(null);
+const ThemeContext = createContext<Context | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactElement }) => {
-  const [theme, setTheme] = useState<ThemeContextType>(() => {
+  const [theme, setTheme] = useState(() => {
     const storedValue = localStorage.getItem('theme');
     if (storedValue && ['light', 'dark'].includes(storedValue)) {
-      return storedValue as ThemeContextType;
+      return storedValue;
     }
     return 'light';
   });
@@ -29,9 +33,9 @@ export const ThemeProvider = ({ children }: { children: ReactElement }) => {
     }
   }, [theme]);
 
-  const changeTheme = () => {
+  const changeTheme = useCallback(() => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, changeTheme }}>

@@ -11,8 +11,6 @@ import { useTheme } from '../../hooks/useTheme';
 
 export const Header = () => {
   const readlistLength = useBoundStore((state) => state.readlist.length);
-  // TODO FIX
-  // @ts-expect-error weird bullshit
   const { theme, changeTheme } = useTheme();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
