@@ -11,7 +11,7 @@ import { useBoundStore } from '../../store/useBoundStore';
 import { RatingModal } from '../RatingModal/rating-modal';
 import { Button } from '../ui/Button/button';
 import { Typography } from '../ui/Typography/Typography';
-import { ButtonAbsolute } from '../ui/sharedStyledComponents/shared-buttons';
+import { WatchListButton } from '../ui/Button/watchlist-button';
 
 // TODO: feels like this component is too heavy, because a lot of state management and the fact it's mapped component.
 export const Card = ({ id }: { id: string }) => {
@@ -134,12 +134,12 @@ Card.Image = ({
     <Link to="/preview/$bookId" params={{ bookId: id }} className="w-full">
       <img src={previewImage} alt="Book preview" className="max-h-72 w-full" />
     </Link>
-    <ButtonAbsolute
+    <WatchListButton
       onClick={changeReadlistHandler}
       isBookInWatchList={isBookInReadlist}
     >
       {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-    </ButtonAbsolute>
+    </WatchListButton>
   </div>
 );
 

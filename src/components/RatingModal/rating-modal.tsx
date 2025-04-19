@@ -51,7 +51,7 @@ export const RatingModal = ({
               onClick={removeRateHandler}
               className="inline-flex min-h-12 w-3/4 items-center rounded bg-amber-400 px-14 text-gray-900 normal-case no-underline transition-all duration-200 ease-in-out"
             >
-              <Typography className="text-[1.4rem] font-semibold tracking-wider">
+              <Typography className="text-[1.4rem] tracking-wider">
                 Remove rating
               </Typography>
             </Button>

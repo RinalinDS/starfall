@@ -1,13 +1,10 @@
+import { clsx } from 'clsx';
 import {
-  forwardRef,
-  ElementType,
   ComponentPropsWithoutRef,
+  ElementType,
+  forwardRef,
   PropsWithChildren,
 } from 'react';
-import s from './button.module.css';
-import { clsx } from 'clsx';
-
-// TODO replace module css with tailwind object (?)
 
 type ButtonOwnProps<T extends ElementType> = {
   as?: T;
@@ -34,7 +31,10 @@ const Button = forwardRef(function Button<
   ref: React.ForwardedRef<ComponentRef<T>>
 ) {
   const Component = as || defaultElement;
-  const classNameComputed = clsx(s.button, className);
+  const classNameComputed = clsx(
+    'inline-flex items-center justify-center cursor-pointer transition-colors duration-300 outline-none border-0',
+    className
+  );
 
   return (
     <Component {...restProps} className={classNameComputed} ref={ref}>

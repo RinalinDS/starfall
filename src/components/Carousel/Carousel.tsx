@@ -5,9 +5,9 @@ import { Direction, directions } from '../../constants/direction';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Book } from '../../types/book';
 import { Typography } from '../ui/Typography/Typography';
-import { ButtonAbsolute as AddToReadlistButton } from '../ui/sharedStyledComponents/shared-buttons';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
 import RightArrow from './../../assets/rightarrow.svg?react';
+import { WatchListButton } from '../ui/Button/watchlist-button';
 
 type Props = {
   mainSlide: Book;
@@ -55,12 +55,12 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
           src={previewImage}
           alt={`${title} preview`}
         />
-        <AddToReadlistButton
+        <WatchListButton
           onClick={changeWatchlistHandler}
           isBookInWatchList={isBookInReadlist}
         >
           {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-        </AddToReadlistButton>
+        </WatchListButton>
       </div>
       <div className="absolute right-4 bottom-4 flex max-h-1/2 w-7/10 flex-col items-start justify-evenly text-lg text-white sm:bottom-8">
         <Typography variant="h4" as="h3">

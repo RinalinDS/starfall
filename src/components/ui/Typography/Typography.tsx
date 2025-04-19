@@ -1,24 +1,25 @@
-import React from 'react';
-import s from './typography.module.css';
 import clsx from 'clsx';
+import React from 'react';
 
-// TODO replace module CSS with tailwind object (?)
+const variants = {
+  nostyle: '',
+  h1: ' text-[9.6rem] font-light tracking-tighter leading-tight',
+  h2: ' text-[6rem] font-light tracking-tight leading-tight',
+  h3: ' text-[4.8rem] font-normal leading-tight',
+  h4: ' text-[3.6rem] font-normal tracking-wide leading-snug',
+  h5: ' text-[2.4rem] font-normal leading-tight',
+  h6: ' text-[2rem] font-medium tracking-wide leading-relaxed',
+  subtitle1: ' text-[1.6rem] font-normal tracking-wide leading-loose',
+  subtitle2: 'text-[1.4rem] font-medium tracking-wide leading-relaxed',
+  body1: ' text-[1.6rem] font-normal tracking-wider leading-normal',
+  body2: ' text-[1.4rem] font-normal tracking-wide leading-normal',
+  caption: ' text-[1.2rem] font-normal tracking-wider leading-loose',
+  button: ' text-[1.4rem] font-medium tracking-wider leading-loose uppercase',
+  overline:
+    ' text-[1.2rem] font-normal tracking-widest leading-loose uppercase',
+};
 
-type Variant =
-  | 'nostyle'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'body1'
-  | 'body2'
-  | 'subtitle1'
-  | 'subtitle2'
-  | 'caption'
-  | 'overline'
-  | 'button';
+type Variant = keyof typeof variants;
 
 type TypographyProps<T extends React.ElementType> = {
   className?: string;
@@ -43,12 +44,10 @@ export const Typography = <
   variant = 'body1',
   ...rest
 }: PolymorphicComponentProps<T, TypographyProps<T>>) => {
-  // TODO мне кажется чтобы тейлвинд не лагал ему прямо тут нужен объект со стилями а не через модульный CSS
   const Tag = as || defaultElement;
-  const classNameComputed = clsx(s[variant], s.typography);
+  const classNameComputed = clsx(variants[variant], className);
   return (
-    // ${className || ''} this because tailwind was lagging with clsx , maybe tw-merge would've helped ? didn't check. now it's working
-    <Tag {...rest} className={`${classNameComputed} ${className || ''}`}>
+    <Tag {...rest} className={`${classNameComputed}`}>
       {children}
     </Tag>
   );

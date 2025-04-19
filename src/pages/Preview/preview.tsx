@@ -5,10 +5,10 @@ import { IoMdCheckmark } from 'react-icons/io';
 import { RatingModal } from '../../components/RatingModal/rating-modal';
 import { Button } from '../../components/ui/Button/button';
 import { Typography } from '../../components/ui/Typography/Typography';
-import { ButtonAbsolute } from '../../components/ui/sharedStyledComponents/shared-buttons';
 import { useModalControls } from '../../hooks/useModalControls';
 import { preview } from '../../mocks/preview';
 import { useBoundStore } from '../../store/useBoundStore';
+import { WatchListButton } from '../../components/ui/Button/watchlist-button';
 
 const routeApi = getRouteApi('/preview/$bookId');
 
@@ -135,13 +135,13 @@ export const Preview = () => {
           alt="book image"
           className="h-[clamp(24rem,25vw,48rem)] w-3/4"
         />
-        <ButtonAbsolute
+        <WatchListButton
           onClick={changeReadlistHandler}
           isBookInWatchList={isBookInReadlist}
           className="px-3 py-6"
         >
           {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-        </ButtonAbsolute>
+        </WatchListButton>
       </div>
 
       <div className="mt-6 flex flex-col gap-6">
