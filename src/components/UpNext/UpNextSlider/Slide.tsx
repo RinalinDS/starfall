@@ -16,7 +16,7 @@ export const Slide = ({ slide, setActiveSlide }: Props) => {
   };
 
   return (
-    <section className="flex h-full w-full grow items-center gap-4">
+    <div className="flex h-full w-full grow items-center gap-4">
       <div className="flex-[0_0_20%]">
         <Link to="/preview/$bookId" params={{ bookId: id }}>
           <img
@@ -30,11 +30,15 @@ export const Slide = ({ slide, setActiveSlide }: Props) => {
         className="group block cursor-pointer text-left"
         onClick={setActiveSlideHandler}
       >
-        <Typography as="p" variant="h6" className="group-hover:text-yellow-400">
+        <Typography
+          as="p"
+          variant="h6"
+          className="group-hover:text-amber-600 dark:group-hover:text-amber-500"
+        >
           {title}
         </Typography>
         <Typography variant="subtitle2">{description}</Typography>
       </button>
-    </section>
+    </div>
   );
 };

@@ -7,12 +7,12 @@ import {
   useState,
 } from 'react';
 
-type Context = {
+type ThemeContext = {
   changeTheme: () => void;
   theme: string;
 };
 
-const ThemeContext = createContext<Context | undefined>(undefined);
+const ThemeContext = createContext<ThemeContext | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactElement }) => {
   const [theme, setTheme] = useState(() => {
@@ -20,7 +20,13 @@ export const ThemeProvider = ({ children }: { children: ReactElement }) => {
     if (storedValue && ['light', 'dark'].includes(storedValue)) {
       return storedValue;
     }
-    return 'light';
+    const systemPreference =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+
+    return systemPreference;
   });
 
   useEffect(() => {

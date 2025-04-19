@@ -34,7 +34,7 @@ export const Header = () => {
             <img className="w-[7.2rem]" src={logo} alt="imdb logo" />
           </Link>
         </div>
-        <form className="grow" onSubmit={onSubmit}>
+        <form className="hidden grow md:block" onSubmit={onSubmit}>
           <Search />
         </form>
         <div className="flex items-center justify-center gap-4">
@@ -50,14 +50,12 @@ export const Header = () => {
               <BsFillBookmarkPlusFill className="fill-amber-600 text-4xl opacity-60 group-hover:opacity-100 dark:fill-amber-500" />
               <Typography className="flex items-center gap-1 text-[1.6rem] group-hover:text-white">
                 Readlist
-                {readlistLength ? (
-                  <Typography
-                    variant="subtitle2"
-                    className="flex h-8 w-8 items-center justify-center rounded-[50%] bg-[rgb(245,197,24)] px-1.5 text-center text-[#181818]"
-                  >
-                    {readlistLength}
-                  </Typography>
-                ) : null}
+                <Typography
+                  variant="subtitle2"
+                  className={`${readlistLength ? 'opacity-100' : 'opacity-0'} flex h-8 w-8 items-center justify-center rounded-[50%] bg-[rgb(245,197,24)] px-1.5 text-center text-[#181818]`}
+                >
+                  {readlistLength}
+                </Typography>
               </Typography>
             </button>
           </Link>

@@ -9,12 +9,12 @@ type Props = {
 
 export const UpNextSlider = ({ upNextSlides, setActiveSlide }: Props) => {
   return (
-    <div className="flex h-full w-full flex-grow flex-col justify-between gap-4 rounded-lg bg-slate-400 p-4 text-slate-950">
+    <section className="flex h-full w-full flex-grow flex-col justify-between gap-4 rounded-lg bg-gray-300 p-4 dark:bg-gray-700">
       {upNextSlides.map((slide) => {
         return (
           <Slide key={slide.id} slide={slide} setActiveSlide={setActiveSlide} />
         );
       })}
-    </div>
+    </section>
   );
 };

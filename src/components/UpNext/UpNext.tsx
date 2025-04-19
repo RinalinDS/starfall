@@ -10,14 +10,18 @@ type Props = {
 
 export const UpNext = ({ upNextSlides, setActiveSlide }: Props) => {
   return (
-    <div className="flex h-full w-[80%] flex-grow flex-col gap-8 text-yellow-400 md:w-1/3">
-      <Typography as="h2" variant="h5">
+    <aside className="flex h-full w-[80%] flex-col gap-8">
+      <Typography
+        as="h2"
+        variant="h5"
+        className="text-amber-600 dark:text-amber-500"
+      >
         Up Next
       </Typography>
       <UpNextSlider
         upNextSlides={upNextSlides}
         setActiveSlide={setActiveSlide}
       />
-    </div>
+    </aside>
   );
 };

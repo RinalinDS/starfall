@@ -42,7 +42,7 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
   };
 
   return (
-    <div className="relative h-[48rem] w-full grow-[2] overflow-hidden rounded-lg px-8 2xl:w-2/3 2xl:px-0">
+    <div className="relative max-h-[48rem] w-full overflow-hidden rounded-lg">
       <img
         src={image}
         alt={title}
@@ -94,7 +94,7 @@ const StyledButton = ({ children, className, ...props }) => {
 const ButtonLeft = ({ children, ...props }) => {
   return (
     <StyledButton
-      className="left-10 hover:left-8 lg:left-2 lg:hover:left-0"
+      className="left-2 hover:left-0 lg:left-4 lg:hover:left-0"
       {...props}
     >
       {children}
@@ -105,7 +105,7 @@ const ButtonLeft = ({ children, ...props }) => {
 const ButtonRight = ({ children, ...props }) => {
   return (
     <StyledButton
-      className="right-10 hover:right-8 lg:right-2 lg:hover:right-0"
+      className="right-2 hover:right-0 lg:right-4 lg:hover:right-0"
       {...props}
     >
       {children}
