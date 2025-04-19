@@ -4,15 +4,8 @@ import { Typography } from '../ui/Typography/Typography';
 
 export const EmptyReadlist = () => {
   return (
-    <div className="mt-6 flex flex-col items-center gap-6 text-slate-800 last:mt-8">
-      <div
-        className={`before:bg-text-fill relative before:absolute before:top-[10%] before:left-[30%] before:block before:h-[60%] before:w-1/2 before:content-['']`}
-      >
-        <BsFillBookmarkPlusFill
-          fontSize={'36px'}
-          className="relative z-10 fill-emerald-800"
-        />
-      </div>
+    <div className="mt-6 flex flex-col items-center gap-6 last:mt-8">
+      <BsFillBookmarkPlusFill className="fill-amber-600 text-6xl" />
       <div className="flex flex-col items-center gap-5">
         <Typography variant="h5">Your readlist is empty</Typography>
         <Typography variant="body1">
@@ -22,7 +15,7 @@ export const EmptyReadlist = () => {
       <div>
         <Link
           to="/popular"
-          className="inline-flex min-h-12 items-center rounded bg-emerald-800 px-14 text-blue-500 normal-case no-underline transition-all duration-200 ease-in-out hover:brightness-150"
+          className="inline-flex items-center rounded bg-amber-600 px-16 py-4 text-white normal-case no-underline transition-all duration-200 ease-in-out hover:bg-amber-700 dark:bg-amber-500 dark:text-gray-900 dark:hover:bg-amber-400"
         >
           <Typography className="text-2xl font-semibold tracking-wider">
             Browse popular books

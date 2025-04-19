@@ -41,7 +41,7 @@ Hover фон: bg-emerald-700
 
 Hover фон: bg-emerald-600
 
-Кнопки: bg-amber-500 text-gray-900 hover:bg-amber-400
+Кнопки: dark:bg-amber-500 dark:text-gray-900 dark:hover:bg-amber-400
 Вторичные кнопки: bg-gray-800 text-gray-100 hover:bg-gray-700
 Границы: border-gray-700
 Ошибки: text-red-500 

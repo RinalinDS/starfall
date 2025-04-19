@@ -42,7 +42,7 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
   };
 
   return (
-    <div className="relative max-h-[48rem] w-full overflow-hidden rounded-lg">
+    <div className="relative h-[36rem] w-full overflow-hidden rounded-lg lg:h-[48rem]">
       <img
         src={image}
         alt={title}
