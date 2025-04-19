@@ -29,7 +29,10 @@ export const Rating = ({
             onMouseLeave={() => setHover(0)}
           >
             {ratingValue <= (hover || rating) ? (
-              <IoMdStar fill="lightblue" fontSize={24} />
+              <IoMdStar
+                className="text-purple-600 dark:text-purple-400"
+                fontSize={24}
+              />
             ) : (
               <IoIosStarOutline fontSize={24} />
             )}

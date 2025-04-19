@@ -53,7 +53,7 @@ export const ReadlistCards = () => {
         items={readlist}
         strategy={horizontalListSortingStrategy}
       >
-        <div className="grid-col mt-10 grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-10">
+        <div className="grid-col mt-10 grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-10">
           {readlist.map((id) => (
             <Card key={id} id={id}></Card>
           ))}

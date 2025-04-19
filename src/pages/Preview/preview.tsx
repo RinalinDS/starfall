@@ -60,14 +60,14 @@ export const Preview = () => {
   const { preview: bookPreviewData } = preview[bookId];
 
   return (
-    <div className="flex flex-col p-6">
+    <div className="flex flex-col px-8 py-6 lg:px-0">
       <header className="mb-6 flex items-center justify-between">
-        <Typography as="h2" variant="h3" className="py-6 text-7xl text-white">
+        <Typography as="h2" variant="h3" className="py-6 text-7xl">
           {book.title}
         </Typography>
-
+        {/*TODO передалть эти контейнеры, потому что невозможно медиа запросы применять, все идет по наклонной из-за того как я их построил */}
         <div className="flex flex-col items-center justify-between">
-          <div className="flex items-center justify-between gap-12 text-slate-800 uppercase">
+          <div className="flex items-center justify-between gap-12 uppercase">
             <Typography>IBDb rating</Typography>
             <Typography>Your rating</Typography>
           </div>
@@ -75,24 +75,19 @@ export const Preview = () => {
           <div className="flex items-center gap-12">
             <Typography
               variant="body2"
-              className="inline-flex flex-col items-center gap-1 text-slate-800"
+              className="inline-flex flex-col items-center gap-1"
             >
-              <div className="flex min-h-24 min-w-48 items-center justify-center gap-1.5 rounded-sm hover:bg-amber-400">
-                <FaStar fill="yellow" className="h-10 w-10" />
+              <div className="flex min-h-24 min-w-48 items-center justify-center gap-1.5 rounded-sm">
+                <FaStar className="h-10 w-10 fill-amber-600" />
                 <div className="flex flex-col">
-                  <Typography style={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography className="flex items-center">
                     <Typography variant="h6">{ratingToDisplay}</Typography>/10
                   </Typography>
                   <Typography
                     variant="subtitle2"
-                    style={{
-                      position: 'relative',
-                      bottom: '0.5rem',
-                      display: 'flex',
-                      justifyContent: 'center',
-                    }}
+                    className="relative bottom-2 flex justify-center"
                   >
-                    {book.howManyTimeWereRated}
+                    {book.howManyTimeWereRated} votes
                   </Typography>
                 </div>
               </div>
@@ -100,23 +95,26 @@ export const Preview = () => {
 
             <Typography
               variant="body2"
-              className="inline-flex flex-col items-center gap-1 text-slate-800"
+              className="inline-flex flex-col items-center gap-1"
             >
               <Button
                 onClick={openModal}
-                className="h-full min-h-24 w-full min-w-48 rounded-sm text-inherit hover:bg-emerald-600"
+                className="h-full min-h-24 w-full min-w-48 rounded-sm hover:bg-emerald-500 dark:hover:bg-emerald-600"
               >
                 {book.currentUserRating ? (
-                  <Typography className="flex items-center justify-between gap-1.5">
-                    <FaStar fill="aquamarine" className="h-10 w-10" />
+                  <Typography className="flex items-center justify-between gap-1.5 text-2xl">
+                    <FaStar className="fill-purple-600 text-4xl dark:fill-purple-400" />
                     <Typography variant="h6">
                       {book.currentUserRating}
                     </Typography>
                     /10
                   </Typography>
                 ) : (
-                  <Typography className="flex items-center justify-between gap-1.5">
-                    <FaRegStar fill="aquamarine" className="h-10 w-10" />
+                  <Typography className="flex items-center justify-between gap-1.5 text-2xl">
+                    <FaRegStar
+                      fill="aquamarine"
+                      className="fill-purple-600 text-4xl dark:fill-purple-400"
+                    />
                     Rate
                   </Typography>
                 )}
@@ -140,7 +138,7 @@ export const Preview = () => {
         <ButtonAbsolute
           onClick={changeReadlistHandler}
           isBookInWatchList={isBookInReadlist}
-          style={{ padding: '1.6rem 0.8rem' }}
+          className="px-3 py-6"
         >
           {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
         </ButtonAbsolute>
@@ -158,33 +156,29 @@ export const Preview = () => {
           ))}
         </ul>
 
-        <Typography
-          as="p"
-          variant="body1"
-          className="tracking-wide text-slate-600"
-        >
+        <Typography as="p" variant="body1" className="tracking-wide">
           {book.description}
         </Typography>
         <div
           className={`flex flex-col border-b border-b-gray-600 [&>*]:border-t [&>*]:border-t-gray-600`}
         >
-          <Typography className="flex items-center gap-10 text-slate-600">
-            <Typography className="text-4xl font-medium text-slate-600 capitalize">
+          <div className="mb-2 flex items-center">
+            <Typography className="w-32 text-4xl font-medium capitalize">
               creator
-            </Typography>{' '}
-            {book.author}
-          </Typography>
-          <Typography className="flex items-center gap-10 text-slate-600">
-            <Typography className="text-4xl font-medium text-slate-600 capitalize">
+            </Typography>
+            <Typography>{book.author}</Typography>
+          </div>
+          <div className="mb-2 flex items-center">
+            <Typography className="w-32 text-4xl font-medium capitalize">
               year
             </Typography>
-            {book.year}
-          </Typography>
+            <Typography>{book.year}</Typography>
+          </div>
         </div>
         <Typography
           as="p"
           variant="body1"
-          className="indent-8 tracking-wide text-slate-600"
+          className="pb-64 indent-8 tracking-wide"
         >
           {bookPreviewData}
         </Typography>

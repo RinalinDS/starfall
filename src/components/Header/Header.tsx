@@ -27,7 +27,7 @@ export const Header = () => {
 
   // TODO REUSE Buttons
   return (
-    <header className="w-full bg-gray-200 dark:bg-gray-800">
+    <header className="z-1 w-full bg-gray-200 shadow-sm shadow-gray-500 dark:bg-gray-800">
       <div className="mx-auto flex max-h-24 max-w-[120rem] items-center justify-between gap-4 p-5 md:gap-8">
         <div>
           <Link to="/">

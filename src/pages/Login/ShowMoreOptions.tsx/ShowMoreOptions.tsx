@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react';
+import { FaArrowDown } from 'react-icons/fa';
 
 type Props = {
   children: ReactNode;
@@ -16,9 +17,12 @@ export const ShowMoreOptions = ({ children }: Props) => {
       {isOpen ? (
         children
       ) : (
-        <div className="text-center" onClick={toggleAccordion}>
-          Show more options
-        </div>
+        <button
+          className="flex cursor-pointer items-center justify-center gap-4 text-amber-600 dark:text-amber-500"
+          onClick={toggleAccordion}
+        >
+          Show more options <FaArrowDown />
+        </button>
       )}
     </div>
   );

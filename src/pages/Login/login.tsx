@@ -1,46 +1,44 @@
 import { ShowMoreOptions } from './ShowMoreOptions.tsx/ShowMoreOptions';
 import { Typography } from '../../components/ui/Typography/Typography';
-import styles from './login.module.css';
-
-// TODO delete module css
 
 export const Login = () => {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <div className={styles.loginBox}>
-          <div className={styles.signInOptions}>
-            <h2>Sign in</h2>
-            <button className={styles.imdbSignIn}>Sign in with IMDb</button>
-            <button className={styles.googleSignIn}>Sign in with Google</button>
+    <div className="mx-auto flex h-full flex-col">
+      <main className="flex-1 bg-gray-200 p-4 md:p-12 dark:bg-gray-700">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mx-auto flex w-3/5 flex-col items-center justify-center gap-4">
+            <h2 className="text-2xl font-bold">Sign in</h2>
+            <LoginWithProviderButton>Sign in with IMDb</LoginWithProviderButton>
+            <LoginWithProviderButton>
+              Sign in with Google
+            </LoginWithProviderButton>
             <ShowMoreOptions>
-              <div className={styles.moreOptions}>
-                <button className={styles.appleSignIn}>
+              <div className="mx-auto flex w-full flex-col items-center justify-center gap-4">
+                <LoginWithProviderButton>
                   Sign in with Apple
-                </button>
-                <button className={styles.amazonSignIn}>
+                </LoginWithProviderButton>
+                <LoginWithProviderButton>
                   Sign in with Amazon
-                </button>
+                </LoginWithProviderButton>
               </div>
             </ShowMoreOptions>
-            <div className={styles.divider}>or</div>
-            <button className={styles.createAccount}>
+            <div className="my-4 text-center">or</div>
+            <LoginWithProviderButton>
               Create a New Account
-            </button>
-            <Typography variant="body2" className={styles.terms}>
-              By signing in, you agree to IMDb's{' '}
-              <a href="#">Conditions of Use</a> and{' '}
-              <a href="#">Privacy Policy</a>.
+            </LoginWithProviderButton>
+            <Typography variant="body2" className="mt-4 text-center">
+              By signing in, you agree to IMDb's Conditions of Use and Privacy
+              Policy .
             </Typography>
           </div>
 
-          <div className={styles.benefits}>
-            <Typography as="h3" className={styles.benefitsTitle}>
+          <div className="border-l border-gray-300 p-6">
+            <Typography as="h3" className="mb-4 text-2xl font-bold">
               Benefits of your free IMDb account
             </Typography>
-            <ul className={styles.list}>
+            <ul className="list-none space-y-4">
               <li>
-                <Typography as="p" variant="h6">
+                <Typography as="p" variant="h6" className="font-semibold">
                   Personalized Recommendations
                 </Typography>
                 <Typography variant="body2">
@@ -48,8 +46,8 @@ export const Login = () => {
                 </Typography>
               </li>
               <li>
-                <Typography as="p" variant="h6">
-                  Your Watchlist{' '}
+                <Typography as="p" variant="h6" className="font-semibold">
+                  Your Watchlist
                 </Typography>
                 <Typography variant="body2">
                   Track everything you want to watch and receive e-mail when
@@ -57,15 +55,15 @@ export const Login = () => {
                 </Typography>
               </li>
               <li>
-                <Typography as="p" variant="h6">
-                  Your Ratings{' '}
+                <Typography as="p" variant="h6" className="font-semibold">
+                  Your Ratings
                 </Typography>
                 <Typography variant="body2">
                   Rate and remember everything you've seen.
                 </Typography>
               </li>
               <li>
-                <Typography as="p" variant="h6">
+                <Typography as="p" variant="h6" className="font-semibold">
                   Contribute to IMDb
                 </Typography>
                 <Typography variant="body2">
@@ -78,13 +76,25 @@ export const Login = () => {
         </div>
       </main>
 
-      <div className={styles.recentlyViewed}>
-        <h3>Recently Viewed</h3>
-        <div className={styles.thumbnails}></div>
-        <a href="#" className={styles.clearHistory}>
+      <div className="flex justify-between p-6">
+        <h3 className="text-lg font-semibold">Recently Viewed</h3>
+        <div className="flex-1"></div>
+        <a href="#" className="">
           Clear your history
         </a>
       </div>
     </div>
+  );
+};
+
+const LoginWithProviderButton = ({
+  className,
+  ...props
+}: JSX.IntrinsicElements['button']) => {
+  return (
+    <button
+      {...props}
+      className={`w-full cursor-pointer rounded border p-3 hover:bg-emerald-700 dark:hover:bg-emerald-600 ${className}`}
+    ></button>
   );
 };

@@ -26,10 +26,10 @@ export const Modal = ({
     return createPortal(
       <>
         <div
-          className="fixed top-0 right-0 bottom-0 left-0 z-1000 bg-black/70"
+          className="fixed top-0 right-0 bottom-0 left-0 z-1000 bg-black/50 dark:bg-black/70"
           onClick={closeModal}
         />
-        <div className="fixed top-1/2 left-1/2 z-[1001] min-h-96 min-w-192 -translate-x-1/2 -translate-y-1/2 rounded bg-[#333] p-16">
+        <div className="fixed top-1/2 left-1/2 z-[1001] min-h-96 min-w-192 -translate-x-1/2 -translate-y-1/2 rounded bg-gray-50 p-16 text-gray-900 dark:bg-gray-900 dark:text-gray-50">
           {children}
         </div>
       </>,

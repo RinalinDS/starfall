@@ -5,6 +5,7 @@ import clsx from 'clsx';
 // TODO replace module CSS with tailwind object (?)
 
 type Variant =
+  | 'nostyle'
   | 'h1'
   | 'h2'
   | 'h3'

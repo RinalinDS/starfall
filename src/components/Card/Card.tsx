@@ -70,7 +70,7 @@ export const Card = ({ id }: { id: string }) => {
 
   return (
     <div
-      className="flex max-h-192 max-w-96 flex-col overflow-hidden rounded-md bg-gray-800 text-gray-100"
+      className="flex max-h-192 min-h-96 max-w-96 flex-col overflow-hidden rounded-md bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-gray-50"
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -88,16 +88,16 @@ export const Card = ({ id }: { id: string }) => {
           currentUserRating={book?.currentUserRating || 0}
           openModal={openModal}
         />
-        <Card.ReadlistButton
+        {/* <Card.ReadlistButton
           isBookInReadlist={isBookInReadlist}
           changeReadlistHandler={changeReadlistHandler}
-        />
+        /> */}
         <Card.TrailerLink id={id}>
           <div
             {...listeners}
             className={`p-2 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           >
-            <RxDragHandleHorizontal className="h-10 w-10 fill-amber-800 text-fuchsia-700" />
+            <RxDragHandleHorizontal className="h-10 w-10 text-purple-600 dark:text-purple-400" />
           </div>
         </Card.TrailerLink>
       </Card.ContentContainer>
@@ -130,9 +130,9 @@ Card.Image = ({
   changeReadlistHandler: () => void;
   isBookInReadlist: boolean;
 }) => (
-  <div className="relative flex w-full flex-col items-start">
+  <div className="relative w-full">
     <Link to="/preview/$bookId" params={{ bookId: id }} className="w-full">
-      <img src={previewImage} alt="Book preview" className="max-h-64 w-full" />
+      <img src={previewImage} alt="Book preview" className="max-h-72 w-full" />
     </Link>
     <ButtonAbsolute
       onClick={changeReadlistHandler}
@@ -152,29 +152,41 @@ Card.Rating = ({
   currentUserRating: number | null;
   openModal: () => void;
 }) => (
-  <div className="flex gap-10">
-    <Typography variant="body2" className="flex items-center gap-2.5">
-      <FaStar fill="yellow" />
+  <div className="flex justify-between px-2 text-2xl">
+    <Typography
+      variant="nostyle"
+      className="flex items-center gap-2.5 text-2xl"
+    >
+      <FaStar className="fill-amber-600 text-2xl" />
       {ratingToDisplay}
     </Typography>
     <Button
       onClick={openModal}
-      className="min-h-12 min-w-24 rounded-sm text-inherit hover:bg-emerald-800"
+      className="group min-h-12 min-w-24 rounded-sm text-inherit hover:bg-emerald-500 dark:hover:bg-emerald-600"
     >
-      <Typography variant="body2" className="flex items-center gap-2.5">
+      <Typography
+        variant="nostyle"
+        className="flex items-center gap-2.5 text-2xl"
+      >
         {currentUserRating ? (
-          <FaStar fill="lightblue" />
+          <>
+            <FaStar className="fill-purple-600 text-2xl group-hover:fill-purple-600 dark:fill-purple-400" />
+            {currentUserRating}
+          </>
         ) : (
-          <FaRegStar fill="lightblue" />
+          <FaRegStar className="fill-purple-600 text-2xl group-hover:fill-purple-600 dark:fill-purple-400" />
         )}
-        {currentUserRating}
       </Typography>
     </Button>
   </div>
 );
 
 Card.Title = ({ title }: { title: string }) => (
-  <Typography as="p" variant="subtitle2" className="truncate">
+  <Typography
+    as="p"
+    variant="nostyle"
+    className="truncate text-[1.6rem] font-medium"
+  >
     {title}
   </Typography>
 );
@@ -203,7 +215,7 @@ Card.TrailerLink = ({
 }) => (
   <div className="flex items-center justify-between">
     <Link
-      className="flex min-h-12 cursor-pointer items-center justify-center gap-3 self-center rounded px-6 text-2xl font-semibold tracking-wider text-gray-900 normal-case no-underline transition-all duration-200 ease-in-out hover:bg-emerald-600 hover:brightness-150"
+      className="flex min-h-12 cursor-pointer items-center justify-center gap-3 self-center rounded px-6 text-2xl font-semibold tracking-wider normal-case no-underline transition-all duration-200 ease-in-out hover:bg-emerald-500 dark:hover:bg-emerald-600"
       to="/preview/$bookId"
       params={{ bookId: id }}
     >

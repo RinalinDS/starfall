@@ -17,7 +17,8 @@ ul {
   list-style: none;
 }
 
-/* Основной фон: bg-white (или bg-gray-50 для мягкого белого)
+/* light
+Основной фон: bg-white (или bg-gray-50 для мягкого белого)
 Текст: text-gray-900 
 Вторичный текст: text-gray-600
 Акцентный цвет (основной): text-amber-600 / bg-amber-600
@@ -32,18 +33,18 @@ Hover фон: bg-emerald-700
 Успешные действия: text-green-600
 Фон карточек: bg-white */
 
-/* 
-Основной фон: bg-gray-900
-Текст: text-gray-50 
-Вторичный текст: text-gray-400
-Акцентный цвет (основной): text-amber-500 / bg-amber-500
-Акцентный цвет (второстепенный): text-purple-400 / bg-purple-400
+/*  dark
+Основной фон: dark:bg-gray-900
+Текст: dark:text-gray-50 
+Вторичный текст: dark:text-gray-400
+Акцентный цвет (основной): dark:text-amber-500  dark:bg-amber-500
+Акцентный цвет (второстепенный): dark:text-purple-400  dark:bg-purple-400
 
-Hover фон: bg-emerald-600
+Hover фон: dark:hover:bg-emerald-600
 
 Кнопки: dark:bg-amber-500 dark:text-gray-900 dark:hover:bg-amber-400
-Вторичные кнопки: bg-gray-800 text-gray-100 hover:bg-gray-700
-Границы: border-gray-700
-Ошибки: text-red-500 
-Успешные действия: text-green-500
-Фон карточек: bg-gray-800 */
+Вторичные кнопки: dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700
+Границы: dark:border-gray-700
+Ошибки: dark:text-red-500 
+Успешные действия: dark:text-green-500
+Фон карточек: dark:bg-gray-800 */
