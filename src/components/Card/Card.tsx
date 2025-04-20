@@ -70,7 +70,7 @@ export const Card = ({ id }: { id: string }) => {
 
   return (
     <div
-      className="flex max-h-192 min-h-96 max-w-96 flex-col overflow-hidden rounded-md bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-gray-50"
+      className={`flex max-h-192 min-h-96 max-w-96 flex-col overflow-hidden rounded-md bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-gray-50 ${isDragging ? 'opacity-30' : 'opacity-100'}`}
       ref={setNodeRef}
       style={style}
       {...attributes}

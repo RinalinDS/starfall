@@ -2,33 +2,47 @@ import {
   closestCenter,
   DndContext,
   DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
   KeyboardSensor,
   PointerSensor,
+  UniqueIdentifier,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
 import {
   arrayMove,
-  horizontalListSortingStrategy,
+  rectSwappingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
+import { useState } from 'react';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Card } from '../Card/Card';
 
 export const ReadlistCards = () => {
   const readlist = useBoundStore((state) => state.readlist);
   const reorderReadlist = useBoundStore((state) => state.setReadlist);
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { over, active } = event;
-
+    setActiveId(null);
     if (!over) return;
     if (over.id !== active.id) {
       const startIndex = readlist.findIndex((item) => item === active.id);
       const endIndex = readlist.findIndex((item) => item === over.id);
       reorderReadlist(arrayMove(readlist, startIndex, endIndex));
     }
+  };
+  const handleDragStart = (event: DragStartEvent) => {
+    const { active } = event;
+    setActiveId(active.id);
+  };
+
+  const handleDragCancel = () => {
+    setActiveId(null);
   };
 
   const sensors = useSensors(
@@ -48,17 +62,27 @@ export const ReadlistCards = () => {
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
       sensors={sensors}
+      modifiers={[restrictToParentElement]}
+      onDragStart={handleDragStart}
+      onDragCancel={handleDragCancel}
+      onDragAbort={handleDragCancel}
     >
-      <SortableContext
-        items={readlist}
-        strategy={horizontalListSortingStrategy}
-      >
+      <SortableContext items={readlist} strategy={rectSwappingStrategy}>
         <div className="grid-col mt-10 grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-10">
           {readlist.map((id) => (
-            <Card key={id} id={id}></Card>
+            <Card key={id} id={id} />
           ))}
         </div>
       </SortableContext>
+      <DragOverlay
+        adjustScale
+        dropAnimation={{
+          duration: 150,
+          easing: 'cubic-bezier(0.19, 0.67, 0.6, 1.22)',
+        }}
+      >
+        {activeId ? <Card key={activeId} id={`${activeId}`} /> : null}
+      </DragOverlay>
     </DndContext>
   );
 };
