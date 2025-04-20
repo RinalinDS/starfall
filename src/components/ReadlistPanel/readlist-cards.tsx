@@ -81,7 +81,9 @@ export const ReadlistCards = () => {
           easing: 'cubic-bezier(0.19, 0.67, 0.6, 1.22)',
         }}
       >
-        {activeId ? <Card key={activeId} id={`${activeId}`} /> : null}
+        {activeId ? (
+          <Card key={activeId} id={`${activeId}`} isDraggin={true} />
+        ) : null}
       </DragOverlay>
     </DndContext>
   );

@@ -14,7 +14,13 @@ import { Typography } from '../ui/Typography/Typography';
 import { WatchListButton } from '../ui/Button/watchlist-button';
 
 // TODO: feels like this component is too heavy, because a lot of state management and the fact it's mapped component.
-export const Card = ({ id }: { id: string }) => {
+export const Card = ({
+  id,
+  isDraggin = false,
+}: {
+  id: string;
+  isDraggin?: boolean;
+}) => {
   const readlist = useBoundStore((state) => state.readlist);
   const addToReadlist = useBoundStore((state) => state.addToReadlist);
   const removeFromReadlist = useBoundStore((state) => state.removeFromReadlist);
@@ -95,7 +101,7 @@ export const Card = ({ id }: { id: string }) => {
         <Card.TrailerLink id={id}>
           <div
             {...listeners}
-            className={`p-2 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+            className={`p-2 ${isDraggin ? 'cursor-grabbing' : 'cursor-grab'}`}
           >
             <RxDragHandleHorizontal className="h-10 w-10 text-purple-600 dark:text-purple-400" />
           </div>
