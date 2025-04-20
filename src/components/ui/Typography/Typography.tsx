@@ -47,7 +47,7 @@ export const Typography = <
   const Tag = as || defaultElement;
   const classNameComputed = clsx(variants[variant], className);
   return (
-    <Tag {...rest} className={`${classNameComputed}`}>
+    <Tag {...rest} className={classNameComputed}>
       {children}
     </Tag>
   );

@@ -1,13 +1,13 @@
-import { useMemo } from 'react';
+import { ComponentPropsWithoutRef, useMemo } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { Direction, directions } from '../../constants/direction';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Book } from '../../types/book';
+import { WatchListButton } from '../ui/Button/watchlist-button';
 import { Typography } from '../ui/Typography/Typography';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
 import RightArrow from './../../assets/rightarrow.svg?react';
-import { WatchListButton } from '../ui/Button/watchlist-button';
 
 type Props = {
   mainSlide: Book;
@@ -78,9 +78,12 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
     </div>
   );
 };
-// TODO change
-// @ts-expect-error lazy
-const StyledButton = ({ children, className, ...props }) => {
+
+const CarouselButton = ({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<'button'>) => {
   return (
     <button
       {...props}
@@ -90,25 +93,31 @@ const StyledButton = ({ children, className, ...props }) => {
     </button>
   );
 };
-// @ts-expect-error lazy
-const ButtonLeft = ({ children, ...props }) => {
+
+const ButtonLeft = ({
+  children,
+  ...props
+}: ComponentPropsWithoutRef<'button'>) => {
   return (
-    <StyledButton
+    <CarouselButton
       className="left-2 hover:left-0 lg:left-4 lg:hover:left-0"
       {...props}
     >
       {children}
-    </StyledButton>
+    </CarouselButton>
   );
 };
-// @ts-expect-error lazy
-const ButtonRight = ({ children, ...props }) => {
+
+const ButtonRight = ({
+  children,
+  ...props
+}: ComponentPropsWithoutRef<'button'>) => {
   return (
-    <StyledButton
+    <CarouselButton
       className="right-2 hover:right-0 lg:right-4 lg:hover:right-0"
       {...props}
     >
       {children}
-    </StyledButton>
+    </CarouselButton>
   );
 };

@@ -3,7 +3,7 @@ import { Typography } from '../../components/ui/Typography/Typography';
 
 export const Login = () => {
   return (
-    <div className="mx-auto flex h-full flex-col">
+    <div className="mx-auto flex h-full w-full max-w-[120rem] flex-col">
       <main className="flex-1 bg-gray-200 p-4 md:p-12 dark:bg-gray-700">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="mx-auto flex w-3/5 flex-col items-center justify-center gap-4">
