@@ -79,6 +79,7 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
   );
 };
 
+// TODO можно просто объект с 3мя классами сделать : дефолт , лево , право , и баттону дать дефолт + право, второму дефолт + лево, и все , убрать это дерьмо.
 const CarouselButton = ({
   children,
   className,

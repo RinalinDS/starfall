@@ -19,7 +19,7 @@ import {
 } from '@dnd-kit/sortable';
 import { useState } from 'react';
 import { useBoundStore } from '../../store/useBoundStore';
-import { Card } from '../Card/Card';
+import {ReadlistCard} from '../Card/readlist-card.tsx';
 
 export const ReadlistCards = () => {
   const readlist = useBoundStore((state) => state.readlist);
@@ -70,7 +70,7 @@ export const ReadlistCards = () => {
       <SortableContext items={readlist} strategy={rectSwappingStrategy}>
         <div className="grid-col mt-10 grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-10">
           {readlist.map((id) => (
-            <Card key={id} id={id} />
+            <ReadlistCard key={id} id={id} />
           ))}
         </div>
       </SortableContext>
@@ -82,7 +82,7 @@ export const ReadlistCards = () => {
         }}
       >
         {activeId ? (
-          <Card key={activeId} id={`${activeId}`} isDraggin={true} />
+          <ReadlistCard key={activeId} id={`${activeId}`} isActivelyDragging={true} />
         ) : null}
       </DragOverlay>
     </DndContext>

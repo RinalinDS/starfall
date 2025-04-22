@@ -1,64 +1,35 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { useMemo } from 'react';
 import { FaPlus, FaRegStar, FaStar } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { RatingModal } from '../../components/RatingModal/rating-modal';
 import { Button } from '../../components/ui/Button/button';
-import { Typography } from '../../components/ui/Typography/Typography';
-import { useModalControls } from '../../hooks/useModalControls';
-import { preview } from '../../mocks/preview';
-import { useBoundStore } from '../../store/useBoundStore';
 import { WatchListButton } from '../../components/ui/Button/watchlist-button';
+import { Typography } from '../../components/ui/Typography/Typography';
+import { useBookActions } from '../../hooks/useBookActions';
+import { preview } from '../../mocks/preview';
 
 const routeApi = getRouteApi('/preview/$bookId');
 
 export const Preview = () => {
   const { bookId } = routeApi.useParams();
-  const readlist = useBoundStore((state) => state.readlist);
-  const addToReadlist = useBoundStore((state) => state.addToReadlist);
-  const removeFromReadlist = useBoundStore((state) => state.removeFromReadlist);
-  const updateUserRating = useBoundStore((state) => state.updateUserRating);
-  const removeUserRating = useBoundStore((state) => state.removeUserRating);
-  const book = useBoundStore((state) =>
-    state.books.find((book) => book.id === bookId)
-  );
-
-  const { closeModal, isOpen, openModal } = useModalControls();
-
-  const ratingToDisplay = (book?.rating || 0).toLocaleString('en-US', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 1,
-  });
-
-  const isBookInReadlist = useMemo(
-    () => readlist.some((item) => bookId === item),
-    [readlist, bookId]
-  );
+  const {
+    book,
+    ratingToDisplay,
+    openModal,
+    isBookInReadlist,
+    changeReadlistHandler,
+    closeModal,
+    updateUserRatingHandler,
+    removeUserRatingHandler,
+    isOpen,
+  } = useBookActions(bookId);
 
   if (!book) {
     return <div>Book not found</div>;
   }
 
-  const changeReadlistHandler = () => {
-    if (isBookInReadlist) {
-      removeFromReadlist(bookId);
-    } else {
-      addToReadlist(bookId);
-    }
-  };
-
-  const updateUserRatingHandler = (rating: number) => {
-    updateUserRating(bookId, rating);
-    closeModal();
-  };
-
-  const removeUserRatingHandler = () => {
-    removeUserRating(bookId);
-    closeModal();
-  };
-
   const { preview: bookPreviewData } = preview[bookId];
-
+  // TODO split this mfucking markup
   return (
     <div className="mx-auto flex w-full max-w-[120rem] flex-col px-8 py-6 lg:px-0">
       <header className="mb-6 flex items-center justify-between">
