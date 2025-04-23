@@ -13,13 +13,12 @@ import {
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import {
   arrayMove,
-  rectSwappingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
 import { useState } from 'react';
 import { useBoundStore } from '../../store/useBoundStore';
-import {ReadlistCard} from '../Card/readlist-card.tsx';
+import { ReadlistCard } from '../Card/readlist-card.tsx';
 
 export const ReadlistCards = () => {
   const readlist = useBoundStore((state) => state.readlist);
@@ -56,7 +55,6 @@ export const ReadlistCards = () => {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
-
   return (
     <DndContext
       collisionDetection={closestCenter}
@@ -67,7 +65,7 @@ export const ReadlistCards = () => {
       onDragCancel={handleDragCancel}
       onDragAbort={handleDragCancel}
     >
-      <SortableContext items={readlist} strategy={rectSwappingStrategy}>
+      <SortableContext items={readlist}>
         <div className="grid-col mt-10 grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-10">
           {readlist.map((id) => (
             <ReadlistCard key={id} id={id} />
@@ -82,7 +80,11 @@ export const ReadlistCards = () => {
         }}
       >
         {activeId ? (
-          <ReadlistCard key={activeId} id={`${activeId}`} isActivelyDragging={true} />
+          <ReadlistCard
+            key={activeId}
+            id={`${activeId}`}
+            isActivelyDragging={true}
+          />
         ) : null}
       </DragOverlay>
     </DndContext>

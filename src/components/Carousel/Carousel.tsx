@@ -1,6 +1,4 @@
 import { ComponentPropsWithoutRef, useMemo } from 'react';
-import { FaPlus } from 'react-icons/fa6';
-import { IoMdCheckmark } from 'react-icons/io';
 import { Direction, directions } from '../../constants/direction';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Book } from '../../types/book';
@@ -57,10 +55,8 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
         />
         <WatchListButton
           onClick={changeWatchlistHandler}
-          isBookInWatchList={isBookInReadlist}
-        >
-          {isBookInReadlist ? <IoMdCheckmark /> : <FaPlus />}
-        </WatchListButton>
+          isBookInReadlist={isBookInReadlist}
+        />
       </div>
       <div className="absolute right-4 bottom-4 flex max-h-1/2 w-7/10 flex-col items-start justify-evenly text-lg text-white sm:bottom-8">
         <Typography variant="h4" as="h3">
