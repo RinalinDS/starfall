@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button } from '../ui/Button/button';
+import { Button } from '../../ui/Button/button';
 import { IoIosStarOutline } from 'react-icons/io';
 import { IoMdStar } from 'react-icons/io';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
-import { Rating } from '../Rating/rating';
+import { Rating } from '../atoms/Rating/rating';
 import { Button } from '../ui/Button/button';
 import { Modal } from '../ui/Modal/modal';
 import { Typography } from '../ui/Typography/Typography';
