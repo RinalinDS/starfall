@@ -6,7 +6,7 @@ export type Book = {
   author: string;
   id: string;
   rating: number;
-  howManyTimeWereRated: number;
+  ratingCount: number;
   currentUserRating: number | null;
   year: number;
   tags: string[];

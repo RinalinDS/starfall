@@ -21,18 +21,18 @@ export const createBookSlice: StateCreator<BookSlice, [], [], BookSlice> = (
             ? {
                 ...book,
                 rating:
-                  (book.rating * book.howManyTimeWereRated + rating) /
-                  (book.howManyTimeWereRated + 1),
+                  (book.rating * book.ratingCount + rating) /
+                  (book.ratingCount + 1),
                 currentUserRating: rating,
-                howManyTimeWereRated: book.howManyTimeWereRated + 1,
+                ratingCount: book.ratingCount + 1,
               }
             : {
                 ...book,
                 rating:
-                  (book.rating * book.howManyTimeWereRated -
+                  (book.rating * book.ratingCount -
                     book.currentUserRating +
                     rating) /
-                  book.howManyTimeWereRated,
+                  book.ratingCount,
                 currentUserRating: rating,
               }
           : book;
@@ -45,11 +45,10 @@ export const createBookSlice: StateCreator<BookSlice, [], [], BookSlice> = (
           ? {
               ...book,
               rating:
-                (book.rating * book.howManyTimeWereRated -
-                  book.currentUserRating) /
-                (book.howManyTimeWereRated - 1),
+                (book.rating * book.ratingCount - book.currentUserRating) /
+                (book.ratingCount - 1),
               currentUserRating: null,
-              howManyTimeWereRated: book.howManyTimeWereRated - 1,
+              ratingCount: book.ratingCount - 1,
             }
           : book;
       }),
