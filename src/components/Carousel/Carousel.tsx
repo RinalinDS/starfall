@@ -1,7 +1,8 @@
-import { ComponentPropsWithoutRef, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Direction, directions } from '../../constants/direction';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Book } from '../../types/book';
+import { Button } from '../ui/Button/button';
 import { WatchListButton } from '../ui/Button/watchlist-button';
 import { Typography } from '../ui/Typography/Typography';
 import LeftArrow from './../../assets/leftarrrow.svg?react';
@@ -39,6 +40,16 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
     changeSlide(directions.next);
   };
 
+  const carouselBtnClassnames = useMemo(
+    () => ({
+      default:
+        'absolute top-0 z-5 translate-y-0 rounded-md border border-white/70 bg-black/45 px-3 py-5 text-2xl leading-none text-white/70 transition-all duration-250 hover:text-yellow-400 md:top-1/2 md:-translate-y-1/2',
+      left: 'left-2 hover:left-0 lg:left-4 lg:hover:left-0',
+      right: 'right-2 hover:right-0 lg:right-4 lg:hover:right-0',
+    }),
+    []
+  );
+
   return (
     <div className="relative h-[36rem] w-full overflow-hidden rounded-lg lg:h-[48rem]">
       <img
@@ -64,57 +75,19 @@ export const Carousel = ({ mainSlide, changeSlide }: Props) => {
         </Typography>
         <Typography variant="body1">{description}</Typography>
       </div>
-      <ButtonLeft onClick={changePrevSlide}>
+      <Button
+        className={`${carouselBtnClassnames.default} ${carouselBtnClassnames.left}`}
+        onClick={changePrevSlide}
+      >
         <LeftArrow />
-      </ButtonLeft>
-      <ButtonRight onClick={changeNextSlide}>
+      </Button>
+      <Button
+        className={`${carouselBtnClassnames.default} ${carouselBtnClassnames.right}`}
+        onClick={changeNextSlide}
+      >
         <RightArrow />
-      </ButtonRight>
+      </Button>
       <div />
     </div>
-  );
-};
-
-// TODO можно просто объект с 3мя классами сделать : дефолт , лево , право , и баттону дать дефолт + право, второму дефолт + лево, и все , убрать это дерьмо.
-const CarouselButton = ({
-  children,
-  className,
-  ...props
-}: ComponentPropsWithoutRef<'button'>) => {
-  return (
-    <button
-      {...props}
-      className={`absolute top-0 z-5 translate-y-0 rounded-md border border-white/70 bg-black/45 px-3 py-5 text-2xl leading-none text-white/70 transition-all duration-250 hover:text-yellow-400 md:top-1/2 md:-translate-y-1/2 ${className} `}
-    >
-      {children}
-    </button>
-  );
-};
-
-const ButtonLeft = ({
-  children,
-  ...props
-}: ComponentPropsWithoutRef<'button'>) => {
-  return (
-    <CarouselButton
-      className="left-2 hover:left-0 lg:left-4 lg:hover:left-0"
-      {...props}
-    >
-      {children}
-    </CarouselButton>
-  );
-};
-
-const ButtonRight = ({
-  children,
-  ...props
-}: ComponentPropsWithoutRef<'button'>) => {
-  return (
-    <CarouselButton
-      className="right-2 hover:right-0 lg:right-4 lg:hover:right-0"
-      {...props}
-    >
-      {children}
-    </CarouselButton>
   );
 };

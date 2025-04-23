@@ -32,7 +32,7 @@ const Button = forwardRef(function Button<
 ) {
   const Component = as || defaultElement;
   const classNameComputed = clsx(
-    'inline-flex items-center justify-center cursor-pointer transition-colors duration-300 outline-none border-0',
+    'inline-flex items-center justify-center cursor-pointer transition-colors duration-300 outline-none',
     className
   );
 
