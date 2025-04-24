@@ -1,13 +1,13 @@
-import ryiria from './../assets/riyria.png';
-import lotr from './../assets/lotr.png';
-import previewLotr from './../assets/lotr_preview.jpg';
-import eyeoftheworld_preview from './../assets/eyeoftheworld_preview.png';
-import theftOfSwords from './../assets/theft_of_swords_preview.jpg';
-import previewWayOfKings from './../assets/preview_wayofkings.jpg';
-import wot from './../assets/wot.png';
-import wayOfKings from './../assets/way_of_kings.png';
-import got from './../assets/got.jpg';
-import gotPreview from './../assets/got_preview.jpg';
+import ryiria from './../assets/riyria.webp';
+import lotr from './../assets/lotr.webp';
+import previewLotr from './../assets/lotr_preview.webp';
+import eyeoftheworld_preview from './../assets/eyeoftheworld_preview.webp';
+import theftOfSwords from './../assets/theft_of_swords_preview.webp';
+import previewWayOfKings from './../assets/preview_wayofkings.webp';
+import wot from './../assets/wot.webp';
+import wayOfKings from './../assets/way_of_kings.webp';
+import got from './../assets/got.webp';
+import gotPreview from './../assets/got_preview.webp';
 import { Book } from '../types/book';
 
 export const booksData: Book[] = [
