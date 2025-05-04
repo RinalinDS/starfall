@@ -1,18 +1,17 @@
-import { Link } from '@tanstack/react-router';
 import {
+  LuCheck,
+  LuChevronRight,
   LuEye,
   LuInfo,
-  LuStar,
-  LuChevronRight,
   LuPlay,
-  LuCheck,
+  LuStar,
 } from 'react-icons/lu';
 
 import { WatchListButton } from '../../components/ui/Button/watchlist-button';
+import { Modal } from '../../components/ui/Modal/modal';
 import { Typography } from '../../components/ui/Typography/Typography';
 import { useBookActions } from '../../hooks/useBookActions';
 import { useBoundStore } from '../../store/useBoundStore';
-import { Modal } from '../../components/ui/Modal/modal';
 
 export const Readlist = () => {
   const readlist = useBoundStore((state) => state.readlist);
@@ -113,9 +112,9 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
           <p className="">{description}</p>
           <div className="">
             <span className="font-medium">Author: </span>
-            <Link href="#" className="text-blue-600 hover:underline">
+            <a href="#" className="text-blue-600 hover:underline">
               {author}
-            </Link>
+            </a>
           </div>
         </div>
       </div>
