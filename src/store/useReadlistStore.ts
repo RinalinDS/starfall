@@ -13,7 +13,7 @@ export const createReadlistSlice: StateCreator<
   [],
   ReadlistSlice
 > = (set) => ({
-  readlist: [],
+  readlist: ['1', '2'],
   addToReadlist: (id) =>
     set((state) => ({ readlist: [...state.readlist, id] })),
   removeFromReadlist: (id) =>
