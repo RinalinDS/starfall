@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { IoCloseSharp } from 'react-icons/io5';
 import { Rating } from '../atoms/Rating/rating';
 import { Button } from '../ui/Button/button';
 import { Modal } from '../ui/Modal/modal';
@@ -28,12 +27,6 @@ export const RatingModal = ({
   return (
     <Modal closeModal={closeModal}>
       <div className="flex flex-col items-center justify-between gap-4">
-        <Button
-          className="absolute -top-20 right-0 flex items-center justify-center rounded-full border-none bg-transparent p-1.5 text-6xl"
-          onClick={closeModal}
-        >
-          <IoCloseSharp />
-        </Button>
         <Star rating={rating} />
 
         <Typography variant="h6">{title}</Typography>
