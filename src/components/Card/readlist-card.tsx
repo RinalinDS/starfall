@@ -1,6 +1,6 @@
-import {useSortableActions} from '../../hooks/useSortableActions';
-import Card from './atoms'
-import {BookDataProvider} from "./BookDataProvider.tsx";
+import { useSortableActions } from '../../hooks/useSortableActions';
+import Card from './atoms';
+import { BookDataProvider } from './BookDataProvider.tsx';
 
 export const ReadlistCard = ({
   id,
@@ -33,4 +33,3 @@ export const ReadlistCard = ({
     </div>
   );
 };
-

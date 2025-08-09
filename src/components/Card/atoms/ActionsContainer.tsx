@@ -1,5 +1,5 @@
-import {ReactNode} from "react";
+import { ReactNode } from 'react';
 
-export const ActionsContainer = ({children}: { children: ReactNode }) => (
-    <div className="flex items-center justify-between">{children}</div>
+export const ActionsContainer = ({ children }: { children: ReactNode }) => (
+  <div className="flex items-center justify-between">{children}</div>
 );
