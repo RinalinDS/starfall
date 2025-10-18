@@ -1,7 +1,9 @@
-import { ReactNode, useEffect } from 'react';
+// Modal.tsx
+import { ReactNode, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Button } from '../Button/button';
 import { IoCloseSharp } from 'react-icons/io5';
+import { useModalContext } from './ModalContext';
 
 export const Modal = ({
   closeModal,
@@ -10,7 +12,19 @@ export const Modal = ({
   closeModal: () => void;
   children: ReactNode;
 }) => {
+  const { registerModal, unregisterModal } = useModalContext();
+  const [zIndex, setZIndex] = useState(1000);
   const root = document.querySelector('body');
+
+  useEffect(() => {
+    const level = registerModal();
+    setZIndex(1000 + level * 10);
+
+    return () => {
+      unregisterModal();
+    };
+  }, []);
+
   useEffect(() => {
     const onEscPressHandler = function (e: KeyboardEvent) {
       if (e.key === 'Escape') {
@@ -28,11 +42,14 @@ export const Modal = ({
     return createPortal(
       <>
         <div
-          className="fixed top-0 right-0 bottom-0 left-0 z-1000 bg-black/50 dark:bg-black/70"
+          className="fixed top-0 right-0 bottom-0 left-0 bg-black/50 dark:bg-black/70"
+          style={{ zIndex }}
           onClick={closeModal}
         />
-
-        <div className="fixed right-0 bottom-0 left-0 z-[1001] min-h-96 min-w-192 rounded bg-gray-50 p-16 text-gray-900 md:top-1/2 md:right-auto md:bottom-auto md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 dark:bg-gray-900 dark:text-gray-50">
+        <div
+          className="fixed right-0 bottom-0 left-0 min-h-96 min-w-192 rounded bg-gray-50 p-16 text-gray-900 md:top-1/2 md:right-auto md:bottom-auto md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 dark:bg-gray-900 dark:text-gray-50"
+          style={{ zIndex: zIndex + 1 }}
+        >
           {children}
           <Button
             className="absolute -top-20 right-0 flex items-center justify-center rounded-full border-none bg-transparent p-1.5 text-6xl text-white hover:bg-amber-400"

@@ -14,8 +14,6 @@ export const createBookSlice: StateCreator<BookSlice, [], [], BookSlice> = (
   updateUserRating: (id: string, rating: number) =>
     set((state) => ({
       books: state.books.map((book) => {
-        console.log('state', id, rating);
-
         return book.id === id
           ? book.currentUserRating === null
             ? {

@@ -31,7 +31,7 @@ export const Readlist = () => {
         </section>
       </div>
       <section className="mx-auto max-w-[120rem] py-8">
-        <div className="flex max-w-[80rem] flex-col gap-8 rounded-lg border border-gray-200 bg-white p-6 text-2xl">
+        <div className="flex max-w-[80rem] flex-col gap-8 rounded-lg border border-gray-200 bg-white p-6 text-2xl dark:border-gray-700 dark:bg-gray-800">
           {readlist.map((m, i) => {
             return <MovieListing key={m} id={m} index={i + 1} />;
           })}
@@ -74,7 +74,7 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
 
   return (
     <>
-      <div className="flex gap-4 border-b border-gray-200 pb-6 last:border-b-0">
+      <div className="flex gap-4 rounded-lg border-b border-gray-200 bg-white p-4 pb-6 last:border-b-0 dark:border-gray-700 dark:bg-gray-800">
         <div className="relative flex-shrink-0">
           <div className="absolute z-10">
             <WatchListButton
@@ -94,14 +94,13 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
         <div className="flex flex-1 flex-col gap-3 space-y-2">
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-start">
-              <h2 className="mb-1 font-semibold">
+              <h2 className="mb-1 font-semibold text-gray-900 dark:text-white">
                 {index}. {title}
               </h2>
-
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-6 text-gray-600 dark:text-gray-200">
                 <div className="">{year}</div>
                 <div className="flex items-center gap-1">
-                  <LuStar className="h-4 w-4 fill-amber-400 text-amber-400" />
+                  <LuStar className="h-4 w-4 fill-amber-400 text-amber-400 dark:fill-amber-500 dark:text-amber-500" />
                   <span className="font-medium">
                     {ratingToDisplay} ({ratingCount})
                   </span>
@@ -109,31 +108,28 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
                 <div className="flex items-center gap-1">
                   <Button
                     onClick={openModal}
-                    className="flex items-center gap-1.5 rounded-sm px-4 py-1 hover:bg-emerald-500 dark:hover:bg-emerald-600"
+                    className="flex items-center gap-1.5 rounded-sm px-4 py-1 text-gray-600 hover:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700"
                   >
                     <Icon className="h-4 w-4 fill-purple-600 dark:fill-purple-400" />
                     <span>{currentUserRating || 0} </span>
                   </Button>
                 </div>
-                {/* TODO : mark as watched and different icons , isWatched can be based on 2 assumption , direct user click , and if user has rated this book, watched should add book to read history */}
                 <div className="flex items-center gap-1">
-                  <LuEye className="h-4 w-4 text-blue-600" />
+                  <LuEye className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                   <span>Watched</span>
                 </div>
               </div>
             </div>
-
             <button
-              className="rounded-full p-6 text-blue-600 hover:bg-blue-100"
+              className="rounded-full p-6 text-blue-600 hover:bg-blue-100 dark:text-blue-400 dark:hover:bg-gray-700"
               onClick={openRatingModal}
               title={`See more information about ${title}`}
             >
               <LuInfo className="h-8 w-8" />
             </button>
           </div>
-
-          <p className="">{description}</p>
-          <div className="">
+          <p className="text-gray-700 dark:text-gray-100">{description}</p>
+          <div className="text-gray-700 dark:text-gray-100">
             <span className="font-medium">Author: </span>
             <span>{author}</span>
           </div>
@@ -190,7 +186,7 @@ const MovieCard = ({ id }: MovieCardProps) => {
   const Icon = currentUserRating ? FaStar : FaRegStar;
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex max-w-[600px] flex-col gap-4">
         <div className="flex flex-col gap-10">
           <div className="flex items-center gap-12">
             <div>
@@ -228,7 +224,7 @@ const MovieCard = ({ id }: MovieCardProps) => {
               <div className="text-md mt-1 flex items-center gap-2 text-emerald-700 dark:text-emerald-300">
                 {tags.map((tag, index, arr) => {
                   return (
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2" key={tag}>
                       <span>{tag}</span>
                       {index + 1 < arr.length && <span>•</span>}
                     </div>
