@@ -1,14 +1,15 @@
 import { LuChevronRight, LuEye, LuInfo, LuStar } from 'react-icons/lu';
 
 import { Link } from '@tanstack/react-router';
-import { useState } from 'react';
 import { FaCheck, FaPlay, FaRegStar, FaStar } from 'react-icons/fa6';
 import { RatingModal } from '../../components/RatingModal/rating-modal';
 import { WatchListButton } from '../../components/ui/Button/watchlist-button';
 import { Modal } from '../../components/ui/Modal/modal';
 import { Typography } from '../../components/ui/Typography/Typography';
 import { useBookActions } from '../../hooks/useBookActions';
+import { useModalControls } from '../../hooks/useModalControls';
 import { useBoundStore } from '../../store/useBoundStore';
+import { Button } from '../../components/ui/Button/button';
 
 export const Readlist = () => {
   const readlist = useBoundStore((state) => state.readlist);
@@ -41,7 +42,12 @@ export const Readlist = () => {
 };
 
 const MovieListing = ({ id, index }: { id: string; index: number }) => {
-  const [isMovieCardModalOpen, setIsMovieCardModalOpen] = useState(false);
+  const {
+    closeModal: closeRatingModal,
+    openModal: openRatingModal,
+    isOpen: isMovieCardModalOpen,
+  } = useModalControls();
+
   const {
     book,
     ratingToDisplay,
@@ -54,13 +60,6 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
     isBookInReadlist,
   } = useBookActions(id);
 
-  const openRatingModal = () => {
-    setIsMovieCardModalOpen(true);
-  };
-
-  const closeRatingModal = () => {
-    setIsMovieCardModalOpen(false);
-  };
   if (!book) return null;
   const {
     author,
@@ -108,13 +107,13 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
                   </span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button
-                    className="flex items-center gap-0.5"
+                  <Button
                     onClick={openModal}
+                    className="flex items-center gap-1.5 rounded-sm px-4 py-1 hover:bg-emerald-500 dark:hover:bg-emerald-600"
                   >
                     <Icon className="h-4 w-4 fill-purple-600 dark:fill-purple-400" />
                     <span>{currentUserRating || 0} </span>
-                  </button>
+                  </Button>
                 </div>
                 {/* TODO : mark as watched and different icons , isWatched can be based on 2 assumption , direct user click , and if user has rated this book, watched should add book to read history */}
                 <div className="flex items-center gap-1">
@@ -191,7 +190,7 @@ const MovieCard = ({ id }: MovieCardProps) => {
   const Icon = currentUserRating ? FaStar : FaRegStar;
   return (
     <>
-      <div>
+      <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-10">
           <div className="flex items-center gap-12">
             <div>
@@ -216,37 +215,31 @@ const MovieCard = ({ id }: MovieCardProps) => {
                   </span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button
-                    className="flex items-center gap-0.5"
+                  <Button
                     onClick={openModal}
+                    className="flex items-center gap-1.5 rounded-sm px-4 py-1 hover:bg-emerald-500 dark:hover:bg-emerald-600"
                   >
-                    {/* <LuStar
-                      className="h-4 w-4 text-blue-600"
-                      fill={currentUserRating ? 'text-blue-600' : 'none'}
-                    /> */}
                     <Icon className="h-4 w-4 fill-purple-600 dark:fill-purple-400" />
                     <span>{currentUserRating || 0} </span>
-                  </button>
+                  </Button>
                 </div>
               </div>
 
-              <div className="text-xm mt-1 flex items-center text-gray-400">
+              <div className="text-md mt-1 flex items-center gap-2 text-emerald-700 dark:text-emerald-300">
                 {tags.map((tag, index, arr) => {
                   return (
-                    <>
+                    <div className="flex items-center gap-2">
                       <span>{tag}</span>
-                      {index + 1 < arr.length && (
-                        <span className="mx-1">•</span>
-                      )}
-                    </>
+                      {index + 1 < arr.length && <span>•</span>}
+                    </div>
                   );
                 })}
               </div>
             </div>
           </div>
 
-          <div>
-            <p>{description}</p>
+          <div className="flex flex-col gap-4">
+            <div>{description}</div>
 
             <div>
               <div className="flex">
