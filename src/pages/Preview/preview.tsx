@@ -50,7 +50,10 @@ export const Preview = () => {
 
   return (
     <section className="mx-auto flex w-full max-w-[120rem] flex-col px-8 py-6 lg:px-0">
-      <header className="mb-6 flex items-center justify-between" ref={ref}>
+      <header
+        className="mb-6 flex flex-col items-center justify-between md:flex-row"
+        ref={ref}
+      >
         <Typography as="h2" variant="h3" className="py-6 text-7xl">
           {title}
         </Typography>
