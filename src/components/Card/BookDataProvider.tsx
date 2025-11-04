@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useBookActions } from '../../hooks/useBookActions.ts';
 import { FallbackCard } from './atoms/FallbackCard.tsx';
-import { CardContext } from './useCardContext.tsx';
+import { CardContext } from './CardContext.ts';
 
 export const BookDataProvider = ({
   id,
@@ -20,6 +20,7 @@ export const BookDataProvider = ({
     removeUserRatingHandler,
     isOpen,
     closeModal,
+    currentUserRating,
   } = useBookActions(id);
 
   if (!book) return <FallbackCard />;
@@ -36,6 +37,7 @@ export const BookDataProvider = ({
         isOpen,
         closeModal,
         removeUserRatingHandler,
+        currentUserRating,
       }}
     >
       {children}
