@@ -7,7 +7,6 @@ export type Book = {
   id: string;
   rating: number;
   ratingCount: number;
-  currentUserRating: number | null;
   year: number;
   tags: string[];
 };

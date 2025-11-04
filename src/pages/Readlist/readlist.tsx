@@ -61,18 +61,11 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
     removeUserRatingHandler,
     updateUserRatingHandler,
     isBookInReadlist,
+    currentUserRating,
   } = useBookActions(id);
 
   if (!book) return null;
-  const {
-    author,
-    description,
-    previewImage,
-    year,
-    title,
-    ratingCount,
-    currentUserRating,
-  } = book;
+  const { author, description, previewImage, year, title, ratingCount } = book;
   const Icon = currentUserRating ? FaStar : FaRegStar;
 
   return (
@@ -171,22 +164,15 @@ const MovieCard = ({ id }: MovieCardProps) => {
     closeModal,
     removeUserRatingHandler,
     updateUserRatingHandler,
+    currentUserRating,
   } = useBookActions(id);
 
   if (!book) {
     return null;
   }
 
-  const {
-    author,
-    currentUserRating,
-    description,
-    previewImage,
-    ratingCount,
-    year,
-    title,
-    tags,
-  } = book;
+  const { author, description, previewImage, ratingCount, year, title, tags } =
+    book;
   const Icon = currentUserRating ? FaStar : FaRegStar;
   return (
     <>

@@ -10,6 +10,9 @@ import got from './../assets/got.webp';
 import gotPreview from './../assets/got_preview.webp';
 import { Book } from '../types/book';
 
+// TODO for the future , should I really store currentUserRating inside the book data?
+// or it's user data? seems like , i should really increase count , and readjust rating , but not sure it currentUserRating should be handled here.
+
 export const booksData: Book[] = [
   {
     author: 'Michael J. Sullivan',
@@ -21,7 +24,6 @@ export const booksData: Book[] = [
     title: 'The Riyria Revelations',
     rating: 9.17,
     ratingCount: 5,
-    currentUserRating: null,
     year: 2008,
     tags: ['action', 'adventure', 'fantasy', 'mystery'],
   },
@@ -35,7 +37,6 @@ export const booksData: Book[] = [
     title: 'The Lord of the Rings',
     rating: 9.5,
     ratingCount: 6,
-    currentUserRating: null,
     year: 1954,
     tags: ['action', 'adventure', 'fantasy', 'mythology'],
   },
@@ -49,7 +50,6 @@ export const booksData: Book[] = [
       'The Way of Kings is an epic high fantasy novel written by American author Brandon Sanderson and the first book in The Stormlight Archive series',
     rating: 9.0,
     ratingCount: 5,
-    currentUserRating: null,
     year: 2010,
     tags: ['action', 'adventure', 'fantasy', 'kosmere'],
   },
@@ -64,7 +64,6 @@ export const booksData: Book[] = [
     previewImage: eyeoftheworld_preview,
     rating: 7.6,
     ratingCount: 5,
-    currentUserRating: null,
     year: 1990,
     tags: ['action', 'adventure', 'fantasy', 'wheeloftime'],
   },
@@ -78,7 +77,6 @@ export const booksData: Book[] = [
     title: 'A Game of Thrones',
     rating: 8.6,
     ratingCount: 5,
-    currentUserRating: null,
     year: 1996,
     tags: ['action', 'adventure', 'fantasy', 'history', 'politics'],
   },

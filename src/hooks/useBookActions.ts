@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useBoundStore } from '../store/useBoundStore';
 import { useModalControls } from './useModalControls';
+import { useUserStore } from '../store/useUserStore';
 
 export const useBookActions = (id: string) => {
   const {
@@ -8,18 +9,22 @@ export const useBookActions = (id: string) => {
     book,
     readlist,
     removeFromReadlist,
-    removeUserRating,
-    updateUserRating,
+    updateBookRating,
+    removeBookRating,
   } = useBoundStore((state) => ({
     readlist: state.readlist,
     addToReadlist: state.addToReadlist,
     removeFromReadlist: state.removeFromReadlist,
-    updateUserRating: state.updateUserRating,
-    removeUserRating: state.removeUserRating,
+    updateBookRating: state.updateBookRating,
+    removeBookRating: state.removeBookRating,
     book: state.books.find((book) => book.id === id),
   }));
 
   const { closeModal, isOpen, openModal } = useModalControls();
+
+  const { getUserBookRating } = useUserStore();
+
+  const currentUserRating = getUserBookRating(id);
 
   const ratingToDisplay = (book?.rating || 0).toLocaleString('en-US', {
     maximumFractionDigits: 2,
@@ -37,16 +42,16 @@ export const useBookActions = (id: string) => {
 
   const updateUserRatingHandler = useCallback(
     (rating: number) => {
-      updateUserRating(id, rating);
+      updateBookRating(id, rating);
       closeModal();
     },
-    [closeModal, id, updateUserRating]
+    [closeModal, id, updateBookRating]
   );
 
   const removeUserRatingHandler = useCallback(() => {
-    removeUserRating(id);
+    removeBookRating(id);
     closeModal();
-  }, [removeUserRating, closeModal, id]);
+  }, [removeBookRating, closeModal, id]);
 
   return {
     readlist,
@@ -59,6 +64,7 @@ export const useBookActions = (id: string) => {
     changeReadlistHandler,
     closeModal,
     isBookInReadlist,
+    currentUserRating,
     hasBook: !!book,
   };
 };

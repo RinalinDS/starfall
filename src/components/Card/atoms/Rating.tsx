@@ -5,11 +5,7 @@ import { Button } from '../../ui/Button/button.tsx';
 import { useCardContext } from '../useCardContext.tsx';
 
 export const Rating = () => {
-  const {
-    ratingToDisplay,
-    openModal,
-    book: { currentUserRating },
-  } = useCardContext();
+  const { ratingToDisplay, openModal, currentUserRating } = useCardContext();
 
   const iconClassName =
     'fill-purple-600 text-2xl group-hover:fill-purple-600 dark:fill-purple-400';

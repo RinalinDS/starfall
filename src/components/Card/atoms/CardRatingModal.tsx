@@ -4,11 +4,12 @@ import { useCardContext } from '../useCardContext.tsx';
 
 export const CardRatingModal = () => {
   const {
-    book: { currentUserRating, title },
+    book: { title },
     closeModal,
     isOpen,
     updateUserRatingHandler,
     removeUserRatingHandler,
+    currentUserRating,
   } = useCardContext();
 
   if (!isOpen) return null;

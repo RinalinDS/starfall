@@ -23,6 +23,7 @@ export const Preview = () => {
     updateUserRatingHandler,
     removeUserRatingHandler,
     isOpen,
+    currentUserRating,
   } = useBookActions(bookId);
 
   const ref = useRef<HTMLDivElement | null>(null);
@@ -36,7 +37,6 @@ export const Preview = () => {
 
   const {
     ratingCount,
-    currentUserRating,
     image,
     previewImage,
     author,

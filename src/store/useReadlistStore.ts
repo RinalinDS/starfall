@@ -1,5 +1,7 @@
 import { StateCreator } from 'zustand';
 
+// TODO don't need slices , just make regular zustand stores.
+
 export type ReadlistSlice = {
   readlist: string[];
   addToReadlist: (id: string) => void;
