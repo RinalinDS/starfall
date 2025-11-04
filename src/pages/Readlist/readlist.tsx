@@ -13,6 +13,9 @@ import { Button } from '../../components/ui/Button/button';
 
 export const Readlist = () => {
   const readlist = useBoundStore((state) => state.readlist);
+  // TODO: split components add sorting/ordedring : by year, by rating , by personal rating, number of ratings, alpabetical, origin order
+  // ADD filtering?
+  // Add different view , full card like now, card withut description and authour Cards like on main page , you'll see expample on imdb
 
   return (
     <div className="h-full w-screen">
@@ -116,6 +119,7 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
                 </div>
                 <div className="flex items-center gap-1">
                   <LuEye className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  {/* TODO : add watch state, based on 2 assumptiouns : direct user click  or if user rated the item. Rate = watched also.*/}
                   <span>Watched</span>
                 </div>
               </div>
