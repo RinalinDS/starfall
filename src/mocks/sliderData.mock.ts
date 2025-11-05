@@ -10,9 +10,6 @@ import got from './../assets/got.webp';
 import gotPreview from './../assets/got_preview.webp';
 import { Book } from '../types/book';
 
-// TODO for the future , should I really store currentUserRating inside the book data?
-// or it's user data? seems like , i should really increase count , and readjust rating , but not sure it currentUserRating should be handled here.
-
 export const booksData: Book[] = [
   {
     author: 'Michael J. Sullivan',
