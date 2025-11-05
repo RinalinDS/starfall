@@ -1,6 +1,6 @@
 import { contactItems } from '../../mocks/footerData';
 import { Typography } from '../ui/Typography/Typography';
-import { Logo } from '../atoms/Logo.tsx';
+import { Logo } from '../shared/Logo.tsx';
 
 export const Footer = () => {
   return (

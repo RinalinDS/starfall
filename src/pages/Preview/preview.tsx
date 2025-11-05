@@ -1,13 +1,14 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { RatingModal } from '../../components/RatingModal/rating-modal';
+import { RatingModal } from '../../components/shared/RatingModal/rating-modal';
 import { Typography } from '../../components/ui/Typography/Typography';
 import { useBookActions } from '../../hooks/useBookActions';
 import { preview } from '../../mocks/preview';
-import { PreviewBookContent } from '../../components/molecules/preview/preview-book-content';
-import { PreviewImages } from '../../components/molecules/preview/preview-images';
-import { PreviewPersonalRating } from '../../components/molecules/preview/preview-personal-rating';
-import { PreviewPlatformRating } from '../../components/molecules/preview/preview-platform-rating';
+
 import { useEffect, useRef } from 'react';
+import { PreviewBookContent } from '../../components/preview/preview-book-content';
+import { PreviewImages } from '../../components/preview/preview-images';
+import { PreviewPersonalRating } from '../../components/preview/preview-personal-rating';
+import { PreviewPlatformRating } from '../../components/preview/preview-platform-rating';
 
 const routeApi = getRouteApi('/preview/$bookId');
 

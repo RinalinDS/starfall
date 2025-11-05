@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { CarouselPanel } from '../components/CarouselPanel/CarouselPanel';
-import { ReadlistPanel } from '../components/ReadlistPanel/readlist-panel';
+import { ReadlistPanel } from '../components/readlist/ReadlistPanel/readlist-panel';
+import { CarouselPanel } from '../components/main/CarouselPanel/CarouselPanel';
 
 export const Route = createFileRoute('/')({
   component: () => (

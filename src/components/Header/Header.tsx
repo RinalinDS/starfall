@@ -1,6 +1,6 @@
 import { HeaderControls } from './atoms/HeaderControls.tsx';
 import { HeaderSearchForm } from './atoms/HeaderSearchForm.tsx';
-import { Logo } from '../atoms/Logo.tsx';
+import { Logo } from '../shared/Logo.tsx';
 
 export const Header = () => {
   return (
