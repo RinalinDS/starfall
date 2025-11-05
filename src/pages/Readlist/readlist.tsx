@@ -10,6 +10,9 @@ import { useBookActions } from '../../hooks/useBookActions';
 import { useModalControls } from '../../hooks/useModalControls';
 import { useBoundStore } from '../../store/useBoundStore';
 import { Button } from '../../components/ui/Button/button';
+import { useUserStore } from '../../store/useUserStore';
+
+// TODO SPLIT THIS COMPONENT INTO DIFFERENT FILES FFS
 
 export const Readlist = () => {
   const readlist = useBoundStore((state) => state.readlist);
@@ -64,7 +67,23 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
     currentUserRating,
   } = useBookActions(id);
 
+  const { getIsWatched, toggleWatched } = useUserStore();
+
   if (!book) return null;
+
+  const isWatched = getIsWatched(id);
+  const isRated = Boolean(currentUserRating);
+
+  const handleToggleWatched = () => {
+    if (isRated && isWatched) {
+      // TODO add notification here
+      return;
+    }
+    toggleWatched(id);
+  };
+
+  // TODO make impossible to remove watched state, if you have rated this book, show notification "first remove your rating"
+
   const { author, description, previewImage, year, title, ratingCount } = book;
   const Icon = currentUserRating ? FaStar : FaRegStar;
 
@@ -110,11 +129,15 @@ const MovieListing = ({ id, index }: { id: string; index: number }) => {
                     <span>{currentUserRating || 0} </span>
                   </Button>
                 </div>
-                <div className="flex items-center gap-1">
+                <button
+                  className="inline-flex items-center gap-2 rounded-3xl px-3 py-2 text-blue-600 transition-colors duration-200 hover:bg-blue-100 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700"
+                  onClick={handleToggleWatched}
+                >
                   <LuEye className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  {/* TODO : add watch state, based on 2 assumptiouns : direct user click  or if user rated the item. Rate = watched also.*/}
-                  <span>Watched</span>
-                </div>
+                  <span>
+                    {isWatched || isRated ? 'Watched' : 'Mark as watched'}
+                  </span>
+                </button>
               </div>
             </div>
             <button

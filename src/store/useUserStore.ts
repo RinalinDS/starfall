@@ -8,11 +8,13 @@ interface BookRating {
 
 interface UserState {
   ratedBooks: BookRating[];
-
+  watchedBooks: string[];
   rateBook: (bookId: string, rating: number) => void;
   updateUserBookRating: (bookId: string, rating: number) => void;
   removeUserBookRating: (bookId: string) => void;
   getUserBookRating: (bookId: string) => number | null;
+  toggleWatched: (bookId: string) => void;
+  getIsWatched: (bookId: string) => boolean;
 }
 
 // TODO extend with user info, maybe ratedBooks should be user related and be inside user object.
@@ -20,6 +22,7 @@ export const useUserStore = create<UserState>()(
   persist(
     (set, get) => ({
       ratedBooks: [],
+      watchedBooks: [],
 
       rateBook: (bookId, rating) => {
         const { ratedBooks } = get();
@@ -68,6 +71,23 @@ export const useUserStore = create<UserState>()(
 
         const rating = ratedBooks.find((r) => r.bookId === bookId);
         return rating ? rating.rating : null;
+      },
+
+      toggleWatched: (bookId) => {
+        const { watchedBooks } = get();
+        if (watchedBooks.includes(bookId)) {
+          set({
+            watchedBooks: watchedBooks.filter((id) => id !== bookId),
+          });
+        } else {
+          set({
+            watchedBooks: [...watchedBooks, bookId],
+          });
+        }
+      },
+
+      getIsWatched: (bookId) => {
+        return get().watchedBooks.includes(bookId);
       },
     }),
     {
