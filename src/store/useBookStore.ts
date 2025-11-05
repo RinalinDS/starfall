@@ -27,7 +27,6 @@ export const useBookStore = create<BookState>()(
               if (book.id !== id) return book;
 
               if (currentUserRating === null) {
-                // пользователь ставит оценку впервые
                 return {
                   ...book,
                   rating:
@@ -36,7 +35,6 @@ export const useBookStore = create<BookState>()(
                   ratingCount: book.ratingCount + 1,
                 };
               } else {
-                // пользователь обновляет существующую оценку
                 return {
                   ...book,
                   rating:
