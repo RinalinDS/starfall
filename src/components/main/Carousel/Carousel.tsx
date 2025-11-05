@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { Direction, directions } from '../../../constants/direction';
-import { useBoundStore } from '../../../store/useBoundStore';
 import { Book } from '../../../types/book';
 import { Button } from '../../ui/Button/button';
 import { WatchListButton } from '../../ui/Button/watchlist-button';
 import { Typography } from '../../ui/Typography/Typography';
 
+import { useReadlistStore } from '../../../store/useReadlistStore';
 import LeftArrow from './../../../assets/leftarrrow.svg?react';
 import RightArrow from './../../../assets/rightarrow.svg?react';
 
@@ -15,9 +15,7 @@ type Props = {
 };
 
 export const Carousel = ({ mainSlide, changeSlide }: Props) => {
-  const readlist = useBoundStore((state) => state.readlist);
-  const addToReadlist = useBoundStore((state) => state.addToReadlist);
-  const removeFromReadlist = useBoundStore((state) => state.removeFromReadlist);
+  const { readlist, addToReadlist, removeFromReadlist } = useReadlistStore();
 
   const { image, previewImage, title, description, id } = mainSlide;
 

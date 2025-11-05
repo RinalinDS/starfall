@@ -1,24 +1,14 @@
 import { useCallback, useMemo } from 'react';
-import { useBoundStore } from '../store/useBoundStore';
 import { useModalControls } from './useModalControls';
 import { useUserStore } from '../store/useUserStore';
+import { useBookStore } from '../store/useBookStore';
+import { useReadlistStore } from '../store/useReadlistStore';
 
 export const useBookActions = (id: string) => {
-  const {
-    addToReadlist,
-    book,
-    readlist,
-    removeFromReadlist,
-    updateBookRating,
-    removeBookRating,
-  } = useBoundStore((state) => ({
-    readlist: state.readlist,
-    addToReadlist: state.addToReadlist,
-    removeFromReadlist: state.removeFromReadlist,
-    updateBookRating: state.updateBookRating,
-    removeBookRating: state.removeBookRating,
-    book: state.books.find((book) => book.id === id),
-  }));
+  const { removeBookRating, updateBookRating } = useBookStore();
+  const { readlist, addToReadlist, removeFromReadlist } = useReadlistStore();
+
+  const book = useBookStore((state) => state.books.find((b) => b.id === id));
 
   const { closeModal, isOpen, openModal } = useModalControls();
 

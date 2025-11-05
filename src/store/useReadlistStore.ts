@@ -1,20 +1,13 @@
-import { StateCreator } from 'zustand';
+import { create } from 'zustand';
 
-// TODO don't need slices , just make regular zustand stores.
-
-export type ReadlistSlice = {
+type ReadlistStore = {
   readlist: string[];
   addToReadlist: (id: string) => void;
   removeFromReadlist: (id: string) => void;
   setReadlist: (list: string[]) => void;
 };
 
-export const createReadlistSlice: StateCreator<
-  ReadlistSlice,
-  [],
-  [],
-  ReadlistSlice
-> = (set) => ({
+export const useReadlistStore = create<ReadlistStore>((set) => ({
   readlist: ['1', '2'],
   addToReadlist: (id) =>
     set((state) => ({ readlist: [...state.readlist, id] })),
@@ -22,5 +15,5 @@ export const createReadlistSlice: StateCreator<
     set((state) => ({
       readlist: state.readlist.filter((el) => el !== id),
     })),
-  setReadlist: (list: string[]) => set(() => ({ readlist: list })),
-});
+  setReadlist: (list) => set({ readlist: list }),
+}));

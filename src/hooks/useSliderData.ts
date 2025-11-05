@@ -1,25 +1,25 @@
 import { useMemo, useState } from 'react';
 import { Direction } from '../constants/direction';
-import { useBoundStore } from '../store/useBoundStore';
+import { useBookStore } from '../store/useBookStore';
 
 export const useSliderData = () => {
-  const booksData = useBoundStore((state) => state.books);
+  const { books } = useBookStore();
 
-  const [id, setId] = useState(booksData[0].id);
+  const [id, setId] = useState(books[0]?.id);
 
   const currentSlide = useMemo(() => {
-    const slide = booksData.find((book) => book.id === id);
+    const slide = books.find((book) => book.id === id);
     if (!slide) {
-      return booksData[0];
+      return books[0];
     }
     return slide;
-  }, [booksData, id]);
+  }, [books, id]);
 
   const upNextSlides = useMemo(() => {
-    const index = booksData.findIndex((s) => s.id === id);
+    const index = books.findIndex((s) => s.id === id);
 
-    return [...booksData.slice(index + 1), ...booksData.slice(0, index)];
-  }, [booksData, id]);
+    return [...books.slice(index + 1), ...books.slice(0, index)];
+  }, [books, id]);
 
   const firstThreeSlides = useMemo(
     () => upNextSlides.slice(0, 3),
@@ -27,18 +27,18 @@ export const useSliderData = () => {
   );
 
   const changeSlide = (direction: Direction) => {
-    const index = booksData.findIndex((s) => s.id === id);
+    const index = books.findIndex((s) => s.id === id);
     const nextIndex =
       direction === 'next'
         ? index + 1
         : index - 1 < 0
-          ? booksData.length - 1
+          ? books.length - 1
           : index - 1;
-    if (nextIndex === booksData.length) {
-      setId(booksData[0].id);
+    if (nextIndex === books.length) {
+      setId(books[0].id);
       return;
     }
-    setId(booksData[nextIndex].id);
+    setId(books[nextIndex].id);
   };
 
   return {

@@ -1,11 +1,12 @@
-import { useBoundStore } from '../../../store/useBoundStore.ts';
 import { Link } from '@tanstack/react-router';
 import { BsFillBookmarkPlusFill } from 'react-icons/bs';
+import { useReadlistStore } from '../../../store/useReadlistStore.ts';
 import { Typography } from '../../ui/Typography/Typography.tsx';
 import { HeaderButton } from './HeaderButton.tsx';
 
 export const ReadlistLink = () => {
-  const readlistLength = useBoundStore((state) => state.readlist.length);
+  const readlistLength = useReadlistStore((state) => state.readlist.length);
+
   return (
     <Link to="/readlist">
       <HeaderButton>

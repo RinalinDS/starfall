@@ -1,9 +1,9 @@
 import { BookListing } from '../../components/readlist/BookListing';
 import { Typography } from '../../components/ui/Typography/Typography';
-import { useBoundStore } from '../../store/useBoundStore';
+import { useReadlistStore } from '../../store/useReadlistStore';
 
 export const Readlist = () => {
-  const readlist = useBoundStore((state) => state.readlist);
+  const { readlist } = useReadlistStore();
   // TODO add sorting/ordedring : by year, by rating , by personal rating, number of ratings, alpabetical, origin order
   // ADD filtering?
   // Add different view , full card like now, card withut description and authour Cards like on main page , you'll see expample on imdb

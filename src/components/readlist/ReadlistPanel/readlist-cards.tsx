@@ -17,12 +17,12 @@ import {
   sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
 import { useState } from 'react';
-import { useBoundStore } from '../../../store/useBoundStore.ts';
+import { useReadlistStore } from '../../../store/useReadlistStore.ts';
 import { ReadlistCard } from '../../shared/Card/readlist-card.tsx';
 
 export const ReadlistCards = () => {
-  const readlist = useBoundStore((state) => state.readlist);
-  const reorderReadlist = useBoundStore((state) => state.setReadlist);
+  const { setReadlist, readlist } = useReadlistStore();
+
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -32,7 +32,7 @@ export const ReadlistCards = () => {
     if (over.id !== active.id) {
       const startIndex = readlist.findIndex((item) => item === active.id);
       const endIndex = readlist.findIndex((item) => item === over.id);
-      reorderReadlist(arrayMove(readlist, startIndex, endIndex));
+      setReadlist(arrayMove(readlist, startIndex, endIndex));
     }
   };
   const handleDragStart = (event: DragStartEvent) => {

@@ -1,11 +1,11 @@
 import { Link } from '@tanstack/react-router';
-import { useBoundStore } from '../../../store/useBoundStore';
 import RightArrow from './../../../assets/rightarrow.svg?react';
 import { EmptyReadlist } from './empty-readlist';
 import { ReadlistCards } from './readlist-cards';
+import { useReadlistStore } from '../../../store/useReadlistStore';
 
 export const ReadlistPanel = () => {
-  const readlist = useBoundStore((state) => state.readlist);
+  const { readlist } = useReadlistStore();
 
   const isReadlistEmpty = !readlist.length;
   return (
