@@ -18,8 +18,8 @@ export const useSortableActions = (
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging && !isActivelyDragging ? 0.3 : 1, // Прозрачность только для исходного элемента
-    cursor: isActivelyDragging ? 'grabbing' : 'grab', // Курсор для оверлея
+    opacity: isDragging && !isActivelyDragging ? 0.3 : 1,
+    cursor: isActivelyDragging || isDragging ? 'grabbing' : 'grab',
   };
 
   return {
