@@ -22,6 +22,7 @@ export const Rating = ({
       {ratingArray.map((ratingValue) => {
         return (
           <Button
+            key={ratingValue}
             name="rating"
             value={ratingValue}
             onClick={() => setRating(ratingValue)}
