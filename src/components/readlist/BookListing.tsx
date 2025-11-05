@@ -8,6 +8,8 @@ import { Button } from '../ui/Button/button';
 import { WatchListButton } from '../ui/Button/watchlist-button';
 import { Modal } from '../ui/Modal/modal';
 import { BookCard } from './BookCard';
+import toast from 'react-hot-toast';
+import { CgClose } from 'react-icons/cg';
 
 type Props = {
   id: string;
@@ -42,8 +44,22 @@ export const BookListing = ({ id, index }: Props) => {
 
   const handleToggleWatched = () => {
     if (isRated && isFinished) {
-      // TODO add notification here
-      // TODO make impossible to remove watched state, if you have rated this book, show notification "first remove your rating"
+      toast(
+        'To remove this from your watch history, remove your rating first.',
+        {
+          position: 'bottom-center',
+          style: {
+            alignItems: 'center',
+            textAlign: 'center',
+          },
+          icon: (
+            <CgClose size={32} onClick={() => toast.remove('isFinished')} />
+          ),
+          duration: Infinity,
+          id: 'isFinished',
+        }
+      );
+
       return;
     }
     toggleFinished(id);

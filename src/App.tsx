@@ -3,6 +3,9 @@ import { Footer } from './components/Footer/Footer.tsx';
 import { Header } from './components/Header/Header.tsx';
 import { ThemeProvider } from './hooks/useTheme.tsx';
 import { ModalProvider } from './components/ui/Modal/ModalContext.tsx';
+import { Toaster } from 'react-hot-toast';
+
+/// TODO TESTS
 
 export const App = () => {
   return (
@@ -16,6 +19,7 @@ export const App = () => {
           </main>
 
           <Footer />
+          <Toaster />
         </div>
       </ModalProvider>
     </ThemeProvider>

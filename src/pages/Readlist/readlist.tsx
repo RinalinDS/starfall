@@ -9,7 +9,7 @@ export const Readlist = () => {
   // Add different view , full card like now, card withut description and authour Cards like on main page , you'll see expample on imdb
 
   return (
-    <div className="h-full w-screen">
+    <div className="h-full">
       <div className="bg-gray-600">
         <section className="mx-auto max-w-[120rem] py-8">
           <div className="flex w-4/5 flex-col gap-8">
