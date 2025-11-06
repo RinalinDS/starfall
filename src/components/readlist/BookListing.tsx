@@ -1,5 +1,7 @@
-import { FaStar, FaRegStar } from 'react-icons/fa6';
-import { LuStar, LuEye, LuInfo } from 'react-icons/lu';
+import toast from 'react-hot-toast';
+import { CgClose } from 'react-icons/cg';
+import { FaRegStar, FaStar } from 'react-icons/fa6';
+import { LuEye, LuInfo, LuStar } from 'react-icons/lu';
 import { useBookActions } from '../../hooks/useBookActions';
 import { useModalControls } from '../../hooks/useModalControls';
 import { useUserStore } from '../../store/useUserStore';
@@ -8,14 +10,13 @@ import { Button } from '../ui/Button/button';
 import { WatchListButton } from '../ui/Button/watchlist-button';
 import { Modal } from '../ui/Modal/modal';
 import { BookCard } from './BookCard';
-import toast from 'react-hot-toast';
-import { CgClose } from 'react-icons/cg';
 
 type Props = {
   id: string;
   index: number;
+  isDarkTheme: boolean;
 };
-export const BookListing = ({ id, index }: Props) => {
+export const BookListing = ({ id, index, isDarkTheme }: Props) => {
   const {
     closeModal: closeRatingModal,
     openModal: openRatingModal,
@@ -42,13 +43,16 @@ export const BookListing = ({ id, index }: Props) => {
   const isFinished = getIsFinished(id);
   const isRated = Boolean(currentUserRating);
 
+  // TODO potentially i can remove whole library and make this toast selfmade , because it's literally only place right now for it
   const handleToggleWatched = () => {
     if (isRated && isFinished) {
       toast(
-        'To remove this from your watch history, remove your rating first.',
+        'To remove this from your reading history, remove your rating first.',
         {
           position: 'bottom-center',
           style: {
+            background: isDarkTheme ? '#fff' : '#282828',
+            color: isDarkTheme ? '#111' : '#fff',
             alignItems: 'center',
             textAlign: 'center',
           },
