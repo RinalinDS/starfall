@@ -92,6 +92,10 @@ export const useUserStore = create<UserState>()(
     }),
     {
       name: 'user-storage',
+      partialize: (state) => ({
+        finishedBooks: state.finishedBooks,
+        ratedBooks: state.ratedBooks,
+      }),
     }
   )
 );

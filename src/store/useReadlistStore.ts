@@ -11,7 +11,7 @@ type ReadlistStore = {
 export const useReadlistStore = create<ReadlistStore>()(
   persist(
     (set) => ({
-      readlist: ['1', '2'],
+      readlist: [],
       addToReadlist: (id) =>
         set((state) => ({ readlist: [...state.readlist, id] })),
       removeFromReadlist: (id) =>
@@ -22,6 +22,9 @@ export const useReadlistStore = create<ReadlistStore>()(
     }),
     {
       name: 'readlist-storage',
+      partialize: (state) => ({
+        readlist: state.readlist,
+      }),
     }
   )
 );

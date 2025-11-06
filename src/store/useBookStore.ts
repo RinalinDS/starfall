@@ -73,6 +73,15 @@ export const useBookStore = create<BookState>()(
     }),
     {
       name: 'book-storage',
+      partialize: (state) => ({
+        books: state.books,
+      }),
     }
   )
 );
+
+// TODO add partizlize , to not take actions into local storage
+// partialize: (state) => ({
+//   rows: state.rows,
+//   columns: state.columns,
+// }),
