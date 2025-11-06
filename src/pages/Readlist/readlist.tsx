@@ -26,7 +26,7 @@ export const Readlist = () => {
           </div>
         </section>
       </div>
-      <section className="mx-auto max-w-[120rem] py-8">
+      <section className="mx-auto max-w-[120rem] px-4 py-8">
         <div className="flex max-w-[80rem] flex-col gap-8 rounded-lg border border-gray-200 bg-white p-6 text-2xl dark:border-gray-700 dark:bg-gray-800">
           {readlist.map((bookId, i) => {
             return (

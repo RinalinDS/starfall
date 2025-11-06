@@ -97,32 +97,37 @@ export const BookListing = ({ id, index, isDarkTheme }: Props) => {
               <h2 className="mb-1 font-semibold text-gray-900 dark:text-white">
                 {index}. {title}
               </h2>
-              <div className="flex items-center gap-6 text-gray-600 dark:text-gray-200">
-                <div className="">{year}</div>
-                <div className="flex items-center gap-1">
-                  <LuStar className="h-4 w-4 fill-amber-400 text-amber-400 dark:fill-amber-500 dark:text-amber-500" />
-                  <span className="font-medium">
-                    {ratingToDisplay} ({ratingCount})
-                  </span>
+              <div className="flex flex-col text-gray-600 sm:flex-row dark:text-gray-200">
+                <div className="flex items-center gap-6 text-gray-600 dark:text-gray-200">
+                  <div className="">{year}</div>
+                  <div className="flex items-center gap-1">
+                    <LuStar className="h-4 w-4 fill-amber-400 text-amber-400 dark:fill-amber-500 dark:text-amber-500" />
+                    <span className="font-medium">
+                      {ratingToDisplay} ({ratingCount})
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      onClick={openModal}
+                      className="flex items-center gap-1.5 rounded-sm px-4 py-1 text-gray-600 hover:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700"
+                    >
+                      <Icon className="fill-purple-600 text-2xl dark:fill-purple-400" />
+                      <span>{currentUserRating || 0} </span>
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Button
-                    onClick={openModal}
-                    className="flex items-center gap-1.5 rounded-sm px-4 py-1 text-gray-600 hover:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700"
+
+                <div>
+                  <button
+                    className="inline-flex items-center gap-2 rounded-3xl px-3 py-2 text-blue-600 transition-colors duration-200 hover:bg-blue-100 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700"
+                    onClick={handleToggleWatched}
                   >
-                    <Icon className="h-4 w-4 fill-purple-600 dark:fill-purple-400" />
-                    <span>{currentUserRating || 0} </span>
-                  </Button>
+                    <LuEye className="text-blue-600 dark:text-blue-400" />
+                    <span>
+                      {isFinished || isRated ? 'Finished' : 'Mark as finished'}
+                    </span>
+                  </button>
                 </div>
-                <button
-                  className="inline-flex items-center gap-2 rounded-3xl px-3 py-2 text-blue-600 transition-colors duration-200 hover:bg-blue-100 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700"
-                  onClick={handleToggleWatched}
-                >
-                  <LuEye className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span>
-                    {isFinished || isRated ? 'Finished' : 'Mark as finished'}
-                  </span>
-                </button>
               </div>
             </div>
             <button
